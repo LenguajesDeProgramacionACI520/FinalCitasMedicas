@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsN_Genero.cs" />
     <Compile Include="clsN_Admin.cs" />
     <Compile Include="clsN_Login.cs" />
     <Compile Include="clsN_Usuario.cs" />
+    <Compile Include="clsN_Seguro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

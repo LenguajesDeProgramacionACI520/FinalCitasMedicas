@@ -42,7 +42,6 @@ namespace slnSistemaCitas
             txtPass.MaxLength = 20;
             pcbUsuario.Visible = false;
             deshabilitar(btnIngreso);
-
         }
 
         private void pcbPassVis_Click(object sender, EventArgs e)
@@ -67,8 +66,6 @@ namespace slnSistemaCitas
 
         private void btnIngreso_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(txtCi.Text);
-            Console.WriteLine(txtPass.Text);
             if(login.N_ingreso(txtCi.Text, txtPass.Text))
             {
                 try
@@ -86,14 +83,14 @@ namespace slnSistemaCitas
                 {
                     limpiar();
                     MessageBox.Show("No se encontró usuario en la base\n"+
-                        "Comunicarse con el Administrador","Er001",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        "Comunicarse con el Administrador","Er001",MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw ex;
                 }
             }
             else
             {
                 limpiar();
-                MessageBox.Show("Usuario no existe \nVuelva a intentarlo", "Er000", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Usuario no existe \nVuelva a intentarlo", "Er000", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -156,6 +153,7 @@ namespace slnSistemaCitas
         {
             frmRegistrarUsuario registro = new frmRegistrarUsuario();
             registro.ShowDialog();
+            limpiar();
         }
     }
 }

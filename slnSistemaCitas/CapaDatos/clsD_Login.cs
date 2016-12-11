@@ -23,9 +23,7 @@ namespace CapaDatos
                 comando.Parameters.Add("@pass", SqlDbType.VarChar, 20, "pass").Value = pass;
 
                 Int32 count = (Int32)comando.ExecuteScalar();
-                Console.WriteLine(count);
                 clsConexion.cerrarConexion();
-                Console.WriteLine(count);
                 if (count == 0)
                     return false;
                 else
@@ -35,6 +33,32 @@ namespace CapaDatos
             {
                 return false;
                 throw ex;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
+        public bool agregarPersona(string usuario, string password, int rol)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = " INSERT INTO TblLogin1 values(@usuario, @password, @rol)";
+                SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
+
+                command.Parameters.Add("@usuario", SqlDbType.VarChar, 10, "usuario").Value = usuario;
+                command.Parameters.Add("@password", SqlDbType.VarChar, 20, "pass").Value = password;
+                command.Parameters.Add("@rol", SqlDbType.Int, 4, "rol").Value = rol;
+
+                command.ExecuteNonQuery();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
             finally
             {

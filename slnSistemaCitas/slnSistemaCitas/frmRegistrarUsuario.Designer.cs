@@ -59,7 +59,28 @@
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pcbCedula = new System.Windows.Forms.PictureBox();
+            this.pcbP_nom = new System.Windows.Forms.PictureBox();
+            this.pcbP_Ape = new System.Windows.Forms.PictureBox();
+            this.pcbGenero = new System.Windows.Forms.PictureBox();
+            this.pcbFechaN = new System.Windows.Forms.PictureBox();
+            this.pcbSeguro = new System.Windows.Forms.PictureBox();
+            this.pcbPass = new System.Windows.Forms.PictureBox();
+            this.pcbPassVer = new System.Windows.Forms.PictureBox();
+            this.pcbCelular = new System.Windows.Forms.PictureBox();
+            this.pcbSector = new System.Windows.Forms.PictureBox();
+            this.txtCodigoCel = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbCedula)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbP_nom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbP_Ape)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGenero)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbFechaN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbSeguro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbPass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbPassVer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbCelular)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbSector)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCi
@@ -69,6 +90,8 @@
             this.txtCi.Name = "txtCi";
             this.txtCi.Size = new System.Drawing.Size(173, 26);
             this.txtCi.TabIndex = 0;
+            this.txtCi.TextChanged += new System.EventHandler(this.txtCi_TextChanged);
+            this.txtCi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCi_KeyPress);
             // 
             // txtNom1
             // 
@@ -77,14 +100,16 @@
             this.txtNom1.Name = "txtNom1";
             this.txtNom1.Size = new System.Drawing.Size(173, 26);
             this.txtNom1.TabIndex = 1;
+            this.txtNom1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNom1_KeyPress);
             // 
             // txtNom2
             // 
-            this.txtNom2.Location = new System.Drawing.Point(493, 137);
+            this.txtNom2.Location = new System.Drawing.Point(563, 137);
             this.txtNom2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNom2.Name = "txtNom2";
             this.txtNom2.Size = new System.Drawing.Size(162, 26);
             this.txtNom2.TabIndex = 2;
+            this.txtNom2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNom2_KeyPress);
             // 
             // txtApe1
             // 
@@ -93,14 +118,16 @@
             this.txtApe1.Name = "txtApe1";
             this.txtApe1.Size = new System.Drawing.Size(173, 26);
             this.txtApe1.TabIndex = 3;
+            this.txtApe1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApe1_KeyPress);
             // 
             // txtApe2
             // 
-            this.txtApe2.Location = new System.Drawing.Point(493, 212);
+            this.txtApe2.Location = new System.Drawing.Point(563, 212);
             this.txtApe2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtApe2.Name = "txtApe2";
             this.txtApe2.Size = new System.Drawing.Size(162, 26);
             this.txtApe2.TabIndex = 4;
+            this.txtApe2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApe2_KeyPress);
             // 
             // cmbGenero
             // 
@@ -113,60 +140,77 @@
             // 
             // dtpFechaN
             // 
-            this.dtpFechaN.Location = new System.Drawing.Point(180, 331);
+            this.dtpFechaN.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaN.Location = new System.Drawing.Point(190, 330);
             this.dtpFechaN.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpFechaN.Name = "dtpFechaN";
-            this.dtpFechaN.Size = new System.Drawing.Size(224, 26);
-            this.dtpFechaN.TabIndex = 6;
+            this.dtpFechaN.Size = new System.Drawing.Size(197, 26);
+            this.dtpFechaN.TabIndex = 7;
             // 
             // txtCel
             // 
-            this.txtCel.Location = new System.Drawing.Point(493, 277);
+            this.txtCel.Location = new System.Drawing.Point(563, 277);
             this.txtCel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCel.Name = "txtCel";
             this.txtCel.Size = new System.Drawing.Size(162, 26);
-            this.txtCel.TabIndex = 7;
+            this.txtCel.TabIndex = 6;
+            this.txtCel.TextChanged += new System.EventHandler(this.txtCel_TextChanged);
+            this.txtCel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCel_KeyPress);
             // 
             // cmbSeguro
             // 
             this.cmbSeguro.FormattingEnabled = true;
-            this.cmbSeguro.Location = new System.Drawing.Point(154, 398);
+            this.cmbSeguro.Location = new System.Drawing.Point(153, 395);
             this.cmbSeguro.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbSeguro.Name = "cmbSeguro";
-            this.cmbSeguro.Size = new System.Drawing.Size(173, 28);
-            this.cmbSeguro.TabIndex = 10;
+            this.cmbSeguro.Size = new System.Drawing.Size(197, 28);
+            this.cmbSeguro.TabIndex = 9;
             // 
             // txtCorreo
             // 
-            this.txtCorreo.Location = new System.Drawing.Point(493, 333);
+            this.txtCorreo.Location = new System.Drawing.Point(513, 331);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(162, 26);
+            this.txtCorreo.Size = new System.Drawing.Size(212, 26);
             this.txtCorreo.TabIndex = 8;
             // 
             // txtSector
             // 
-            this.txtSector.Location = new System.Drawing.Point(493, 395);
+            this.txtSector.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSector.ForeColor = System.Drawing.Color.Gray;
+            this.txtSector.Location = new System.Drawing.Point(563, 395);
             this.txtSector.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSector.Name = "txtSector";
             this.txtSector.Size = new System.Drawing.Size(162, 26);
-            this.txtSector.TabIndex = 9;
+            this.txtSector.TabIndex = 10;
+            this.txtSector.Text = "Sector";
+            this.txtSector.TextChanged += new System.EventHandler(this.txtSector_TextChanged);
+            this.txtSector.Enter += new System.EventHandler(this.txtSector_Enter);
+            this.txtSector.Leave += new System.EventHandler(this.txtSector_Leave);
             // 
             // txtPass1
             // 
-            this.txtPass1.Location = new System.Drawing.Point(249, 455);
+            this.txtPass1.Location = new System.Drawing.Point(306, 457);
             this.txtPass1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPass1.Name = "txtPass1";
             this.txtPass1.Size = new System.Drawing.Size(238, 26);
             this.txtPass1.TabIndex = 11;
+            this.txtPass1.UseSystemPasswordChar = true;
+            this.txtPass1.TextChanged += new System.EventHandler(this.txtPass1_TextChanged);
+            this.txtPass1.Enter += new System.EventHandler(this.txtPass1_Enter);
+            this.txtPass1.Leave += new System.EventHandler(this.txtPass1_Leave);
             // 
             // txtPass2
             // 
-            this.txtPass2.Location = new System.Drawing.Point(254, 500);
+            this.txtPass2.Location = new System.Drawing.Point(306, 505);
             this.txtPass2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPass2.Name = "txtPass2";
             this.txtPass2.Size = new System.Drawing.Size(238, 26);
             this.txtPass2.TabIndex = 12;
+            this.txtPass2.UseSystemPasswordChar = true;
+            this.txtPass2.TextChanged += new System.EventHandler(this.txtPass2_TextChanged);
+            this.txtPass2.Enter += new System.EventHandler(this.txtPass2_Enter);
+            this.txtPass2.Leave += new System.EventHandler(this.txtPass2_Leave);
             // 
             // lblTitulo
             // 
@@ -174,7 +218,7 @@
             this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.8F);
             this.lblTitulo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.lblTitulo.Location = new System.Drawing.Point(228, 9);
+            this.lblTitulo.Location = new System.Drawing.Point(271, 9);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(246, 39);
             this.lblTitulo.TabIndex = 14;
@@ -210,7 +254,7 @@
             this.lblNom2.BackColor = System.Drawing.Color.Transparent;
             this.lblNom2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblNom2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblNom2.Location = new System.Drawing.Point(344, 143);
+            this.lblNom2.Location = new System.Drawing.Point(414, 143);
             this.lblNom2.Name = "lblNom2";
             this.lblNom2.Size = new System.Drawing.Size(143, 20);
             this.lblNom2.TabIndex = 17;
@@ -234,7 +278,7 @@
             this.lblApe2.BackColor = System.Drawing.Color.Transparent;
             this.lblApe2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblApe2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblApe2.Location = new System.Drawing.Point(344, 215);
+            this.lblApe2.Location = new System.Drawing.Point(414, 215);
             this.lblApe2.Name = "lblApe2";
             this.lblApe2.Size = new System.Drawing.Size(143, 20);
             this.lblApe2.TabIndex = 19;
@@ -258,7 +302,7 @@
             this.lblCel.BackColor = System.Drawing.Color.Transparent;
             this.lblCel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblCel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblCel.Location = new System.Drawing.Point(415, 283);
+            this.lblCel.Location = new System.Drawing.Point(420, 280);
             this.lblCel.Name = "lblCel";
             this.lblCel.Size = new System.Drawing.Size(72, 20);
             this.lblCel.TabIndex = 21;
@@ -270,7 +314,7 @@
             this.lblFecha.BackColor = System.Drawing.Color.Transparent;
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblFecha.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblFecha.Location = new System.Drawing.Point(2, 336);
+            this.lblFecha.Location = new System.Drawing.Point(12, 336);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(172, 20);
             this.lblFecha.TabIndex = 22;
@@ -282,7 +326,7 @@
             this.lblCorreo.BackColor = System.Drawing.Color.Transparent;
             this.lblCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblCorreo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblCorreo.Location = new System.Drawing.Point(422, 336);
+            this.lblCorreo.Location = new System.Drawing.Point(442, 334);
             this.lblCorreo.Name = "lblCorreo";
             this.lblCorreo.Size = new System.Drawing.Size(65, 20);
             this.lblCorreo.TabIndex = 23;
@@ -294,11 +338,11 @@
             this.lblSector.BackColor = System.Drawing.Color.Transparent;
             this.lblSector.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblSector.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblSector.Location = new System.Drawing.Point(424, 401);
+            this.lblSector.Location = new System.Drawing.Point(471, 398);
             this.lblSector.Name = "lblSector";
-            this.lblSector.Size = new System.Drawing.Size(63, 20);
+            this.lblSector.Size = new System.Drawing.Size(86, 20);
             this.lblSector.TabIndex = 24;
-            this.lblSector.Text = "Sector:";
+            this.lblSector.Text = "Dirección:";
             // 
             // lblSeguro
             // 
@@ -306,11 +350,11 @@
             this.lblSeguro.BackColor = System.Drawing.Color.Transparent;
             this.lblSeguro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblSeguro.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblSeguro.Location = new System.Drawing.Point(79, 401);
+            this.lblSeguro.Location = new System.Drawing.Point(19, 398);
             this.lblSeguro.Name = "lblSeguro";
-            this.lblSeguro.Size = new System.Drawing.Size(67, 20);
+            this.lblSeguro.Size = new System.Drawing.Size(126, 20);
             this.lblSeguro.TabIndex = 25;
-            this.lblSeguro.Text = "Seguro:";
+            this.lblSeguro.Text = "Seguro Médico:";
             // 
             // lblPass1
             // 
@@ -318,7 +362,7 @@
             this.lblPass1.BackColor = System.Drawing.Color.Transparent;
             this.lblPass1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblPass1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblPass1.Location = new System.Drawing.Point(138, 458);
+            this.lblPass1.Location = new System.Drawing.Point(195, 460);
             this.lblPass1.Name = "lblPass1";
             this.lblPass1.Size = new System.Drawing.Size(100, 20);
             this.lblPass1.TabIndex = 26;
@@ -330,7 +374,7 @@
             this.lblPass2.BackColor = System.Drawing.Color.Transparent;
             this.lblPass2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblPass2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblPass2.Location = new System.Drawing.Point(70, 506);
+            this.lblPass2.Location = new System.Drawing.Point(127, 508);
             this.lblPass2.Name = "lblPass2";
             this.lblPass2.Size = new System.Drawing.Size(168, 20);
             this.lblPass2.TabIndex = 27;
@@ -341,41 +385,162 @@
             this.btnRegistrar.BackColor = System.Drawing.Color.Honeydew;
             this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.8F);
             this.btnRegistrar.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnRegistrar.Location = new System.Drawing.Point(165, 562);
+            this.btnRegistrar.Location = new System.Drawing.Point(222, 564);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(172, 45);
-            this.btnRegistrar.TabIndex = 28;
+            this.btnRegistrar.TabIndex = 13;
             this.btnRegistrar.Text = "Crear Usuario";
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.Honeydew;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.8F);
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnCancelar.Location = new System.Drawing.Point(419, 557);
+            this.btnCancelar.Location = new System.Drawing.Point(476, 559);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(146, 50);
-            this.btnCancelar.TabIndex = 29;
+            this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(542, 28);
+            this.pictureBox1.Location = new System.Drawing.Point(612, 28);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(96, 78);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 30;
             this.pictureBox1.TabStop = false;
             // 
+            // pcbCedula
+            // 
+            this.pcbCedula.BackColor = System.Drawing.Color.Transparent;
+            this.pcbCedula.Location = new System.Drawing.Point(332, 80);
+            this.pcbCedula.Name = "pcbCedula";
+            this.pcbCedula.Size = new System.Drawing.Size(27, 26);
+            this.pcbCedula.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbCedula.TabIndex = 31;
+            this.pcbCedula.TabStop = false;
+            // 
+            // pcbP_nom
+            // 
+            this.pcbP_nom.BackColor = System.Drawing.Color.Transparent;
+            this.pcbP_nom.Location = new System.Drawing.Point(332, 137);
+            this.pcbP_nom.Name = "pcbP_nom";
+            this.pcbP_nom.Size = new System.Drawing.Size(27, 26);
+            this.pcbP_nom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbP_nom.TabIndex = 32;
+            this.pcbP_nom.TabStop = false;
+            // 
+            // pcbP_Ape
+            // 
+            this.pcbP_Ape.BackColor = System.Drawing.Color.Transparent;
+            this.pcbP_Ape.Location = new System.Drawing.Point(332, 212);
+            this.pcbP_Ape.Name = "pcbP_Ape";
+            this.pcbP_Ape.Size = new System.Drawing.Size(27, 26);
+            this.pcbP_Ape.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbP_Ape.TabIndex = 33;
+            this.pcbP_Ape.TabStop = false;
+            // 
+            // pcbGenero
+            // 
+            this.pcbGenero.BackColor = System.Drawing.Color.Transparent;
+            this.pcbGenero.Location = new System.Drawing.Point(332, 283);
+            this.pcbGenero.Name = "pcbGenero";
+            this.pcbGenero.Size = new System.Drawing.Size(27, 25);
+            this.pcbGenero.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbGenero.TabIndex = 34;
+            this.pcbGenero.TabStop = false;
+            // 
+            // pcbFechaN
+            // 
+            this.pcbFechaN.BackColor = System.Drawing.Color.Transparent;
+            this.pcbFechaN.Location = new System.Drawing.Point(393, 330);
+            this.pcbFechaN.Name = "pcbFechaN";
+            this.pcbFechaN.Size = new System.Drawing.Size(27, 24);
+            this.pcbFechaN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbFechaN.TabIndex = 35;
+            this.pcbFechaN.TabStop = false;
+            // 
+            // pcbSeguro
+            // 
+            this.pcbSeguro.BackColor = System.Drawing.Color.Transparent;
+            this.pcbSeguro.Location = new System.Drawing.Point(360, 398);
+            this.pcbSeguro.Name = "pcbSeguro";
+            this.pcbSeguro.Size = new System.Drawing.Size(27, 25);
+            this.pcbSeguro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbSeguro.TabIndex = 36;
+            this.pcbSeguro.TabStop = false;
+            // 
+            // pcbPass
+            // 
+            this.pcbPass.BackColor = System.Drawing.Color.Transparent;
+            this.pcbPass.Location = new System.Drawing.Point(563, 457);
+            this.pcbPass.Name = "pcbPass";
+            this.pcbPass.Size = new System.Drawing.Size(32, 26);
+            this.pcbPass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbPass.TabIndex = 37;
+            this.pcbPass.TabStop = false;
+            // 
+            // pcbPassVer
+            // 
+            this.pcbPassVer.BackColor = System.Drawing.Color.Transparent;
+            this.pcbPassVer.Location = new System.Drawing.Point(563, 503);
+            this.pcbPassVer.Name = "pcbPassVer";
+            this.pcbPassVer.Size = new System.Drawing.Size(32, 28);
+            this.pcbPassVer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbPassVer.TabIndex = 38;
+            this.pcbPassVer.TabStop = false;
+            // 
+            // pcbCelular
+            // 
+            this.pcbCelular.BackColor = System.Drawing.Color.Transparent;
+            this.pcbCelular.Location = new System.Drawing.Point(732, 277);
+            this.pcbCelular.Name = "pcbCelular";
+            this.pcbCelular.Size = new System.Drawing.Size(29, 25);
+            this.pcbCelular.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbCelular.TabIndex = 39;
+            this.pcbCelular.TabStop = false;
+            // 
+            // pcbSector
+            // 
+            this.pcbSector.BackColor = System.Drawing.Color.Transparent;
+            this.pcbSector.Location = new System.Drawing.Point(732, 395);
+            this.pcbSector.Name = "pcbSector";
+            this.pcbSector.Size = new System.Drawing.Size(28, 26);
+            this.pcbSector.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbSector.TabIndex = 40;
+            this.pcbSector.TabStop = false;
+            // 
+            // txtCodigoCel
+            // 
+            this.txtCodigoCel.Location = new System.Drawing.Point(498, 277);
+            this.txtCodigoCel.Name = "txtCodigoCel";
+            this.txtCodigoCel.Size = new System.Drawing.Size(59, 26);
+            this.txtCodigoCel.TabIndex = 41;
+            // 
             // frmRegistrarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(704, 634);
+            this.ClientSize = new System.Drawing.Size(771, 634);
+            this.Controls.Add(this.txtCodigoCel);
+            this.Controls.Add(this.pcbSector);
+            this.Controls.Add(this.pcbCelular);
+            this.Controls.Add(this.pcbPassVer);
+            this.Controls.Add(this.pcbPass);
+            this.Controls.Add(this.pcbSeguro);
+            this.Controls.Add(this.pcbFechaN);
+            this.Controls.Add(this.pcbGenero);
+            this.Controls.Add(this.pcbP_Ape);
+            this.Controls.Add(this.pcbP_nom);
+            this.Controls.Add(this.pcbCedula);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnRegistrar);
@@ -415,7 +580,18 @@
             this.Name = "frmRegistrarUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Usuario";
+            this.Load += new System.EventHandler(this.frmRegistrarUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbCedula)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbP_nom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbP_Ape)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGenero)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbFechaN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbSeguro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbPass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbPassVer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbCelular)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbSector)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -453,5 +629,16 @@
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pcbCedula;
+        private System.Windows.Forms.PictureBox pcbP_nom;
+        private System.Windows.Forms.PictureBox pcbP_Ape;
+        private System.Windows.Forms.PictureBox pcbGenero;
+        private System.Windows.Forms.PictureBox pcbFechaN;
+        private System.Windows.Forms.PictureBox pcbSeguro;
+        private System.Windows.Forms.PictureBox pcbPass;
+        private System.Windows.Forms.PictureBox pcbPassVer;
+        private System.Windows.Forms.PictureBox pcbCelular;
+        private System.Windows.Forms.PictureBox pcbSector;
+        private System.Windows.Forms.TextBox txtCodigoCel;
     }
 }

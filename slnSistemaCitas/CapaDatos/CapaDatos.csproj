@@ -41,7 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsConexion.cs" />
+    <Compile Include="clsD_Genero.cs" />
     <Compile Include="clsD_Login.cs" />
+    <Compile Include="clsD_Seguro.cs" />
+    <Compile Include="clsD_Usuario.cs" />
+    <Compile Include="clsD_Admin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
