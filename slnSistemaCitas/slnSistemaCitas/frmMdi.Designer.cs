@@ -88,6 +88,7 @@
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(50, 24);
             this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // manejoDeUsuariosToolStripMenuItem
             // 
@@ -143,6 +144,7 @@
             this.Name = "frmMdi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema Citas Médicas";
+            this.Load += new System.EventHandler(this.frmMdi_Load);
             this.mestInicio.ResumeLayout(false);
             this.mestInicio.PerformLayout();
             this.ResumeLayout(false);

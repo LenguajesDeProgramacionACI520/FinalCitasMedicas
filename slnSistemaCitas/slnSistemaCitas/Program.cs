@@ -16,7 +16,7 @@ namespace slnSistemaCitas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMdi());
+            Application.Run(new frmLogin());
         }
     }
 }
