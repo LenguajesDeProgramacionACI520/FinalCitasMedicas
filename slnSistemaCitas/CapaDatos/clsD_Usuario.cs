@@ -38,7 +38,7 @@ namespace CapaDatos
             }
         }
 
-        public bool agregarUsuario(string ci, string nom1, string nom2, string ape1, string ape2, int genero, DateTime fechaN, string correo, string cel, int seguro, string sector)
+        public bool agregarUsuario(string ci, string nom1, string nom2, string ape1, string ape2, int genero, DateTime fechaN, string correo, string cel, int seguro, int sector)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace CapaDatos
                 command.Parameters.Add("@correo", SqlDbType.VarChar, 50, "correo").Value = correo;
                 command.Parameters.Add("@cel", SqlDbType.VarChar, 12, "cel").Value = cel;
                 command.Parameters.Add("@seguro", SqlDbType.Int, 4, "seguroMedico").Value = seguro;
-                command.Parameters.Add("@sector", SqlDbType.VarChar, 25, "sector").Value = sector;
+                command.Parameters.Add("@sector", SqlDbType.Int, 4, "sector").Value = sector;
 
                 command.ExecuteNonQuery();
                 return true;

@@ -39,7 +39,6 @@
             this.txtCel = new System.Windows.Forms.TextBox();
             this.cmbSeguro = new System.Windows.Forms.ComboBox();
             this.txtCorreo = new System.Windows.Forms.TextBox();
-            this.txtSector = new System.Windows.Forms.TextBox();
             this.txtPass1 = new System.Windows.Forms.TextBox();
             this.txtPass2 = new System.Windows.Forms.TextBox();
             this.lblTitulo = new System.Windows.Forms.Label();
@@ -52,7 +51,7 @@
             this.lblCel = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblCorreo = new System.Windows.Forms.Label();
-            this.lblSector = new System.Windows.Forms.Label();
+            this.lblCiudad = new System.Windows.Forms.Label();
             this.lblSeguro = new System.Windows.Forms.Label();
             this.lblPass1 = new System.Windows.Forms.Label();
             this.lblPass2 = new System.Windows.Forms.Label();
@@ -70,6 +69,7 @@
             this.pcbCelular = new System.Windows.Forms.PictureBox();
             this.pcbSector = new System.Windows.Forms.PictureBox();
             this.txtCodigoCel = new System.Windows.Forms.TextBox();
+            this.cmbCiudad = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbCedula)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbP_nom)).BeginInit();
@@ -173,20 +173,6 @@
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(212, 26);
             this.txtCorreo.TabIndex = 8;
-            // 
-            // txtSector
-            // 
-            this.txtSector.BackColor = System.Drawing.SystemColors.Window;
-            this.txtSector.ForeColor = System.Drawing.Color.Gray;
-            this.txtSector.Location = new System.Drawing.Point(563, 395);
-            this.txtSector.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSector.Name = "txtSector";
-            this.txtSector.Size = new System.Drawing.Size(162, 26);
-            this.txtSector.TabIndex = 10;
-            this.txtSector.Text = "Sector";
-            this.txtSector.TextChanged += new System.EventHandler(this.txtSector_TextChanged);
-            this.txtSector.Enter += new System.EventHandler(this.txtSector_Enter);
-            this.txtSector.Leave += new System.EventHandler(this.txtSector_Leave);
             // 
             // txtPass1
             // 
@@ -332,17 +318,17 @@
             this.lblCorreo.TabIndex = 23;
             this.lblCorreo.Text = "Correo:";
             // 
-            // lblSector
+            // lblCiudad
             // 
-            this.lblSector.AutoSize = true;
-            this.lblSector.BackColor = System.Drawing.Color.Transparent;
-            this.lblSector.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
-            this.lblSector.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblSector.Location = new System.Drawing.Point(471, 398);
-            this.lblSector.Name = "lblSector";
-            this.lblSector.Size = new System.Drawing.Size(86, 20);
-            this.lblSector.TabIndex = 24;
-            this.lblSector.Text = "Dirección:";
+            this.lblCiudad.AutoSize = true;
+            this.lblCiudad.BackColor = System.Drawing.Color.Transparent;
+            this.lblCiudad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
+            this.lblCiudad.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblCiudad.Location = new System.Drawing.Point(496, 401);
+            this.lblCiudad.Name = "lblCiudad";
+            this.lblCiudad.Size = new System.Drawing.Size(61, 20);
+            this.lblCiudad.TabIndex = 24;
+            this.lblCiudad.Text = "Ciudad";
             // 
             // lblSeguro
             // 
@@ -524,12 +510,21 @@
             this.txtCodigoCel.Size = new System.Drawing.Size(59, 26);
             this.txtCodigoCel.TabIndex = 41;
             // 
+            // cmbCiudad
+            // 
+            this.cmbCiudad.FormattingEnabled = true;
+            this.cmbCiudad.Location = new System.Drawing.Point(563, 395);
+            this.cmbCiudad.Name = "cmbCiudad";
+            this.cmbCiudad.Size = new System.Drawing.Size(162, 28);
+            this.cmbCiudad.TabIndex = 42;
+            // 
             // frmRegistrarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(771, 634);
+            this.Controls.Add(this.cmbCiudad);
             this.Controls.Add(this.txtCodigoCel);
             this.Controls.Add(this.pcbSector);
             this.Controls.Add(this.pcbCelular);
@@ -547,7 +542,7 @@
             this.Controls.Add(this.lblPass2);
             this.Controls.Add(this.lblPass1);
             this.Controls.Add(this.lblSeguro);
-            this.Controls.Add(this.lblSector);
+            this.Controls.Add(this.lblCiudad);
             this.Controls.Add(this.lblCorreo);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.lblCel);
@@ -560,7 +555,6 @@
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.txtPass2);
             this.Controls.Add(this.txtPass1);
-            this.Controls.Add(this.txtSector);
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.cmbSeguro);
             this.Controls.Add(this.txtCel);
@@ -609,7 +603,6 @@
         private System.Windows.Forms.TextBox txtCel;
         private System.Windows.Forms.ComboBox cmbSeguro;
         private System.Windows.Forms.TextBox txtCorreo;
-        private System.Windows.Forms.TextBox txtSector;
         private System.Windows.Forms.TextBox txtPass1;
         private System.Windows.Forms.TextBox txtPass2;
         private System.Windows.Forms.Label lblTitulo;
@@ -622,7 +615,7 @@
         private System.Windows.Forms.Label lblCel;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label lblCorreo;
-        private System.Windows.Forms.Label lblSector;
+        private System.Windows.Forms.Label lblCiudad;
         private System.Windows.Forms.Label lblSeguro;
         private System.Windows.Forms.Label lblPass1;
         private System.Windows.Forms.Label lblPass2;
@@ -640,5 +633,6 @@
         private System.Windows.Forms.PictureBox pcbCelular;
         private System.Windows.Forms.PictureBox pcbSector;
         private System.Windows.Forms.TextBox txtCodigoCel;
+        private System.Windows.Forms.ComboBox cmbCiudad;
     }
 }

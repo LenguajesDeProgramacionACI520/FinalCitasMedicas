@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsConexion.cs" />
+    <Compile Include="clsD_Ciudad.cs" />
+    <Compile Include="clsD_Especialidad.cs" />
     <Compile Include="clsD_Genero.cs" />
     <Compile Include="clsD_Login.cs" />
     <Compile Include="clsD_Seguro.cs" />

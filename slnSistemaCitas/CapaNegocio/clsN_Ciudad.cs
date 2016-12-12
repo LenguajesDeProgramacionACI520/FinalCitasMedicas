@@ -8,13 +8,12 @@ using CapaDatos;
 
 namespace CapaNegocio
 {
-    public class clsN_Genero
+    public class clsN_Ciudad
     {
-        public int codigo { get; set; }
-        clsD_Genero D_genero = new clsD_Genero();
-        public DataSet consultaGenero()
+        clsD_Ciudad D_Ciudad = new clsD_Ciudad();
+        public DataSet consultaCiudad()
         {
-            return (D_genero.consultaGenero());
+            return (D_Ciudad.consultaCiudad());
         }
     }
 }

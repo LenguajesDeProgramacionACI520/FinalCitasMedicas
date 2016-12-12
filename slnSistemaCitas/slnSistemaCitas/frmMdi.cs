@@ -12,9 +12,9 @@ namespace slnSistemaCitas
 {
     public partial class frmMdi : Form
     {
-        int rol=0;
+        public int rol { get; set; }
         Form login;
-        string ci = "";
+        public string ci { get; set; }
         public frmMdi(string ci, int rol, Form inicio)
         {
             InitializeComponent();
@@ -64,6 +64,20 @@ namespace slnSistemaCitas
         private void frmMdi_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void manejoDeAdministradoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManejoAdmin manAdmin = new frmManejoAdmin(ci);
+            manAdmin.MdiParent = this;
+            manAdmin.Show();
+        }
+
+        private void manejoDeEspecialidadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEspecialidad espcialidades = new frmEspecialidad();
+            espcialidades.MdiParent = this;
+            espcialidades.Show();
         }
     }
 }

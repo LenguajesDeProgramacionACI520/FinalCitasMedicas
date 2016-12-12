@@ -10,17 +10,17 @@ namespace CapaNegocio
 {
     public class clsN_Usuario
     {
-        string ci = "";
-        string nom1 = "";
-        string nom2 = "";
-        string ape1 = "";
-        string ape2 = "";
-        int genero = 0;
-        DateTime fechaN = new DateTime();
-        string correo = "";
-        string cel = "";
-        int seguro = 0;
-        string sector = "";
+        public string ci { get; set; }
+        public string nom1 { get; set; }
+        public string nom2 { get; set; }
+        public string ape1 { get; set; }
+        public string ape2 { get; set; }
+        public int genero { get; set; }
+        public DateTime fechaN { get; set; }
+        public string correo { get; set; }
+        public string cel { get; set; }
+        public int seguro { get; set; }
+        public int sector { get; set; }
         clsD_Usuario D_Usuario = new clsD_Usuario();
 
         public bool verificarCi(string ci)
@@ -29,7 +29,7 @@ namespace CapaNegocio
             return (D_Usuario.verificarCi(this.ci));
         }
 
-        public bool agregarUsuario(string idCedula, string nom1, string nom2, string ape1, string ape2, int genero, DateTime fechaN, string correo, string cel, int seguroMedico, string sector)
+        public bool agregarUsuario(string idCedula, string nom1, string nom2, string ape1, string ape2, int genero, DateTime fechaN, string correo, string cel, int seguroMedico, int sector)
         {
             this.ci = idCedula;
             this.nom1 = nom1;

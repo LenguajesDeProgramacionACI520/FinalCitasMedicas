@@ -11,9 +11,9 @@ namespace CapaNegocio
     public class clsN_Login
     {
         clsD_Login login = new clsD_Login();
-        string usuario = "";
-        string password = "";
-        int rol = 0;
+        public string usuario { get; set; }
+        public string password { get; set; }
+        public int rol { get; set; }
 
         public bool N_ingreso(string ci, string pass)
         {
@@ -26,7 +26,6 @@ namespace CapaNegocio
         public DataSet N_consulta(string ci)
         {
             usuario = ci;
-            Console.WriteLine("Consutla: " + usuario);
             return (login.D_consulta(usuario));
         }
 
@@ -36,6 +35,19 @@ namespace CapaNegocio
             password = pass;
             rol = v;
             return login.agregarPersona(usuario, password, rol);
+        }
+
+        public bool eliminarPersona(string ci)
+        {
+            this.usuario = ci;
+            return (login.eliminarPersona(usuario));
+        }
+
+        public bool modificarPersona(string ci, string pass)
+        {
+            this.usuario = ci;
+            this.password = pass;
+            return(login.modificarPersona(usuario, password));
         }
     }
 }

@@ -30,16 +30,16 @@
         {
             this.mestInicio = new System.Windows.Forms.MenuStrip();
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.adminUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manejoDeUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manejoDeEspecialidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manejoDeDoctoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manejoDeHorariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manejoDeAdministradoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.segurosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manejoDeAdministradoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mestInicio.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,25 +71,6 @@
             this.adminToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.adminToolStripMenuItem.Text = "Admin";
             // 
-            // usuarioToolStripMenuItem
-            // 
-            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
-            this.usuarioToolStripMenuItem.Text = "Usuario";
-            // 
-            // adminUsuarioToolStripMenuItem
-            // 
-            this.adminUsuarioToolStripMenuItem.Name = "adminUsuarioToolStripMenuItem";
-            this.adminUsuarioToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
-            this.adminUsuarioToolStripMenuItem.Text = "Admin_Usuario";
-            // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(50, 24);
-            this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
-            // 
             // manejoDeUsuariosToolStripMenuItem
             // 
             this.manejoDeUsuariosToolStripMenuItem.Name = "manejoDeUsuariosToolStripMenuItem";
@@ -102,6 +83,7 @@
             this.manejoDeEspecialidadesToolStripMenuItem.Name = "manejoDeEspecialidadesToolStripMenuItem";
             this.manejoDeEspecialidadesToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
             this.manejoDeEspecialidadesToolStripMenuItem.Text = "Especialidades";
+            this.manejoDeEspecialidadesToolStripMenuItem.Click += new System.EventHandler(this.manejoDeEspecialidadesToolStripMenuItem_Click);
             // 
             // manjeToolStripMenuItem
             // 
@@ -121,17 +103,37 @@
             this.manejoDeHorariosToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
             this.manejoDeHorariosToolStripMenuItem.Text = "Horarios";
             // 
-            // manejoDeAdministradoresToolStripMenuItem
-            // 
-            this.manejoDeAdministradoresToolStripMenuItem.Name = "manejoDeAdministradoresToolStripMenuItem";
-            this.manejoDeAdministradoresToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
-            this.manejoDeAdministradoresToolStripMenuItem.Text = "Manejo de Administradores";
-            // 
             // segurosToolStripMenuItem
             // 
             this.segurosToolStripMenuItem.Name = "segurosToolStripMenuItem";
             this.segurosToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
             this.segurosToolStripMenuItem.Text = "Seguros";
+            // 
+            // manejoDeAdministradoresToolStripMenuItem
+            // 
+            this.manejoDeAdministradoresToolStripMenuItem.Name = "manejoDeAdministradoresToolStripMenuItem";
+            this.manejoDeAdministradoresToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.manejoDeAdministradoresToolStripMenuItem.Text = "Manejo de Administradores";
+            this.manejoDeAdministradoresToolStripMenuItem.Click += new System.EventHandler(this.manejoDeAdministradoresToolStripMenuItem_Click);
+            // 
+            // usuarioToolStripMenuItem
+            // 
+            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.usuarioToolStripMenuItem.Text = "Usuario";
+            // 
+            // adminUsuarioToolStripMenuItem
+            // 
+            this.adminUsuarioToolStripMenuItem.Name = "adminUsuarioToolStripMenuItem";
+            this.adminUsuarioToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
+            this.adminUsuarioToolStripMenuItem.Text = "Admin_Usuario";
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(50, 24);
+            this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // frmMdi
             // 
@@ -141,9 +143,11 @@
             this.Controls.Add(this.mestInicio);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mestInicio;
+            this.MaximizeBox = false;
             this.Name = "frmMdi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema Citas Médicas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMdi_Load);
             this.mestInicio.ResumeLayout(false);
             this.mestInicio.PerformLayout();

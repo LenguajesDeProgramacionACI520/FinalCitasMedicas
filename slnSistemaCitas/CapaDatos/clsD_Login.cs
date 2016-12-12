@@ -40,6 +40,52 @@ namespace CapaDatos
             }
         }
 
+        public bool eliminarPersona(string usuario)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "DELETE FROM TblLogin1 where usuario = " + usuario;
+                SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
+        public bool modificarPersona(string usuario, string password)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "update TblLogin1 set pass= " +
+                    " @pass where usuario=" + usuario;
+
+                SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
+                comando.Parameters.Add("@pass", SqlDbType.VarChar, 20, "pass").Value = password;
+
+                comando.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
         public bool agregarPersona(string usuario, string password, int rol)
         {
             try
