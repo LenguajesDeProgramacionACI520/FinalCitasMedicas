@@ -109,5 +109,12 @@ namespace slnSistemaCitas
             seguro.MdiParent = this;
             seguro.Show();
         }
+
+        private void asignarPromocionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEspecialidadPromocion espeProm = new frmEspecialidadPromocion();
+            espeProm.MdiParent = this;
+            espeProm.Show();
+        }
     }
 }

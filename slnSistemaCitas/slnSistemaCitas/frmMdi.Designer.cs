@@ -151,6 +151,7 @@
             this.asignarPromocionToolStripMenuItem.Name = "asignarPromocionToolStripMenuItem";
             this.asignarPromocionToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.asignarPromocionToolStripMenuItem.Text = "Asignar Promoción";
+            this.asignarPromocionToolStripMenuItem.Click += new System.EventHandler(this.asignarPromocionToolStripMenuItem_Click);
             // 
             // promocionesToolStripMenuItem
             // 
