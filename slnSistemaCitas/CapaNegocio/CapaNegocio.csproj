@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,11 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsN_EspecialidadPromocion.cs" />
     <Compile Include="clsN_Ciudad.cs" />
+    <Compile Include="clsN_Doctores.cs" />
     <Compile Include="clsN_Especialidad.cs" />
     <Compile Include="clsN_Genero.cs" />
     <Compile Include="clsN_Admin.cs" />
+    <Compile Include="clsN_Hospital.cs" />
     <Compile Include="clsN_Login.cs" />
+    <Compile Include="clsN_Promociones.cs" />
     <Compile Include="clsN_Usuario.cs" />
     <Compile Include="clsN_Seguro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaNegocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CapaNegocio;
 
 namespace slnSistemaCitas
 {
-    public partial class frmRegistrarUsuario : Form
+    public partial class frmManejoUsuarios : Form
     {
         int bandera = 0;
         DataSet ds = new DataSet();
@@ -28,7 +28,7 @@ namespace slnSistemaCitas
         Image check = Image.FromFile("img/check.png");
 
 
-        public frmRegistrarUsuario()
+        public frmManejoUsuarios()
         {
             InitializeComponent();
 
@@ -36,16 +36,49 @@ namespace slnSistemaCitas
 
         private void frmRegistrarUsuario_Load(object sender, EventArgs e)
         {
+            inicio();
+        }
+
+        private void inicio()
+        {
             cargarLenght();
             cargarImg();
             cargarCiudad();
+            cargarGenero();
+            cargarSeguro();
+            cargarDgv();
             deshabilitarRegistro();
+            paraAgregar();
+            comprobarRegistro();
         }
 
         private void deshabilitarRegistro()
         {
             btnRegistrar.Enabled = false;
             btnRegistrar.BackColor = Color.Silver;
+        }
+
+        private void paraAgregar()
+        {
+            btnRegistrar.Enabled = true;
+            btnRegistrar.BackColor = Color.Honeydew;
+            btnEliminar.Enabled = false;
+            btnEliminar.BackColor = Color.Silver;
+            btnModificar.Enabled = false;
+            btnModificar.BackColor = Color.Silver;
+        }
+
+        private void paraModificarEliminar()
+        {
+            txtCi.Enabled = false;
+            btnRegistrar.Enabled = false;
+            btnRegistrar.BackColor = Color.Silver;
+            btnEliminar.Enabled = true;
+            btnEliminar.BackColor = Color.Honeydew;
+            btnModificar.Enabled = true;
+            btnModificar.BackColor = Color.Honeydew;
+
+
         }
 
         private void cargarLenght()
@@ -82,7 +115,6 @@ namespace slnSistemaCitas
             pcbFechaN.Image = asterisoImportante;
             pcbGenero.Image = asterisoImportante;
             pcbPass.Image = asterisoImportante;
-            pcbPassVer.Image = asterisoImportante;
             pcbP_Ape.Image = asterisoImportante;
             pcbP_nom.Image = asterisoImportante;
             pcbSeguro.Image = asterisoImportante;
@@ -143,30 +175,52 @@ namespace slnSistemaCitas
             }
         }
 
+        private void cargarDgv()
+        {
+            try
+            {
+                ds = N_Usuario.consultaUsurio();
+                dgvUsuarios.DataSource = ds;
+                dgvUsuarios.DataMember = "TblUsuario";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los Usuarios\n" + ex.Message +
+                    "\nIntente Nuevamente", "Er037",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+
+        }
+
         private void verificarCi(string ci)
         {
-            if (N_Usuario.verificarCi(ci))
+            if (txtCi.Enabled == true)
             {
-                if (N_Admin.verificarCi(ci))
+                if (N_Usuario.verificarCi(ci))
                 {
-                    pcbCedula.Image = check;
-                    comprobarRegistro();
+                    if (N_Admin.verificarCi(ci))
+                    {
+                        pcbCedula.Image = check;
+                        comprobarRegistro();
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Este usuario ya es administrador\n Intente Nuevamente",
+                            "Er004", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pcbCedula.Image = error;
+                        comprobarRegistro();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Este usuario ya es administrador\n Intente Nuevamente",
-                        "Er004", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Este usuario ya existen\n Intente Nuevamente",
+                        "Er005", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     pcbCedula.Image = error;
                     comprobarRegistro();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Este usuario ya existen\n Intente Nuevamente",
-                    "Er005", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                pcbCedula.Image = error;
-                comprobarRegistro();
+
             }
         }
 
@@ -195,17 +249,6 @@ namespace slnSistemaCitas
         private void txtCi_KeyPress(object sender, KeyPressEventArgs e)
         {
             soloNumero(sender, e);
-        }
-
-        private void txtCi_TextChanged(object sender, EventArgs e)
-        {
-            if (txtCi.Text.Length == 10)
-                verificarCi(txtCi.Text);
-            else
-            {
-                pcbCedula.Image = error;
-                comprobarRegistro();
-            }
         }
 
         private void txtNom1_KeyPress(object sender, KeyPressEventArgs e)
@@ -257,32 +300,10 @@ namespace slnSistemaCitas
             {
                 pcbPass.Image = check;
             }
-            if (txtPass2.Text.Equals(txtPass1.Text))
-            {
-                pcbPassVer.Image = check;
-            }
-            else
-            {
-                pcbPassVer.Image = error;
-            }
             comprobarRegistro();
 
         }
-
-        private void txtPass2_TextChanged(object sender, EventArgs e)
-        {
-            if (txtPass2.Text.Length < 6)
-                pcbPassVer.Image = error;
-            else
-            {
-                if (txtPass2.Text.Equals(txtPass1.Text))
-                {
-                    pcbPassVer.Image = check;
-                }
-            }
-            comprobarRegistro();
-        }
-
+        
         private void txtPass1_Enter(object sender, EventArgs e)
         {
             txtPass1.UseSystemPasswordChar = false;
@@ -291,21 +312,7 @@ namespace slnSistemaCitas
         private void txtPass1_Leave(object sender, EventArgs e)
         {
             txtPass1.UseSystemPasswordChar = true;
-            txtPass2.Focus();
-        }
-
-        private void txtPass2_Enter(object sender, EventArgs e)
-        {
-            txtPass2.UseSystemPasswordChar = false;
-        }
-
-        private void txtPass2_Leave(object sender, EventArgs e)
-        {
-            txtPass2.UseSystemPasswordChar = true;
-            if (btnRegistrar.Enabled == false)
-                btnCancelar.Focus();
-            else
-                btnRegistrar.Focus();
+            btnRegistrar.Focus();
         }
 
         private void comprobarRegistro()
@@ -316,10 +323,17 @@ namespace slnSistemaCitas
                 {
                     if (pcbCelular.Image == check)
                     {
-                        if (pcbPass.Image == check && pcbPassVer.Image == check)
+                        if (pcbPass.Image == check)
                         {
-                            btnRegistrar.Enabled = true;
-                            btnRegistrar.BackColor = Color.Honeydew;
+                            if (txtCi.Enabled == true)
+                            {
+                                btnRegistrar.Enabled = true;
+                                btnRegistrar.BackColor = Color.Honeydew;
+                            }else
+                            {
+                                btnModificar.Enabled = true;
+                                btnModificar.BackColor = Color.Honeydew;
+                            }
                         }
                         else
                             deshabilitarRegistro();
@@ -356,7 +370,6 @@ namespace slnSistemaCitas
                     MessageBox.Show("Usuario: " + nom1 + " " + ape1 + " Registrado Satisfactoriamente" +
                         "\nYa puede Iniciar Sesión con su cedula y contraseña", "Nuevo Registro", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
-                    this.Close();
                 }
                 else
                 {
@@ -369,11 +382,138 @@ namespace slnSistemaCitas
                 MessageBox.Show("No se pudo agregar el Usuario", "Er007",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            limpiar();
+            inicio();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void txtCi_TextChanged(object sender, EventArgs e)
         {
-            this.Close();
+            if (txtCi.Text.Length == 10)
+                verificarCi(txtCi.Text);
+            else
+            {
+                pcbCedula.Image = error;
+                comprobarRegistro();
+            }
+        }
+
+        private void dgvUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            inicio();
+            paraModificarEliminar();
+            cargarDatos();
+            obtenerPass(txtCi.Text);
+            comprobarRegistro();
+        }
+        private void obtenerPass(string ci)
+        {
+            ds = N_Login.N_consulta(ci);
+            txtPass1.Text = ds.Tables[0].Rows[0]["pass"].ToString();
+
+        }
+
+        private void cargarDatos()
+        {
+            txtCi.Text = (string)dgvUsuarios.CurrentRow.Cells["idCedula"].Value;
+            txtNom1.Text = (string)dgvUsuarios.CurrentRow.Cells["nombre_p"].Value;
+            txtNom2.Text = (string)dgvUsuarios.CurrentRow.Cells["nombre_s"].Value;
+            txtApe1.Text = (string)dgvUsuarios.CurrentRow.Cells["apellido_p"].Value;
+            txtApe2.Text = (string)dgvUsuarios.CurrentRow.Cells["apellido_s"].Value;
+            int genero = (int)dgvUsuarios.CurrentRow.Cells["genero"].Value;
+            DateTime fecha = (DateTime)dgvUsuarios.CurrentRow.Cells["fecha_Nacimiento"].Value;
+            dtpFechaN.Value = fecha.Date;
+            txtCorreo.Text = (string)dgvUsuarios.CurrentRow.Cells["correo"].Value;
+            txtCel.Text = (string)dgvUsuarios.CurrentRow.Cells["cel"].Value;
+            int seguroMedico = (int)dgvUsuarios.CurrentRow.Cells["seguroMedico"].Value;
+            int ciudad = (int)dgvUsuarios.CurrentRow.Cells["ciudad"].Value;
+            cmbGenero.SelectedValue = genero;
+            cmbSeguro.SelectedValue = seguroMedico;
+            cmbCiudad.SelectedValue = ciudad;
+
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+
+            string idCedula = txtCi.Text;
+            string nom1 = txtNom1.Text;
+            string nom2 = txtNom2.Text;
+            string ape1 = txtApe1.Text;
+            string ape2 = txtApe2.Text;
+            int genero = int.Parse(cmbGenero.SelectedValue.ToString());
+            DateTime fechaN = dtpFechaN.Value.Date;
+            string correo = txtCorreo.Text;
+            string cel = txtCel.Text;
+            int seguroMedico = int.Parse(cmbSeguro.SelectedValue.ToString());
+            int sector = int.Parse(cmbCiudad.SelectedValue.ToString());
+            string pass = txtPass1.Text;
+            if (N_Usuario.modificarUsuario(idCedula, nom1, nom2, ape1, ape2, genero, fechaN,
+                correo, cel, seguroMedico, sector))
+            {
+                if ((N_Login.modificarPersona(idCedula, pass)))
+                {
+                    MessageBox.Show("Usuario: " + nom1 + " " + ape1 + " Modificado Satisfactoriamente"
+                        , "Usuario Modificado", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo modificar el Login", "Er006",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo modifcar el Usuario", "Er007",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            limpiar();
+            inicio();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string ci = txtCi.Text;
+                if (N_Usuario.eliminarUsuario(ci))
+                    if (N_Login.eliminarPersona(ci))
+                    {
+                        MessageBox.Show("Se ha eliminado de manera correcta el usuario:" + txtCi.Text + "'"
+                          , "Usuario Eliminado",
+                          MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        inicio();
+                    }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problemas al eliminar el usuario" +
+                    "\nConsulta al administrador", "Er013",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                limpiar();
+                inicio();
+
+            }
+
+        }
+
+        private void limpiar()
+        {
+            txtCi.Clear();
+            txtNom1.Clear();
+            txtNom2.Clear();
+            txtApe1.Clear();
+            txtApe2.Clear();
+            txtCel.Clear();
+            txtCorreo.Clear();
+            txtPass1.Clear();
+            DateTime hoy = DateTime.Today;
+            dtpFechaN.Value = hoy.Date;
+            paraAgregar();
+
         }
     }
 }
+

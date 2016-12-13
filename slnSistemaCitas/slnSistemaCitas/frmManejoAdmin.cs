@@ -19,6 +19,7 @@ namespace slnSistemaCitas
         clsN_Login N_Login = new clsN_Login();
         clsN_Genero N_Genero = new clsN_Genero();
         clsN_Usuario N_Usuario = new clsN_Usuario();
+        int bandera = 0;
         public frmManejoAdmin(string ci)
         {
             userLog = ci;
@@ -33,11 +34,14 @@ namespace slnSistemaCitas
 
         private void inicio()
         {
-            
+            if (bandera == 0)
+            {
+                cargarGenero();
+            }
+            bandera = 1;
             restringirCampos();
             cargarDgv();
             dgvAdmin.ReadOnly = true;
-            cargarGenero();
             cargar();
             limpiar();
             txtCi.Enabled = true;
@@ -188,7 +192,7 @@ namespace slnSistemaCitas
             }
             else
             {
-                MessageBox.Show("Este usuario ya existen\n Intente Nuevamente",
+                MessageBox.Show("Este usuario ya existe\n Intente Nuevamente",
                     "Er005", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -211,6 +215,7 @@ namespace slnSistemaCitas
                     MessageBox.Show("Problemas al modificar el Administrador" +
                         "\nCierre y vuelva intentarlo", "Er011",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    limpiar();
 
                 }
                 try
@@ -246,7 +251,7 @@ namespace slnSistemaCitas
                     if (N_Login.eliminarPersona(ci))
                     {
                         MessageBox.Show("Se ha eliminado de manera correcta el administrador:" + txtCi.Text + "'"
-                          , "Modificación Exitosa",
+                          , "Administrador Eliminado",
                           MessageBoxButtons.OK, MessageBoxIcon.Information);
                         inicio();
                     }
@@ -258,6 +263,7 @@ namespace slnSistemaCitas
                 MessageBox.Show("Problemas al eliminar el usuario" +
                     "\nConsulta al administrador", "Er013",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                limpiar();
 
             }
         }
@@ -329,6 +335,50 @@ namespace slnSistemaCitas
             }
             
 
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            soloLetras(sender, e);
+        }
+
+        private void soloNumero(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Delete || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Tab)
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = false;
+                SendKeys.Send("{TAB}");
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void soloLetras(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Delete || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Tab)
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = false;
+                SendKeys.Send("{TAB}");
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            soloLetras(sender,e);
         }
     }
 }

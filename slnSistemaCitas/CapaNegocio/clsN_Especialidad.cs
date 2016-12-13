@@ -13,7 +13,6 @@ namespace CapaNegocio
         public int id { get; set; }
         public string nombre { get; set; }
         public float costo { get; set; }
-        public int descuento { get; set; }
 
         clsD_Especialidad D_Especialidad = new clsD_Especialidad();
         
@@ -22,13 +21,12 @@ namespace CapaNegocio
             return D_Especialidad.consultaId();
         }
 
-        public bool agregarEspecialidad(int id, string nombre, float costo, int descuento)
+        public bool agregarEspecialidad(int id, string nombre, float costo)
         {
             this.id = id;
             this.nombre = nombre;
             this.costo = costo;
-            this.descuento = descuento;
-            return (D_Especialidad.agregarEspecialidad(this.id, this.nombre, this.costo, this.descuento));
+            return (D_Especialidad.agregarEspecialidad(this.id, this.nombre, this.costo));
         }
 
         public DataSet consultaEspecialidad()
@@ -36,13 +34,12 @@ namespace CapaNegocio
             return (D_Especialidad.consultarEspecialidad());
         }
 
-        public bool modificarEspecialidad(int id, string nombre, float costo, int descuento)
+        public bool modificarEspecialidad(int id, string nombre, float costo)
         {
             this.id = id;
             this.nombre = nombre;
             this.costo = costo;
-            this.descuento = descuento;
-            return (D_Especialidad.modificarEspecialidad(this.id, this.nombre, this.costo, this.descuento));
+            return (D_Especialidad.modificarEspecialidad(this.id, this.nombre, this.costo));
         }
 
         public bool eliminarEspecialidad(int id)

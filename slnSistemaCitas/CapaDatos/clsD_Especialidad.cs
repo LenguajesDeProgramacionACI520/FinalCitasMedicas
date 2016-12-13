@@ -33,17 +33,16 @@ namespace CapaDatos
             }
         }
 
-        public bool agregarEspecialidad(int id, string nombre, float costo, int descuento)
+        public bool agregarEspecialidad(int id, string nombre, float costo)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "insert into TblEspecialidad values (@id,@nombre,@costo,@descuento)";
+                string sql = "insert into TblEspecialidad values (@id,@nombre,@costo)";
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
                 comando.Parameters.Add("@id", SqlDbType.Int, 4, "id").Value = id;
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar, 50, "nombre").Value = nombre;
-                comando.Parameters.Add("@costo", SqlDbType.Float, 6, "costo").Value = costo;
-                comando.Parameters.Add("@descuento", SqlDbType.Int, 4, "descuento").Value = descuento;
+                comando.Parameters.Add("@costo", SqlDbType.Float, 6, "costo").Value = costo;;
                 comando.ExecuteNonQuery();
                 return true;
             }
@@ -59,18 +58,17 @@ namespace CapaDatos
             }
         }
 
-        public bool modificarEspecialidad(int id, string nombre, float costo, int descuento)
+        public bool modificarEspecialidad(int id, string nombre, float costo)
         {
             try
             {
                 clsConexion.abrirConexion();
                 string sql = "update TblEspecialidad set nombre= " +
-                    " @nombre, costo=@costo, descuento=@descuento where id=" + id;
+                    " @nombre, costo=@costo where id=" + id;
 
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 50, "nombre").Value = nombre;
+                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nombre").Value = nombre;
                 comando.Parameters.Add("@costo", SqlDbType.Float, 6, "costo").Value = costo;
-                comando.Parameters.Add("@descuento", SqlDbType.Int, 4, "descuento").Value = descuento;
                 comando.ExecuteNonQuery();
                 return true;
             }

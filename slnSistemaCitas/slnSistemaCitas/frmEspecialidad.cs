@@ -26,6 +26,7 @@ namespace slnSistemaCitas
             cargarDgv();
             asignarId();
             formatoParaIngresar();
+            dgvEspe.ReadOnly = true;
             txtId.Enabled = false;
             txtNombre.MaxLength = 20;
             txtNombre.CharacterCasing = CharacterCasing.Upper;
@@ -36,15 +37,14 @@ namespace slnSistemaCitas
             txtId.Clear();
             txtNombre.Clear();
             mskCosto.Clear();
-            mskDescuento.Clear();
         }
         private void cargarDgv()
         {
             try
             {
                 ds = N_Especialidad.consultaEspecialidad();
-                dgvEspecialidad.DataSource = ds;
-                dgvEspecialidad.DataMember = "TblEspecialidad";
+                dgvEspe.DataSource = ds;
+                dgvEspe.DataMember = "TblEspecialidad";
             }
             catch (Exception ex)
             {
@@ -88,44 +88,30 @@ namespace slnSistemaCitas
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void mskDescuento_TextChanged(object sender, EventArgs e)
+        
+        private void soloLetras(object sender, KeyPressEventArgs e)
         {
-            int descuento = 0;
-            try
+            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Delete || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Tab)
             {
-                 descuento= int.Parse(mskDescuento.Text);
+                e.Handled = false;
             }
-            catch(System.FormatException ex)
+            else if (e.KeyChar == (char)Keys.Enter)
             {
-                Console.WriteLine(ex.Message);
-            }
-            if (descuento > 100)
-            {
-                MessageBox.Show("Descuento no puede ser mayor a 100", "Er015",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                mskDescuento.Clear();
+                e.Handled = false;
+                SendKeys.Send("{TAB}");
             }
             else
             {
-
+                e.Handled = true;
             }
         }
+
 
         private bool comprobar()
         {
             if (txtNombre.Text != "" && mskCosto.Text != "")
-            {
-                int descuento = int.Parse(mskDescuento.Text);
-                if (descuento <= 100)                
-                    return true;                
-                else
-                {
-                    MessageBox.Show("Descuento no puede ser mayor a 100", "Er015",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    mskDescuento.Clear();
-                    return false;
-                }
+            {              
+                    return true;     
             }
             else
             {
@@ -142,10 +128,9 @@ namespace slnSistemaCitas
                 int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
                 float costo = float.Parse(mskCosto.Text);
-                int descuento = int.Parse(mskDescuento.Text);
                 try
                 {
-                    if (N_Especialidad.agregarEspecialidad(id, nombre, costo, descuento))
+                    if (N_Especialidad.agregarEspecialidad(id, nombre, costo))
                     {
                         MessageBox.Show("Se ha ingresado correctamente la especialidad:" + txtNombre.Text + ""
                                      , "Nuevo Especialidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -163,19 +148,13 @@ namespace slnSistemaCitas
                 }
             }
         }
-
-        private void dgvEspecialidad_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            formatoModificarEliminar();
-            cargarDatos();
-        }
+        
         
         private void cargarDatos()
         {
-            txtId.Text = dgvEspecialidad.CurrentRow.Cells["id"].Value.ToString();
-            txtNombre.Text = (string)dgvEspecialidad.CurrentRow.Cells["nombre"].Value;
-            mskCosto.Text = dgvEspecialidad.CurrentRow.Cells["costo"].Value.ToString();
-            mskDescuento.Text = dgvEspecialidad.CurrentRow.Cells["descuento"].Value.ToString();
+            txtId.Text = dgvEspe.CurrentRow.Cells["id"].Value.ToString();
+            txtNombre.Text = (string)dgvEspe.CurrentRow.Cells["nombre"].Value;
+            mskCosto.Text = dgvEspe.CurrentRow.Cells["costo"].Value.ToString();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -185,10 +164,9 @@ namespace slnSistemaCitas
                 int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
                 float costo = float.Parse(mskCosto.Text);
-                int descuento = int.Parse(mskDescuento.Text);
                 try
                 {
-                    if (N_Especialidad.modificarEspecialidad(id, nombre, costo, descuento))
+                    if (N_Especialidad.modificarEspecialidad(id, nombre, costo))
                     {
                         MessageBox.Show("Se ha modificado correctamente la especialidad: " + txtNombre.Text + ""
                                  , "Especialidad Modificada", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -226,6 +204,18 @@ namespace slnSistemaCitas
             {
 
             }
+        }
+
+        private void dgvEspe_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            formatoModificarEliminar();
+            cargarDatos();
+
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            soloLetras(sender,e);
         }
     }
 }

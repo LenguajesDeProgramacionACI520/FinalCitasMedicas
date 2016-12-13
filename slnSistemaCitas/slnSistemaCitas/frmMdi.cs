@@ -51,7 +51,9 @@ namespace slnSistemaCitas
 
         private void manejoDeUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmManejoUsuarios usuario = new frmManejoUsuarios();
+            usuario.MdiParent = this;
+            usuario.Show();
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -78,6 +80,34 @@ namespace slnSistemaCitas
             frmEspecialidad espcialidades = new frmEspecialidad();
             espcialidades.MdiParent = this;
             espcialidades.Show();
+        }
+
+        private void manejoDeDoctoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManejoDoctores doctores = new frmManejoDoctores();
+            doctores.MdiParent = this;
+            doctores.Show();
+        }
+
+        private void manjeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManejoHospital hospitales = new frmManejoHospital();
+            hospitales.MdiParent = this;
+            hospitales.Show();
+        }
+
+        private void promocionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPromociones promociones = new frmPromociones();
+            promociones.MdiParent = this;
+            promociones.Show();
+        }
+
+        private void segurosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManejoSeguro seguro = new frmManejoSeguro();
+            seguro.MdiParent = this;
+            seguro.Show();
         }
     }
 }

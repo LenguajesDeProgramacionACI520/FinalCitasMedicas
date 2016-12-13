@@ -46,11 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsValidaciones.cs" />
     <Compile Include="frmEspecialidad.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmEspecialidad.Designer.cs">
       <DependentUpon>frmEspecialidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEspecialidadPromocion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEspecialidadPromocion.Designer.cs">
+      <DependentUpon>frmEspecialidadPromocion.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -64,11 +71,41 @@
     <Compile Include="frmManejoAdmin.Designer.cs">
       <DependentUpon>frmManejoAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmManejoDoctores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManejoDoctores.Designer.cs">
+      <DependentUpon>frmManejoDoctores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManejoHospital.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManejoHospital.Designer.cs">
+      <DependentUpon>frmManejoHospital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManejoSeguro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManejoSeguro.Designer.cs">
+      <DependentUpon>frmManejoSeguro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManejoUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManejoUsuarios.Designer.cs">
+      <DependentUpon>frmManejoUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMdi.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMdi.Designer.cs">
       <DependentUpon>frmMdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPromociones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPromociones.Designer.cs">
+      <DependentUpon>frmPromociones.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRegistrarUsuario.cs">
       <SubType>Form</SubType>
@@ -87,8 +124,23 @@
     <EmbeddedResource Include="frmManejoAdmin.resx">
       <DependentUpon>frmManejoAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmManejoDoctores.resx">
+      <DependentUpon>frmManejoDoctores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManejoHospital.resx">
+      <DependentUpon>frmManejoHospital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManejoSeguro.resx">
+      <DependentUpon>frmManejoSeguro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManejoUsuarios.resx">
+      <DependentUpon>frmManejoUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMdi.resx">
       <DependentUpon>frmMdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPromociones.resx">
+      <DependentUpon>frmPromociones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegistrarUsuario.resx">
       <DependentUpon>frmRegistrarUsuario.cs</DependentUpon>

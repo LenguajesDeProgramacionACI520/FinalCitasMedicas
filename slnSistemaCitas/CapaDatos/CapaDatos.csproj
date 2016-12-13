@@ -42,12 +42,16 @@
   <ItemGroup>
     <Compile Include="clsConexion.cs" />
     <Compile Include="clsD_Ciudad.cs" />
+    <Compile Include="clsD_Doctores.cs" />
     <Compile Include="clsD_Especialidad.cs" />
+    <Compile Include="clsD_EspecialidadPromocion.cs" />
     <Compile Include="clsD_Genero.cs" />
     <Compile Include="clsD_Login.cs" />
+    <Compile Include="clsD_Promociones.cs" />
     <Compile Include="clsD_Seguro.cs" />
     <Compile Include="clsD_Usuario.cs" />
     <Compile Include="clsD_Admin.cs" />
+    <Compile Include="clsD_Hospital.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

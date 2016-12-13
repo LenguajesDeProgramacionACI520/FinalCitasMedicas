@@ -8,21 +8,19 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public class clsD_Seguro
+    public class clsD_Hospital
     {
-        public DataSet consultaSeguro()
+        public DataSet consultaHospital()
         {
+
+            DataSet ds = new DataSet();
+            SqlDataAdapter adaptador;
             try
             {
-                DataSet ds = new DataSet();
-                SqlDataAdapter adaptador;
                 clsConexion.abrirConexion();
-
-                string sql = "SELECT * FROM TblSeguro";
+                string sql = "select * from TblHospital ";
                 adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
-                adaptador.Fill(ds, "TblSeguro");
-
-                clsConexion.cerrarConexion();
+                adaptador.Fill(ds, "TblHospital");
                 return ds;
             }
             catch (Exception ex)
@@ -35,7 +33,33 @@ namespace CapaDatos
             }
         }
 
-        public DataSet obtenerId()
+        public bool agregarHospital(int id, string nombreH, int ciudadH)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "insert into TblHospital values (@idH,@nombreH,@ciudadH)";
+                SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
+                comando.Parameters.Add("@idH", SqlDbType.Int, 4, "idH").Value = id;
+                comando.Parameters.Add("@nombreH", SqlDbType.VarChar, 20, "nombreH").Value = nombreH;
+                comando.Parameters.Add("@ciudadH", SqlDbType.Int, 4, "ciudadH").Value = ciudadH;
+                comando.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+
+        }
+
+        public DataSet consultarId()
         {
             DataSet ds = new DataSet();
             SqlDataAdapter adaptador;
@@ -43,9 +67,9 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "select max(idSeguro) from TblSeguro";
-                adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
-                adaptador.Fill(ds, "TblSeguro");
+                string sqlCOnsulta = "select max(idH) from TblHospital";
+                adaptador = new SqlDataAdapter(sqlCOnsulta, clsConexion.conexion);
+                adaptador.Fill(ds, "TblHospital");
                 return ds;
             }
             catch (Exception ex)
@@ -57,43 +81,19 @@ namespace CapaDatos
                 clsConexion.cerrarConexion();
             }
         }
+    
 
-        public bool agregarSeguro(int idSeguro, string nombreSeguro, int descuentoSeguro)
+        public bool modificarHospital(int id, string nombreH, int ciudadH)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "insert into TblSeguro values (@id,@nombre,@descuento)";
-                SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@id", SqlDbType.Int, 4, "idSeguro").Value = idSeguro;
-                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nombreSeguro").Value = nombreSeguro;
-                comando.Parameters.Add("@descuento", SqlDbType.Int, 4, "descuentoSeguro").Value = descuentoSeguro;
-                comando.ExecuteNonQuery();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-                throw ex;
-
-            }
-            finally
-            {
-                clsConexion.cerrarConexion();
-            }
-        }
-
-        public bool modificarSeguro(int idSeguro, string nombreSeguro, int descuentoSeguro)
-        {
-            try
-            {
-                clsConexion.abrirConexion();
-                string sql = "update TblSeguro set nombreSeguro= " +
-                    " @nombre, descuentoSeguro=@descuento where idSeguro=" + idSeguro;
+                string sql = "update TblHospital set nombreH= " +
+                    " @nombreH, ciudadH = @ciudadH where idH=" + id;
 
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nombreSeguro").Value = nombreSeguro;
-                comando.Parameters.Add("@descuento", SqlDbType.Int, 4, "descuentoSeguro").Value = descuentoSeguro;
+                comando.Parameters.Add("@nombreH", SqlDbType.VarChar, 20, "nombreH").Value = nombreH;
+                comando.Parameters.Add("@ciudadH", SqlDbType.Int, 4, "ciudadH").Value = ciudadH;
                 comando.ExecuteNonQuery();
                 return true;
             }
@@ -109,12 +109,12 @@ namespace CapaDatos
 
         }
 
-        public bool eliminarSeguro(int idSeguro)
+        public bool eliminarHospital(int id)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "DELETE FROM TblSeguro where idSeguro = " + idSeguro;
+                string sql = "DELETE FROM TblHospital where idH = " + id;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
                 command.ExecuteNonQuery();
                 return true;
@@ -127,6 +127,7 @@ namespace CapaDatos
             {
                 clsConexion.cerrarConexion();
             }
+
         }
     }
 }
