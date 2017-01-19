@@ -516,7 +516,7 @@
             this.cmbCiudad.Location = new System.Drawing.Point(563, 395);
             this.cmbCiudad.Name = "cmbCiudad";
             this.cmbCiudad.Size = new System.Drawing.Size(162, 28);
-            this.cmbCiudad.TabIndex = 42;
+            this.cmbCiudad.TabIndex = 10;
             // 
             // frmRegistrarUsuario
             // 

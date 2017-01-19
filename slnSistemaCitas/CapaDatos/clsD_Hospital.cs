@@ -33,16 +33,17 @@ namespace CapaDatos
             }
         }
 
-        public bool agregarHospital(int id, string nombreH, int ciudadH)
+        public bool agregarHospital(int id, string nombreH,string dirH, int ciudadH)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "insert into TblHospital values (@idH,@nombreH,@ciudadH)";
+                string sql = "insert into TblHospital values (@idH,@nombreH,@dirH,@ciudadH)";
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@idH", SqlDbType.Int, 4, "idH").Value = id;
-                comando.Parameters.Add("@nombreH", SqlDbType.VarChar, 20, "nombreH").Value = nombreH;
-                comando.Parameters.Add("@ciudadH", SqlDbType.Int, 4, "ciudadH").Value = ciudadH;
+                comando.Parameters.Add("@idH", SqlDbType.Int, 4, "idHospital").Value = id;
+                comando.Parameters.Add("@nombreH", SqlDbType.VarChar, 20, "nomHospital").Value = nombreH;
+                comando.Parameters.Add("@dirH", SqlDbType.VarChar, 100, "dirHospital").Value = dirH;
+                comando.Parameters.Add("@ciudadH", SqlDbType.Int, 4, "idCiudad").Value = ciudadH;
                 comando.ExecuteNonQuery();
                 return true;
             }
@@ -82,18 +83,18 @@ namespace CapaDatos
             }
         }
     
-
-        public bool modificarHospital(int id, string nombreH, int ciudadH)
+        public bool modificarHospital(int id, string nombreH, string dirH, int ciudadH)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "update TblHospital set nombreH= " +
-                    " @nombreH, ciudadH = @ciudadH where idH=" + id;
+                string sql = "update TblHospital set nomHospital= " +
+                    " @nombreH, dirHospital=@dirH, idCiudad = @ciudadH where idHospital=" + id;
 
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@nombreH", SqlDbType.VarChar, 20, "nombreH").Value = nombreH;
-                comando.Parameters.Add("@ciudadH", SqlDbType.Int, 4, "ciudadH").Value = ciudadH;
+                comando.Parameters.Add("@nombreH", SqlDbType.VarChar, 20, "nomHospital").Value = nombreH;
+                comando.Parameters.Add("@dirH", SqlDbType.VarChar, 100, "dirHospital").Value = dirH;
+                comando.Parameters.Add("@ciudadH", SqlDbType.Int, 4, "idCiudad").Value = ciudadH;
                 comando.ExecuteNonQuery();
                 return true;
             }
@@ -114,7 +115,7 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "DELETE FROM TblHospital where idH = " + id;
+                string sql = "DELETE FROM TblHospital where idHospital = " + id;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
                 command.ExecuteNonQuery();
                 return true;

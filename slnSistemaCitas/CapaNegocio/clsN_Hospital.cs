@@ -12,6 +12,7 @@ namespace CapaNegocio
     {
         public int idH { get; set; }
         public string nombreH { get; set; }
+        public string direccionH { get; set; }
         public int ciudadH { get; set; }
 
         clsD_Hospital D_Hospitales = new clsD_Hospital();
@@ -21,20 +22,22 @@ namespace CapaNegocio
             return D_Hospitales.consultaHospital();
         }
 
-        public bool agregarHospital(int id, string nombre, int ciudad)
+        public bool agregarHospital(int id, string nombre, string direccion, int ciudad)
         {
             idH = id;
             nombreH = nombre;
+            direccionH = direccion;
             ciudadH = ciudad;
-            return D_Hospitales.agregarHospital(idH, nombreH, ciudadH);
+            return D_Hospitales.agregarHospital(idH, nombreH, direccionH, ciudadH);
         }
 
-        public bool modificarHospital(int id, string nombre, int ciudad)
+        public bool modificarHospital(int id, string nombre, string direccion, int ciudad)
         {
             idH = id;
             nombreH = nombre;
+            direccionH = direccion;
             ciudadH = ciudad;
-            return D_Hospitales.modificarHospital(idH, nombreH, ciudadH);
+            return D_Hospitales.modificarHospital(idH, nombreH, direccionH, ciudadH);
         }
 
         public bool eliminarHospital(int id)

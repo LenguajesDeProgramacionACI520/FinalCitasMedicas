@@ -15,7 +15,7 @@ namespace CapaNegocio
         public string nom2 { get; set; }
         public string ape1 { get; set; }
         public string ape2 { get; set; }
-        public int genero { get; set; }
+        public string genero { get; set; }
         public DateTime fechaN { get; set; }
         public string correo { get; set; }
         public string cel { get; set; }
@@ -36,7 +36,10 @@ namespace CapaNegocio
             this.nom2 = nom2;
             this.ape1 = ape1;
             this.ape2 = ape2;
-            this.genero = genero;
+            if (genero == 0)
+                this.genero = "F";
+            if (genero == 1)
+                this.genero = "M";
             this.fechaN = fechaN;
             this.correo = correo;
             this.cel = cel;
@@ -58,7 +61,10 @@ namespace CapaNegocio
             this.nom2 = nom2;
             this.ape1 = ape1;
             this.ape2 = ape2;
-            this.genero = genero;
+            if (genero == 0)
+                this.genero = "F";
+            if (genero == 1)
+                this.genero = "M";
             this.fechaN = fechaN;
             this.correo = correo;
             this.cel = cel;

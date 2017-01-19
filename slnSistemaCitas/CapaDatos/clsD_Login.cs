@@ -15,12 +15,12 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "SELECT count(*) FROM TblLogin1 WHERE usuario = @usuario AND pass = @pass";
+                string sql = "SELECT count(*) FROM TblLogin WHERE idCedula = @usuario AND passUsuario = @pass";
 
                 SqlCommand comando = new SqlCommand(sql , clsConexion.conexion);
 
-                comando.Parameters.Add("@usuario", SqlDbType.VarChar, 10, "usuario").Value = ci;
-                comando.Parameters.Add("@pass", SqlDbType.VarChar, 20, "pass").Value = pass;
+                comando.Parameters.Add("@usuario", SqlDbType.VarChar, 10, "idCedula").Value = ci;
+                comando.Parameters.Add("@pass", SqlDbType.VarChar, 20, "passUsuario").Value = pass;
 
                 Int32 count = (Int32)comando.ExecuteScalar();
                 clsConexion.cerrarConexion();
@@ -45,7 +45,7 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "DELETE FROM TblLogin1 where usuario = " + usuario;
+                string sql = "DELETE FROM TblLogin where idCedula = " + usuario;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
                 command.ExecuteNonQuery();
                 return true;
@@ -65,11 +65,11 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "update TblLogin1 set pass= " +
-                    " @pass where usuario=" + usuario;
+                string sql = "update TblLogin set passUsuario= " +
+                    " @pass where idCedula=" + usuario;
 
-                SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@pass", SqlDbType.VarChar, 20, "pass").Value = password;
+                SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);;
+                comando.Parameters.Add("@pass", SqlDbType.VarChar, 20, "passUsuario").Value = password;
 
                 comando.ExecuteNonQuery();
 
@@ -91,11 +91,12 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = " INSERT INTO TblLogin1 values(@usuario, @password, @rol)";
+                string sql = " INSERT INTO TblLogin values(@usuario, @password, @rol)";
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
 
-                command.Parameters.Add("@usuario", SqlDbType.VarChar, 10, "usuario").Value = usuario;
-                command.Parameters.Add("@password", SqlDbType.VarChar, 20, "pass").Value = password;
+
+                command.Parameters.Add("@usuario", SqlDbType.VarChar, 10, "idCedula").Value = usuario;
+                command.Parameters.Add("@pass", SqlDbType.VarChar, 20, "passUsuario").Value = password;
                 command.Parameters.Add("@rol", SqlDbType.Int, 4, "rol").Value = rol;
 
                 command.ExecuteNonQuery();
@@ -119,9 +120,9 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "select * from TblLogin1 WHERE usuario= '" + usuario + "'";
+                string sql = "select * from TblLogin WHERE idCedula= '" + usuario ;
                 adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
-                adaptador.Fill(ds, "TblLogin1");
+                adaptador.Fill(ds, "TblLogin");
                 return ds;
             }
             catch(Exception ex)

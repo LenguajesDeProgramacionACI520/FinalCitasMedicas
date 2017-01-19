@@ -58,16 +58,28 @@ namespace CapaDatos
             }
         }
 
-        public bool agregarSeguro(int idSeguro, string nombreSeguro, int descuentoSeguro)
+        public bool agregarSeguro(int idSeguro, string nombreSeguro, decimal descuentoSeguro, decimal valor)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "insert into TblSeguro values (@id,@nombre,@descuento)";
+                string sql = "insert into TblSeguro values (@id,@nombre,@descuento,@costo)";
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
                 comando.Parameters.Add("@id", SqlDbType.Int, 4, "idSeguro").Value = idSeguro;
-                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nombreSeguro").Value = nombreSeguro;
-                comando.Parameters.Add("@descuento", SqlDbType.Int, 4, "descuentoSeguro").Value = descuentoSeguro;
+                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nomSeguro").Value = nombreSeguro;
+
+                SqlParameter param = new SqlParameter("@descuento", SqlDbType.Decimal);
+                param.SourceColumn = "porcenSeguro";
+                param.Precision = 5;
+                param.Scale = 2;
+                comando.Parameters.Add(param).Value = descuentoSeguro;
+
+                param = new SqlParameter("@costo", SqlDbType.Decimal);
+                param.SourceColumn = "valorSeguro";
+                param.Precision = 10;
+                param.Scale = 2;
+                comando.Parameters.Add(param).Value = valor;
+
                 comando.ExecuteNonQuery();
                 return true;
             }
@@ -83,17 +95,28 @@ namespace CapaDatos
             }
         }
 
-        public bool modificarSeguro(int idSeguro, string nombreSeguro, int descuentoSeguro)
+        public bool modificarSeguro(int idSeguro, string nombreSeguro, decimal descuentoSeguro, decimal valor)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "update TblSeguro set nombreSeguro= " +
-                    " @nombre, descuentoSeguro=@descuento where idSeguro=" + idSeguro;
+                string sql = "update TblSeguro set nomSeguro= " +
+                    " @nombre, porcenSeguro=@descuento, valorSeguro=@costo where idSeguro=" + idSeguro;
 
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nombreSeguro").Value = nombreSeguro;
-                comando.Parameters.Add("@descuento", SqlDbType.Int, 4, "descuentoSeguro").Value = descuentoSeguro;
+                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nomSeguro").Value = nombreSeguro;
+
+                SqlParameter param = new SqlParameter("@descuento", SqlDbType.Decimal);
+                param.SourceColumn = "porcenSeguro";
+                param.Precision = 5;
+                param.Scale = 2;
+                comando.Parameters.Add(param).Value = descuentoSeguro;
+
+                param = new SqlParameter("@costo", SqlDbType.Decimal);
+                param.SourceColumn = "valorSeguro";
+                param.Precision = 10;
+                param.Scale = 2;
+                comando.Parameters.Add(param).Value = valor;
                 comando.ExecuteNonQuery();
                 return true;
             }

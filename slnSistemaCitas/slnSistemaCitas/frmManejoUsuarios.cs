@@ -434,7 +434,6 @@ namespace slnSistemaCitas
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-
             string idCedula = txtCi.Text;
             string nom1 = txtNom1.Text;
             string nom2 = txtNom2.Text;

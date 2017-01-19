@@ -106,7 +106,7 @@
             this.gpbOpciones.Location = new System.Drawing.Point(348, 59);
             this.gpbOpciones.Name = "gpbOpciones";
             this.gpbOpciones.Size = new System.Drawing.Size(205, 177);
-            this.gpbOpciones.TabIndex = 5;
+            this.gpbOpciones.TabIndex = 3;
             this.gpbOpciones.TabStop = false;
             this.gpbOpciones.Text = "Opciones";
             // 
@@ -116,7 +116,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(53, 129);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(112, 32);
-            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.TabIndex = 5;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -127,7 +127,7 @@
             this.btnModificar.Location = new System.Drawing.Point(53, 78);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(112, 32);
-            this.btnModificar.TabIndex = 1;
+            this.btnModificar.TabIndex = 4;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
@@ -138,7 +138,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(53, 31);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(112, 32);
-            this.btnAgregar.TabIndex = 0;
+            this.btnAgregar.TabIndex = 3;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -160,7 +160,7 @@
             this.mskCosto.Mask = "999.99";
             this.mskCosto.Name = "mskCosto";
             this.mskCosto.Size = new System.Drawing.Size(138, 22);
-            this.mskCosto.TabIndex = 9;
+            this.mskCosto.TabIndex = 2;
             // 
             // dgvEspe
             // 
@@ -197,7 +197,7 @@
             this.dgvEspe.ReadOnly = true;
             this.dgvEspe.RowTemplate.Height = 24;
             this.dgvEspe.Size = new System.Drawing.Size(541, 186);
-            this.dgvEspe.TabIndex = 48;
+            this.dgvEspe.TabIndex = 6;
             // 
             // frmEspecialidad
             // 

@@ -38,7 +38,7 @@ namespace CapaDatos
             }
         }
 
-        public bool agregarUsuario(string ci, string nom1, string nom2, string ape1, string ape2, int genero, DateTime fechaN, string correo, string cel, int seguro, int ciudad)
+        public bool agregarUsuario(string ci, string nom1, string nom2, string ape1, string ape2, string genero, DateTime fechaN, string correo, string cel, int seguro, int ciudad)
         {
             try
             {
@@ -47,17 +47,17 @@ namespace CapaDatos
                     "@correo,@cel,@seguro,@ciudad)";
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
 
-                command.Parameters.Add("@ci", SqlDbType.VarChar,10, "idCedula").Value = ci;
-                command.Parameters.Add("@nom1", SqlDbType.VarChar, 20, "nombre_p").Value = nom1;
-                command.Parameters.Add("@nom2", SqlDbType.VarChar, 20, "nombre_s").Value = nom2;
-                command.Parameters.Add("@ape1", SqlDbType.VarChar, 20, "apellido_p").Value = ape1;
-                command.Parameters.Add("@ape2", SqlDbType.VarChar, 20, "apellido_s").Value = ape2;
-                command.Parameters.Add("@genero", SqlDbType.Int, 4, "genero").Value = genero;
-                command.Parameters.Add("@fechaN", SqlDbType.DateTime, 5, "Fecha_Nacimiento").Value = fechaN;
-                command.Parameters.Add("@correo", SqlDbType.VarChar, 50, "correo").Value = correo;
-                command.Parameters.Add("@cel", SqlDbType.VarChar, 9, "cel").Value = cel;
-                command.Parameters.Add("@seguro", SqlDbType.Int, 4, "seguroMedico").Value = seguro;
-                command.Parameters.Add("@ciudad", SqlDbType.Int, 4, "ciudad").Value = ciudad;
+                command.Parameters.Add("@ci", SqlDbType.Char,10, "idCedula").Value = ci;
+                command.Parameters.Add("@nom1", SqlDbType.VarChar, 20, "nom_pUsuario").Value = nom1;
+                command.Parameters.Add("@nom2", SqlDbType.VarChar, 20, "nom_sUsuario").Value = nom2;
+                command.Parameters.Add("@ape1", SqlDbType.VarChar, 20, "ape_pUsuario").Value = ape1;
+                command.Parameters.Add("@ape2", SqlDbType.VarChar, 20, "ape_Usuario").Value = ape2;
+                command.Parameters.Add("@genero", SqlDbType.Char, 1, "genUsuario").Value = genero;
+                command.Parameters.Add("@fechaN", SqlDbType.DateTime, 5, "fechaNacUsuario").Value = fechaN;
+                command.Parameters.Add("@correo", SqlDbType.VarChar, 50, "corUsuario").Value = correo;
+                command.Parameters.Add("@cel", SqlDbType.Char, 10, "celUsuario").Value = cel;
+                command.Parameters.Add("@seguro", SqlDbType.Int, 4, "idSeguro").Value = seguro;
+                command.Parameters.Add("@ciudad", SqlDbType.Int, 4, "idCiudad").Value = ciudad;
 
                 command.ExecuteNonQuery();
                 return true;
@@ -78,9 +78,9 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "update TblUsuario set seguroMedico = @seguro where seguroMedico=" + id;
+                string sql = "update TblUsuario set idSeguro = @seguro where seguroMedico=" + id;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
-                command.Parameters.Add("@seguro", SqlDbType.Int, 4, "seguroMedico").Value = 0;
+                command.Parameters.Add("@seguro", SqlDbType.Int, 4, "idSeguro").Value = 0;
                 command.ExecuteNonQuery();
                 return true;
             }
@@ -116,29 +116,29 @@ namespace CapaDatos
 
         }
 
-        public bool modificarUsuario(string ci, string nom1, string nom2, string ape1, string ape2, int genero, DateTime fechaN, string correo, string cel, int seguro, int ciudad)
+        public bool modificarUsuario(string ci, string nom1, string nom2, string ape1, string ape2, string genero, DateTime fechaN, string correo, string cel, int seguro, int ciudad)
         {
 
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "update TblUsuario set nombre_p= " +
-                    " @nom1, nombre_s=@nom2, apellido_p=@ape1, apellido_s=@ape2,"+
-                    "genero=@genero, fecha_Nacimiento=@fechaN, correo=@correo, cel=@cel,"+
-                    "SeguroMedico= @seguro, ciudad=@ciudad where idCedula=" + ci;
+                string sql = "update TblUsuario set nom_pUsuario= " +
+                    " @nom1, nom_sUsuario=@nom2, ape_pUsuario=@ape1, ape_sUsuario=@ape2,"+
+                    "genUsuario=@genero, fechaNacUsuario=@fechaN, corUsuario=@correo, cel=@cel,"+
+                    "idSeguro= @seguro, idCiudad=@ciudad where idCedula=" + ci;
 
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
-                
-                command.Parameters.Add("@nom1", SqlDbType.VarChar, 20, "nombre_p").Value = nom1;
-                command.Parameters.Add("@nom2", SqlDbType.VarChar, 20, "nombre_s").Value = nom2;
-                command.Parameters.Add("@ape1", SqlDbType.VarChar, 20, "apellido_p").Value = ape1;
-                command.Parameters.Add("@ape2", SqlDbType.VarChar, 20, "apellido_s").Value = ape2;
-                command.Parameters.Add("@genero", SqlDbType.Int, 4, "genero").Value = genero;
-                command.Parameters.Add("@fechaN", SqlDbType.DateTime, 5, "Fecha_Nacimiento").Value = fechaN;
-                command.Parameters.Add("@correo", SqlDbType.VarChar, 50, "correo").Value = correo;
-                command.Parameters.Add("@cel", SqlDbType.VarChar, 9, "cel").Value = cel;
-                command.Parameters.Add("@seguro", SqlDbType.Int, 4, "seguroMedico").Value = seguro;
-                command.Parameters.Add("@ciudad", SqlDbType.Int, 4, "ciudad").Value = ciudad;
+
+                command.Parameters.Add("@nom1", SqlDbType.VarChar, 20, "nom_pUsuario").Value = nom1;
+                command.Parameters.Add("@nom2", SqlDbType.VarChar, 20, "nom_sUsuario").Value = nom2;
+                command.Parameters.Add("@ape1", SqlDbType.VarChar, 20, "ape_pUsuario").Value = ape1;
+                command.Parameters.Add("@ape2", SqlDbType.VarChar, 20, "ape_Usuario").Value = ape2;
+                command.Parameters.Add("@genero", SqlDbType.Char, 1, "genUsuario").Value = genero;
+                command.Parameters.Add("@fechaN", SqlDbType.DateTime, 5, "fechaNacUsuario").Value = fechaN;
+                command.Parameters.Add("@correo", SqlDbType.VarChar, 50, "corUsuario").Value = correo;
+                command.Parameters.Add("@cel", SqlDbType.Char, 10, "celUsuario").Value = cel;
+                command.Parameters.Add("@seguro", SqlDbType.Int, 4, "idSeguro").Value = seguro;
+                command.Parameters.Add("@ciudad", SqlDbType.Int, 4, "idCiudad").Value = ciudad;
                 command.ExecuteNonQuery();
                 return true;
             }

@@ -46,7 +46,6 @@
     <Compile Include="clsN_Ciudad.cs" />
     <Compile Include="clsN_Doctores.cs" />
     <Compile Include="clsN_Especialidad.cs" />
-    <Compile Include="clsN_Genero.cs" />
     <Compile Include="clsN_Admin.cs" />
     <Compile Include="clsN_Hospital.cs" />
     <Compile Include="clsN_Login.cs" />

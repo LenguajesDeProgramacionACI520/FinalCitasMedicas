@@ -15,10 +15,10 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "SELECT count(*) FROM TblAdmin WHERE idAdmin = @idAdmin";
+                string sql = "SELECT count(*) FROM TblAdmin WHERE idCedula = @idCedula";
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
 
-                comando.Parameters.Add("@idAdmin", SqlDbType.VarChar, 10, "idAdmin").Value = ci;
+                comando.Parameters.Add("@idCedula", SqlDbType.Char, 10, "idCedula").Value = ci;
                 Int32 count = (Int32)comando.ExecuteScalar();
                 clsConexion.cerrarConexion();
                 if (count == 0)
@@ -37,20 +37,20 @@ namespace CapaDatos
         }
 
         
-        public bool modificarAdmin(string ci, string nombre, string apellido, int genero)
+        public bool modificarAdmin(string ci, string nombre, string apellido, string genero, string direccion)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "update TblAdmin set nombre= " +
-                    " @nombre, apellido=@apellido, genero=@genero where idAdmin=" + ci;
+                string sql = "update TblAdmin set nomAdmin= " +
+                    " @nombre, apeAdmin=@apellido, genAdmin=@genero, dirAdmin=@direccion where idCedula=" + ci;
 
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
 
-                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nombre").Value = nombre;
-                comando.Parameters.Add("@apellido", SqlDbType.VarChar, 20, "apellido").Value = apellido;
-                comando.Parameters.Add("@genero", SqlDbType.Int, 4, "genero").Value = genero;
-
+                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nomAdmin").Value = nombre;
+                comando.Parameters.Add("@apellido", SqlDbType.VarChar, 20, "apeAdmin").Value = apellido;
+                comando.Parameters.Add("@genero", SqlDbType.Char, 1, "genAdmin").Value = genero;
+                comando.Parameters.Add("@direccion", SqlDbType.VarChar, 100, "dirAdmin").Value = direccion;
                 comando.ExecuteNonQuery();
 
                 return true;
@@ -66,18 +66,20 @@ namespace CapaDatos
             }
         }
 
-        public bool agregarAdmin(string ci, string nombre, string apellido, int genero)
+        public bool agregarAdmin(string ci, string nombre, string apellido, string genero, string direccion)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "INSERT INTO TblAdmin values(@ci,@nom,@ape,@genero)";
+                string sql = "INSERT INTO TblAdmin values(@ci,@nom,@ape,@gen,@dir,@est)";
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
 
-                command.Parameters.Add("@ci", SqlDbType.VarChar, 10, "idAdmin").Value = ci;
-                command.Parameters.Add("@nom", SqlDbType.VarChar, 20, "nombre").Value = nombre;
-                command.Parameters.Add("@ape", SqlDbType.VarChar, 20, "apellido").Value = apellido;
-                command.Parameters.Add("@genero", SqlDbType.Int, 4, "genero").Value = genero;
+                command.Parameters.Add("@ci", SqlDbType.Char, 10, "idCedula").Value = ci;
+                command.Parameters.Add("@nom", SqlDbType.VarChar, 20, "nomAdmin").Value = nombre;
+                command.Parameters.Add("@ape", SqlDbType.VarChar, 20, "apeAdmin").Value = apellido;
+                command.Parameters.Add("@gen", SqlDbType.Char, 1, "genAdmin").Value = genero;
+                command.Parameters.Add("@dir", SqlDbType.VarChar, 100, "dirAdmin").Value = direccion;
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estAdmin").Value = "AC";
 
                 command.ExecuteNonQuery();
                 return true;
@@ -98,12 +100,55 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "DELETE FROM TblAdmin where idAdmin = " + ci;
+                string sql = "DELETE FROM TblAdmin where idCedula = " + ci;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
                 command.ExecuteNonQuery();
                 return true;
             }
             catch(Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+
+        }
+
+        public bool desactivarAdmin(string ci)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "update TblAdmin set estAdmin=@est where idCedula = " + ci;
+                SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estAdmin").Value = "DC";
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+
+        }
+        public bool activarAdmin(string ci)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "update TblAdmin set estAdmin=@est where idCedula = " + ci;
+                SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estAdmin").Value = "AC";
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
             {
                 return false;
             }

@@ -31,35 +31,35 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbPromocion = new System.Windows.Forms.ComboBox();
+            this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
             this.lblPromocion = new System.Windows.Forms.Label();
             this.lblEspecialidad = new System.Windows.Forms.Label();
             this.grbOpciones = new System.Windows.Forms.GroupBox();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.dgvPromEsp = new System.Windows.Forms.DataGridView();
             this.grbOpciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPromEsp)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cmbPromocion
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(153, 107);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 0;
+            this.cmbPromocion.FormattingEnabled = true;
+            this.cmbPromocion.Location = new System.Drawing.Point(153, 107);
+            this.cmbPromocion.Name = "cmbPromocion";
+            this.cmbPromocion.Size = new System.Drawing.Size(121, 24);
+            this.cmbPromocion.TabIndex = 0;
             // 
-            // comboBox2
+            // cmbEspecialidad
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(153, 168);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2.TabIndex = 1;
+            this.cmbEspecialidad.FormattingEnabled = true;
+            this.cmbEspecialidad.Location = new System.Drawing.Point(153, 168);
+            this.cmbEspecialidad.Name = "cmbEspecialidad";
+            this.cmbEspecialidad.Size = new System.Drawing.Size(121, 24);
+            this.cmbEspecialidad.TabIndex = 1;
             // 
             // lblPromocion
             // 
@@ -91,29 +91,9 @@
             this.grbOpciones.Location = new System.Drawing.Point(307, 63);
             this.grbOpciones.Name = "grbOpciones";
             this.grbOpciones.Size = new System.Drawing.Size(208, 178);
-            this.grbOpciones.TabIndex = 4;
+            this.grbOpciones.TabIndex = 2;
             this.grbOpciones.TabStop = false;
             this.grbOpciones.Text = "Opciones";
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnAgregar.Location = new System.Drawing.Point(52, 25);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(112, 33);
-            this.btnAgregar.TabIndex = 0;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnModificar.Location = new System.Drawing.Point(52, 78);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(112, 33);
-            this.btnModificar.TabIndex = 1;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
             // 
             // btnEliminar
             // 
@@ -121,9 +101,29 @@
             this.btnEliminar.Location = new System.Drawing.Point(52, 136);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(112, 33);
-            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnModificar.Location = new System.Drawing.Point(52, 78);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(112, 33);
+            this.btnModificar.TabIndex = 3;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnAgregar.Location = new System.Drawing.Point(52, 25);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(112, 33);
+            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
             // 
             // lblTitulo
             // 
@@ -171,7 +171,7 @@
             this.dgvPromEsp.ReadOnly = true;
             this.dgvPromEsp.RowTemplate.Height = 24;
             this.dgvPromEsp.Size = new System.Drawing.Size(515, 180);
-            this.dgvPromEsp.TabIndex = 9;
+            this.dgvPromEsp.TabIndex = 5;
             // 
             // frmEspecialidadPromocion
             // 
@@ -184,13 +184,14 @@
             this.Controls.Add(this.grbOpciones);
             this.Controls.Add(this.lblEspecialidad);
             this.Controls.Add(this.lblPromocion);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbEspecialidad);
+            this.Controls.Add(this.cmbPromocion);
             this.ForeColor = System.Drawing.Color.MintCream;
             this.MaximizeBox = false;
             this.Name = "frmEspecialidadPromocion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Asignar una Promoción";
+            this.Load += new System.EventHandler(this.frmEspecialidadPromocion_Load);
             this.grbOpciones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPromEsp)).EndInit();
             this.ResumeLayout(false);
@@ -200,8 +201,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbPromocion;
+        private System.Windows.Forms.ComboBox cmbEspecialidad;
         private System.Windows.Forms.Label lblPromocion;
         private System.Windows.Forms.Label lblEspecialidad;
         private System.Windows.Forms.GroupBox grbOpciones;

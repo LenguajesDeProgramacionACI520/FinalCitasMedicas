@@ -17,9 +17,9 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "select * from TblDoctores ";
+                string sql = "select * from TblDoctor ";
                 adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
-                adaptador.Fill(ds, "TblDoctores");
+                adaptador.Fill(ds, "TblDoctor");
                 return ds;
             }
             catch (Exception ex)
@@ -33,23 +33,24 @@ namespace CapaDatos
 
         }
 
-        public bool agregarDoctor(string cedulaDoc1, string nombreDoc, string apellidoDoc, int generoDoc, DateTime fechaN_Doc, string celDoc, int idHospital, int idEspecialidad)
+        public bool agregarDoctor(string cedulaDoc1, string nombreDoc, string apellidoDoc, string generoDoc, DateTime fechaN_Doc, string celDoc, int idHospital, int idEspecialidad)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "INSERT INTO TblDoctores values(@ci,@nom,@ape,@genero,@fechaN," +
-                    "@cel,@idH,@idE)";
+                string sql = "INSERT INTO TblDoctor values(@ci,@nom,@ape,@genero,@fechaN," +
+                    "@cel,@idH,@idE,@est)";
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
 
-                command.Parameters.Add("@ci", SqlDbType.VarChar, 10, "cedulaDoc").Value = cedulaDoc1;
-                command.Parameters.Add("@nom", SqlDbType.VarChar, 20, "nombreDoc").Value = nombreDoc;
-                command.Parameters.Add("@ape", SqlDbType.VarChar, 20, "apellidoDoc").Value = apellidoDoc;
-                command.Parameters.Add("@genero", SqlDbType.Int, 4, "generoDoc").Value = generoDoc;
-                command.Parameters.Add("@fechaN", SqlDbType.DateTime, 5, "fechaN_Doc").Value = fechaN_Doc;
-                command.Parameters.Add("@cel", SqlDbType.VarChar, 9, "cel").Value = celDoc;
-                command.Parameters.Add("@idH", SqlDbType.Int, 4, "seguroMedico").Value = idHospital;
-                command.Parameters.Add("@idE", SqlDbType.Int, 4, "sector").Value = idEspecialidad;
+                command.Parameters.Add("@ci", SqlDbType.Char, 10, "idCedula").Value = cedulaDoc1;
+                command.Parameters.Add("@nom", SqlDbType.VarChar, 20, "nomDoctor").Value = nombreDoc;
+                command.Parameters.Add("@ape", SqlDbType.VarChar, 20, "apeDoctor").Value = apellidoDoc;
+                command.Parameters.Add("@genero", SqlDbType.Char, 1, "genDoctor").Value = generoDoc;
+                command.Parameters.Add("@fechaN", SqlDbType.DateTime, 5, "fechaN_Doctor").Value = fechaN_Doc;
+                command.Parameters.Add("@cel", SqlDbType.Char, 10, "celDoctor").Value = celDoc;
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estDoctor").Value = "AC";
+                command.Parameters.Add("@idH", SqlDbType.Int, 4, "idHospital").Value = idHospital;
+                command.Parameters.Add("@idE", SqlDbType.Int, 4, "idEspecialidad").Value = idEspecialidad;
 
                 command.ExecuteNonQuery();
                 return true;
@@ -70,7 +71,7 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "DELETE FROM TblDoctores where  cedulaDoc =" + cedulaDoc;
+                string sql = "DELETE FROM TblDoctor where idCedula =" + cedulaDoc;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
                 command.ExecuteNonQuery();
                 return true;
@@ -85,24 +86,24 @@ namespace CapaDatos
             }
         }
 
-        public bool modificarDoctor(string cedulaDoc, string nombreDoc, string apellidoDoc, int generoDoc, DateTime fechaN_Doc, string celDoc, int idHospital, int idEspecialidad)
+        public bool modificarDoctor(string cedulaDoc, string nombreDoc, string apellidoDoc, string generoDoc, DateTime fechaN_Doc, string celDoc, int idHospital, int idEspecialidad)
         {
 
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "update TblDoctores set nombreDoc= " +
-                    " @nom, apellidoDoc =@ape, generoDoc=@genero, fechaN_Doc=@fechaN, celDoc=@cel,"+
-                    "idHospital=@idH, idEspecialidad=@idE where cedulaDoc=" + cedulaDoc;
+                string sql = "update TblDoctor set nomDoctor= " +
+                    " @nom, apeDcotor =@ape, genDoctor=@genero, fechaN_Doctor=@fechaN, celDoctor=@cel,"+
+                    "idHospital=@idH, idEspecialidad=@idE where idCedula=" + cedulaDoc;
 
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
-                command.Parameters.Add("@nom", SqlDbType.VarChar, 20, "nombreDoc").Value = nombreDoc;
-                command.Parameters.Add("@ape", SqlDbType.VarChar, 20, "apellidoDoc").Value = apellidoDoc;
-                command.Parameters.Add("@genero", SqlDbType.Int, 4, "generoDoc").Value = generoDoc;
+                command.Parameters.Add("@nom", SqlDbType.VarChar, 20, "nomDoctor").Value = nombreDoc;
+                command.Parameters.Add("@ape", SqlDbType.VarChar, 20, "apeDoctor").Value = apellidoDoc;
+                command.Parameters.Add("@genero", SqlDbType.Char, 1, "genDoctor").Value = generoDoc;
                 command.Parameters.Add("@fechaN", SqlDbType.DateTime, 5, "fechaN_Doc").Value = fechaN_Doc;
-                command.Parameters.Add("@cel", SqlDbType.VarChar, 9, "cel").Value = celDoc;
-                command.Parameters.Add("@idH", SqlDbType.Int, 4, "seguroMedico").Value = idHospital;
-                command.Parameters.Add("@idE", SqlDbType.Int, 4, "sector").Value = idEspecialidad;
+                command.Parameters.Add("@cel", SqlDbType.VarChar, 9, "celDoctor").Value = celDoc;
+                command.Parameters.Add("@idH", SqlDbType.Int, 4, "idHospital").Value = idHospital;
+                command.Parameters.Add("@idE", SqlDbType.Int, 4, "idEspecialidad").Value = idEspecialidad;
 
                 command.ExecuteNonQuery();
 
@@ -117,6 +118,49 @@ namespace CapaDatos
             {
                 clsConexion.cerrarConexion();
             }
+        }
+
+        public bool desactivarDoctor(string ci)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "update TblDoctor set estDoctor=@est where idCedula = " + ci;
+                SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estDoctor").Value = "DC";
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+
+        }
+        public bool activarDoctor(string ci)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "update TblDoctor set estDoctor=@est where idCedula = " + ci;
+                SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estDoctor").Value = "AC";
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+
         }
     }
 }

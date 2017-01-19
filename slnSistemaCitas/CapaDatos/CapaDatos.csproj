@@ -45,7 +45,6 @@
     <Compile Include="clsD_Doctores.cs" />
     <Compile Include="clsD_Especialidad.cs" />
     <Compile Include="clsD_EspecialidadPromocion.cs" />
-    <Compile Include="clsD_Genero.cs" />
     <Compile Include="clsD_Login.cs" />
     <Compile Include="clsD_Promociones.cs" />
     <Compile Include="clsD_Seguro.cs" />

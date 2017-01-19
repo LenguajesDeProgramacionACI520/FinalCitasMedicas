@@ -10,7 +10,7 @@ namespace CapaDatos
 {
     public class clsConexion
     {
-        public static SqlConnection conexion = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=dbProyecto;Integrated Security=True");
+        public static SqlConnection conexion = new SqlConnection(@"Data Source=JUANMAVIANA;Initial Catalog=dbSistemaCitas;Integrated Security=True");
         public static void abrirConexion()
         {
             if (conexion.State == ConnectionState.Closed)

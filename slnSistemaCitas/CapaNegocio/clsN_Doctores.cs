@@ -13,7 +13,7 @@ namespace CapaNegocio
         public string cedulaDoc { get; set; }
         public string nombreDoc { get; set; }
         public string apellidoDoc { get; set; }
-        public int generoDoc { get; set; }
+        public string generoDoc { get; set; }
         public DateTime fechaN_Doc { get; set; }
         public string celDoc { get; set; }
         public int idHospital { get; set; }
@@ -30,7 +30,10 @@ namespace CapaNegocio
             cedulaDoc = cedula;
             nombreDoc = nombre;
             apellidoDoc = apellido;
-            generoDoc = genero;
+            if (genero == 0)
+                generoDoc = "F";
+            if (genero == 1)
+                generoDoc = "M";
             fechaN_Doc = fechaN;
             celDoc = cel;
             this.idHospital = idHospital;
@@ -50,12 +53,27 @@ namespace CapaNegocio
             cedulaDoc = cedula;
             nombreDoc = nombre;
             apellidoDoc = apellido;
-            generoDoc = genero;
+            if (genero == 0)
+                generoDoc = "F";
+            if (genero == 1)
+                generoDoc = "M";
             fechaN_Doc = fechaN;
             celDoc = cel;
             this.idHospital = idHospital;
             this.idEspecialidad = idEspecialidad;
             return (D_Doctores.modificarDoctor(cedulaDoc, nombreDoc, apellidoDoc, generoDoc, fechaN_Doc, celDoc, this.idHospital, this.idEspecialidad));
+        }
+
+        public bool activarDoctor(string ci)
+        {
+            cedulaDoc = ci;
+            return (D_Doctores.activarDoctor(cedulaDoc));
+        }
+
+        public bool desactivarDoctor(string ci)
+        {
+            cedulaDoc = ci;
+            return (D_Doctores.desactivarDoctor(cedulaDoc));
         }
     }
 }
