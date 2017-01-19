@@ -16,7 +16,6 @@ namespace slnSistemaCitas
         int bandera = 0;
         clsValidaciones validar = new clsValidaciones();
         clsN_Admin N_Admin = new clsN_Admin();
-        clsN_Genero N_Genero = new clsN_Genero();
         clsN_Usuario N_Usuario = new clsN_Usuario();
         clsN_Doctores N_Doctores = new clsN_Doctores();
         clsN_Hospital N_Hospitales = new clsN_Hospital();
@@ -33,9 +32,9 @@ namespace slnSistemaCitas
             {
                 cargarEspecialidad();
                 cargarHospital();
-                cargarGenero();
             }
             bandera = 1;
+            cargarGenero();
             cargarDgv();
             formatoParaAgregar();
             txtNombre.MaxLength = 20;
@@ -47,7 +46,6 @@ namespace slnSistemaCitas
             DateTime hoy = DateTime.Today;
             dtpfechaNa.MaxDate = new DateTime(hoy.Year, hoy.Month, hoy.Day);
             dtpfechaNa.MinDate = new DateTime(hoy.Year - 120, 1, 1);
-            txtCelPrefijo.Enabled = false;
         }
 
         private void cargarDgv()
@@ -73,8 +71,8 @@ namespace slnSistemaCitas
             {
                 ds = N_Hospitales.consultaHospitales();
                 cmbHospital.DataSource = ds.Tables["TblHospital"];
-                cmbHospital.ValueMember = "idH";
-                cmbHospital.DisplayMember = "nombreH";
+                cmbHospital.ValueMember = "idHospital";
+                cmbHospital.DisplayMember = "nomHospital";
             }
             catch (Exception ex)
             {
@@ -88,19 +86,8 @@ namespace slnSistemaCitas
 
         private void cargarGenero()
         {
-            try
-            {
-                ds = N_Genero.consultaGenero();
-                cmbGenero.DataSource = ds.Tables["TblGenero"];
-                cmbGenero.ValueMember = "id";
-                cmbGenero.DisplayMember = "gen_nombre";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Problemas al Cargar el Genero \n" +ex.Message+"\n"+
-                    "Cierre y vuelva a intentarlo", "Er002",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            cmbGenero.Items.Add("FEMENINO");
+            cmbGenero.Items.Add("MASCULINO");
         }
 
         private void cargarEspecialidad()
@@ -109,8 +96,8 @@ namespace slnSistemaCitas
             {
                 ds = N_Especilidad.consultaEspecialidad();
                 cmbEspecialidad.DataSource = ds.Tables["TblEspecialidad"];
-                cmbEspecialidad.ValueMember = "id";
-                cmbEspecialidad.DisplayMember = "nombre";
+                cmbEspecialidad.ValueMember = "idEspecialidad";
+                cmbEspecialidad.DisplayMember = "nomEspecialidad";
             }
             catch (Exception ex)
             {
@@ -125,23 +112,27 @@ namespace slnSistemaCitas
         private void formatoParaAgregar()
         {
             mskCedula.Enabled = true;
+            btnIngresar.Enabled = true;
             btnIngresar.ForeColor = Color.ForestGreen;
             btnEliminar.Enabled = false;
             btnEliminar.ForeColor = Color.Silver;
             btnModificar.Enabled = false;
             btnModificar.ForeColor = Color.Silver;
-            btnIngresar.Enabled = true;
+            btnAC.Enabled = false;
+            btnAC.ForeColor = Color.Silver;
         }
 
         private void formatoModificarEliminar()
         {
             mskCedula.Enabled = false;
+            btnIngresar.Enabled = false;
             btnIngresar.ForeColor = Color.Silver;
             btnEliminar.Enabled = true;
             btnEliminar.ForeColor = Color.ForestGreen;
             btnModificar.Enabled = true;
             btnModificar.ForeColor = Color.ForestGreen;
-            btnIngresar.Enabled = false;
+            btnAC.Enabled = true;
+            btnAC.ForeColor = Color.ForestGreen;
         }
 
         private bool comprobar()
@@ -272,7 +263,7 @@ namespace slnSistemaCitas
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("" + ex.Message, "Er025",
+                    MessageBox.Show("No se ha ingresado el Doctor" + ex.Message, "Er025",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
@@ -332,7 +323,8 @@ namespace slnSistemaCitas
                 { 
                         MessageBox.Show("Se ha eliminado de manera correcta el administrador:" + mskCedula.Text + "'"
                           , "Modificación Exitosa",
-                          MessageBoxButtons.OK, MessageBoxIcon.Information); limpiar();
+                          MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpiar();
                     cargarDgv();
                     formatoParaAgregar();
                     cargarEspecialidad();
@@ -361,18 +353,84 @@ namespace slnSistemaCitas
 
         private void cargarDatos()
         {
-            mskCedula.Text= (string)dgvDoctores.CurrentRow.Cells["cedulaDoc"].Value;
-            txtNombre.Text= (string)dgvDoctores.CurrentRow.Cells["nombreDoc"].Value;
-            txtApellido.Text= (string)dgvDoctores.CurrentRow.Cells["apellidoDoc"].Value;
-            DateTime fecha = (DateTime) dgvDoctores.CurrentRow.Cells["fechaN_Doc"].Value;
+            mskCedula.Text= (string)dgvDoctores.CurrentRow.Cells["idDoctor"].Value;
+            txtNombre.Text= (string)dgvDoctores.CurrentRow.Cells["nomDoctor"].Value;
+            txtApellido.Text= (string)dgvDoctores.CurrentRow.Cells["apeoDoctor"].Value;
+            DateTime fecha = (DateTime) dgvDoctores.CurrentRow.Cells["fechaN_Doctor"].Value;
             dtpfechaNa.Value = fecha.Date;
-            int genero = (int)dgvDoctores.CurrentRow.Cells["generoDoc"].Value;
+            string genero = (string)dgvDoctores.CurrentRow.Cells["genDoc"].Value;
+            if (genero == "F")
+                cmbGenero.SelectedIndex = 0;
+            if (genero == "M")
+                cmbGenero.SelectedIndex = 1;
             txtCelular.Text= (string)dgvDoctores.CurrentRow.Cells["celDoc"].Value;
             int idHospital = (int)dgvDoctores.CurrentRow.Cells["idHospital"].Value;
             int idEspecialidad = (int)dgvDoctores.CurrentRow.Cells["idEspecialidad"].Value;
-            cmbGenero.SelectedValue = genero;
+            string ac = (string)dgvDoctores.CurrentRow.Cells["estAdmin"].Value;
+            if (ac == "AC")
+               btnAC.Text = "Descativar Administrador";
+            if (ac == "DC")
+                btnAC.Text = "Activar Administrador";
             cmbHospital.SelectedValue = idHospital;
             cmbEspecialidad.SelectedValue = idEspecialidad;
         }
+
+        private void btnAC_Click(object sender, EventArgs e)
+        {
+            if (btnAC.Text.Equals("Descativar Administrador"))
+            {
+                try
+                {
+                    if (N_Doctores.desactivarDoctor(mskCedula.Text))
+                        MessageBox.Show("Se ha descativado de manera correcta el Doctor:" + mskCedula.Text + ""
+                              , "Doctor Descativado", MessageBoxButtons.OK, MessageBoxIcon.Information);                  
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Problemas al desactivar el Doctor" +
+                        "\n" + ex.Message, "Er052",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    limpiar();
+                    cargarDgv();
+                    formatoParaAgregar();
+                    cargarEspecialidad();
+                    cargarGenero();
+                    cargarHospital();
+
+                }
+
+            }
+            if (btnAC.Text.Equals("Activar Administrador"))
+            {
+                try
+                {
+                    if (N_Admin.activarAdmin(mskCedula.Text))
+                        MessageBox.Show("Se ha activado de manera correcta el Doctor" + mskCedula.Text + ""
+                              , "Doctor Activado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Problemas al activar el Doctor" +
+                        "\n" + ex.Message, "Er053",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+
+                    limpiar();
+                    cargarDgv();
+                    formatoParaAgregar();
+                    cargarEspecialidad();
+                    cargarGenero();
+                    cargarHospital();
+                }
+
+            }
+        }
+
     }    
 }

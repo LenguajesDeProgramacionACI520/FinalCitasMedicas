@@ -35,6 +35,7 @@
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.cmbGenero = new System.Windows.Forms.ComboBox();
             this.grpOpciones = new System.Windows.Forms.GroupBox();
+            this.btnAC_DC = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -44,11 +45,11 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblCi = new System.Windows.Forms.Label();
             this.txtCi = new System.Windows.Forms.TextBox();
-            this.lblInfo = new System.Windows.Forms.Label();
-            this.lblIndicadorInfo = new System.Windows.Forms.Label();
             this.dgvAdmin = new System.Windows.Forms.DataGridView();
             this.lblPass = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
+            this.lblDireccion = new System.Windows.Forms.Label();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
             this.grpOpciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdmin)).BeginInit();
             this.SuspendLayout();
@@ -56,50 +57,62 @@
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.txtNombre.Location = new System.Drawing.Point(171, 190);
+            this.txtNombre.Location = new System.Drawing.Point(168, 188);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(159, 28);
+            this.txtNombre.Size = new System.Drawing.Size(189, 28);
             this.txtNombre.TabIndex = 2;
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // txtApellido
             // 
             this.txtApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.txtApellido.Location = new System.Drawing.Point(171, 240);
+            this.txtApellido.Location = new System.Drawing.Point(168, 239);
             this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(159, 28);
+            this.txtApellido.Size = new System.Drawing.Size(189, 28);
             this.txtApellido.TabIndex = 3;
             this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
             // 
             // cmbGenero
             // 
+            this.cmbGenero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGenero.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
             this.cmbGenero.FormattingEnabled = true;
-            this.cmbGenero.Location = new System.Drawing.Point(171, 293);
+            this.cmbGenero.Location = new System.Drawing.Point(168, 291);
             this.cmbGenero.Name = "cmbGenero";
-            this.cmbGenero.Size = new System.Drawing.Size(159, 30);
+            this.cmbGenero.Size = new System.Drawing.Size(189, 30);
             this.cmbGenero.TabIndex = 4;
             // 
             // grpOpciones
             // 
+            this.grpOpciones.Controls.Add(this.btnAC_DC);
             this.grpOpciones.Controls.Add(this.btnEliminar);
             this.grpOpciones.Controls.Add(this.btnModificar);
             this.grpOpciones.Controls.Add(this.btnAgregar);
             this.grpOpciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.8F);
             this.grpOpciones.ForeColor = System.Drawing.Color.CadetBlue;
-            this.grpOpciones.Location = new System.Drawing.Point(381, 74);
+            this.grpOpciones.Location = new System.Drawing.Point(381, 107);
             this.grpOpciones.Name = "grpOpciones";
-            this.grpOpciones.Size = new System.Drawing.Size(315, 247);
+            this.grpOpciones.Size = new System.Drawing.Size(340, 297);
             this.grpOpciones.TabIndex = 5;
             this.grpOpciones.TabStop = false;
             this.grpOpciones.Text = "Opciones";
             // 
+            // btnAC_DC
+            // 
+            this.btnAC_DC.Location = new System.Drawing.Point(32, 258);
+            this.btnAC_DC.Name = "btnAC_DC";
+            this.btnAC_DC.Size = new System.Drawing.Size(277, 39);
+            this.btnAC_DC.TabIndex = 8;
+            this.btnAC_DC.Text = "Descativar Administrador";
+            this.btnAC_DC.UseVisualStyleBackColor = true;
+            this.btnAC_DC.Click += new System.EventHandler(this.btnAC_DC_Click);
+            // 
             // btnEliminar
             // 
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.8F);
-            this.btnEliminar.Location = new System.Drawing.Point(86, 192);
+            this.btnEliminar.Location = new System.Drawing.Point(32, 192);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(149, 37);
+            this.btnEliminar.Size = new System.Drawing.Size(277, 37);
             this.btnEliminar.TabIndex = 7;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -108,9 +121,9 @@
             // btnModificar
             // 
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.8F);
-            this.btnModificar.Location = new System.Drawing.Point(86, 121);
+            this.btnModificar.Location = new System.Drawing.Point(32, 121);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(149, 37);
+            this.btnModificar.Size = new System.Drawing.Size(277, 37);
             this.btnModificar.TabIndex = 6;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
@@ -119,9 +132,9 @@
             // btnAgregar
             // 
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.8F);
-            this.btnAgregar.Location = new System.Drawing.Point(86, 49);
+            this.btnAgregar.Location = new System.Drawing.Point(32, 49);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(149, 37);
+            this.btnAgregar.Size = new System.Drawing.Size(277, 37);
             this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -191,29 +204,10 @@
             this.txtCi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
             this.txtCi.Location = new System.Drawing.Point(168, 90);
             this.txtCi.Name = "txtCi";
-            this.txtCi.Size = new System.Drawing.Size(159, 28);
+            this.txtCi.Size = new System.Drawing.Size(189, 28);
             this.txtCi.TabIndex = 0;
             this.txtCi.TextChanged += new System.EventHandler(this.txtCi_TextChanged);
             this.txtCi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCi_KeyPress);
-            // 
-            // lblInfo
-            // 
-            this.lblInfo.AutoSize = true;
-            this.lblInfo.Location = new System.Drawing.Point(23, 609);
-            this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(194, 17);
-            this.lblInfo.TabIndex = 10;
-            this.lblInfo.Text = "* 1: Femenino     2: Masculino";
-            // 
-            // lblIndicadorInfo
-            // 
-            this.lblIndicadorInfo.AutoSize = true;
-            this.lblIndicadorInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.lblIndicadorInfo.Location = new System.Drawing.Point(336, 292);
-            this.lblIndicadorInfo.Name = "lblIndicadorInfo";
-            this.lblIndicadorInfo.Size = new System.Drawing.Size(17, 24);
-            this.lblIndicadorInfo.TabIndex = 11;
-            this.lblIndicadorInfo.Text = "*";
             // 
             // dgvAdmin
             // 
@@ -245,11 +239,11 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvAdmin.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvAdmin.Location = new System.Drawing.Point(26, 345);
+            this.dgvAdmin.Location = new System.Drawing.Point(20, 449);
             this.dgvAdmin.Name = "dgvAdmin";
             this.dgvAdmin.ReadOnly = true;
             this.dgvAdmin.RowTemplate.Height = 24;
-            this.dgvAdmin.Size = new System.Drawing.Size(670, 261);
+            this.dgvAdmin.Size = new System.Drawing.Size(701, 261);
             this.dgvAdmin.TabIndex = 8;
             this.dgvAdmin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdmin_CellDoubleClick);
             // 
@@ -269,21 +263,41 @@
             this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
             this.txtPass.Location = new System.Drawing.Point(168, 142);
             this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(162, 28);
+            this.txtPass.Size = new System.Drawing.Size(189, 28);
             this.txtPass.TabIndex = 1;
             this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
+            // 
+            // lblDireccion
+            // 
+            this.lblDireccion.AutoSize = true;
+            this.lblDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.8F);
+            this.lblDireccion.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDireccion.Location = new System.Drawing.Point(34, 343);
+            this.lblDireccion.Name = "lblDireccion";
+            this.lblDireccion.Size = new System.Drawing.Size(99, 25);
+            this.lblDireccion.TabIndex = 14;
+            this.lblDireccion.Text = "Direccion:";
+            // 
+            // txtDireccion
+            // 
+            this.txtDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
+            this.txtDireccion.Location = new System.Drawing.Point(171, 348);
+            this.txtDireccion.Multiline = true;
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(186, 84);
+            this.txtDireccion.TabIndex = 15;
             // 
             // frmManejoAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.ClientSize = new System.Drawing.Size(734, 635);
+            this.ClientSize = new System.Drawing.Size(747, 722);
+            this.Controls.Add(this.txtDireccion);
+            this.Controls.Add(this.lblDireccion);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.lblPass);
             this.Controls.Add(this.dgvAdmin);
-            this.Controls.Add(this.lblIndicadorInfo);
-            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.txtCi);
             this.Controls.Add(this.lblCi);
             this.Controls.Add(this.lblTitulo);
@@ -322,10 +336,11 @@
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblCi;
         private System.Windows.Forms.TextBox txtCi;
-        private System.Windows.Forms.Label lblInfo;
-        private System.Windows.Forms.Label lblIndicadorInfo;
         private System.Windows.Forms.DataGridView dgvAdmin;
         private System.Windows.Forms.Label lblPass;
         private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.Button btnAC_DC;
+        private System.Windows.Forms.Label lblDireccion;
+        private System.Windows.Forms.TextBox txtDireccion;
     }
 }

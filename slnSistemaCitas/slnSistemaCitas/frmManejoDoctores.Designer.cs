@@ -35,7 +35,6 @@
             this.cmbGenero = new System.Windows.Forms.ComboBox();
             this.lblGenero = new System.Windows.Forms.Label();
             this.txtCelular = new System.Windows.Forms.TextBox();
-            this.txtCelPrefijo = new System.Windows.Forms.TextBox();
             this.nucosto = new System.Windows.Forms.NumericUpDown();
             this.dtpfechaNa = new System.Windows.Forms.DateTimePicker();
             this.mskCedula = new System.Windows.Forms.MaskedTextBox();
@@ -51,6 +50,7 @@
             this.lblEspecialidad = new System.Windows.Forms.Label();
             this.lblHospital = new System.Windows.Forms.Label();
             this.grbOpciones = new System.Windows.Forms.GroupBox();
+            this.btnAC = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnIngresar = new System.Windows.Forms.Button();
@@ -71,7 +71,6 @@
             this.grbPersonal.Controls.Add(this.cmbGenero);
             this.grbPersonal.Controls.Add(this.lblGenero);
             this.grbPersonal.Controls.Add(this.txtCelular);
-            this.grbPersonal.Controls.Add(this.txtCelPrefijo);
             this.grbPersonal.Controls.Add(this.nucosto);
             this.grbPersonal.Controls.Add(this.dtpfechaNa);
             this.grbPersonal.Controls.Add(this.mskCedula);
@@ -96,6 +95,7 @@
             // 
             // cmbGenero
             // 
+            this.cmbGenero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGenero.FormattingEnabled = true;
             this.cmbGenero.Location = new System.Drawing.Point(112, 128);
             this.cmbGenero.Name = "cmbGenero";
@@ -114,21 +114,11 @@
             // txtCelular
             // 
             this.txtCelular.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.8F);
-            this.txtCelular.Location = new System.Drawing.Point(161, 79);
+            this.txtCelular.Location = new System.Drawing.Point(112, 79);
             this.txtCelular.Name = "txtCelular";
-            this.txtCelular.Size = new System.Drawing.Size(130, 24);
+            this.txtCelular.Size = new System.Drawing.Size(179, 24);
             this.txtCelular.TabIndex = 3;
             this.txtCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCelular_KeyPress);
-            // 
-            // txtCelPrefijo
-            // 
-            this.txtCelPrefijo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.8F);
-            this.txtCelPrefijo.ForeColor = System.Drawing.Color.Gray;
-            this.txtCelPrefijo.Location = new System.Drawing.Point(112, 79);
-            this.txtCelPrefijo.Name = "txtCelPrefijo";
-            this.txtCelPrefijo.Size = new System.Drawing.Size(43, 24);
-            this.txtCelPrefijo.TabIndex = 39;
-            this.txtCelPrefijo.Text = "+593";
             // 
             // nucosto
             // 
@@ -246,6 +236,7 @@
             // 
             // cmbEspecialidad
             // 
+            this.cmbEspecialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEspecialidad.FormattingEnabled = true;
             this.cmbEspecialidad.Location = new System.Drawing.Point(416, 41);
             this.cmbEspecialidad.Margin = new System.Windows.Forms.Padding(4);
@@ -278,29 +269,42 @@
             // grbOpciones
             // 
             this.grbOpciones.BackColor = System.Drawing.Color.Transparent;
+            this.grbOpciones.Controls.Add(this.btnAC);
             this.grbOpciones.Controls.Add(this.btnEliminar);
             this.grbOpciones.Controls.Add(this.btnModificar);
             this.grbOpciones.Controls.Add(this.btnIngresar);
             this.grbOpciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.grbOpciones.ForeColor = System.Drawing.Color.MintCream;
-            this.grbOpciones.Location = new System.Drawing.Point(696, 61);
+            this.grbOpciones.Location = new System.Drawing.Point(698, 46);
             this.grbOpciones.Margin = new System.Windows.Forms.Padding(4);
             this.grbOpciones.Name = "grbOpciones";
             this.grbOpciones.Padding = new System.Windows.Forms.Padding(4);
-            this.grbOpciones.Size = new System.Drawing.Size(339, 277);
+            this.grbOpciones.Size = new System.Drawing.Size(339, 309);
             this.grbOpciones.TabIndex = 8;
             this.grbOpciones.TabStop = false;
             this.grbOpciones.Text = "Opciones";
+            // 
+            // btnAC
+            // 
+            this.btnAC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
+            this.btnAC.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnAC.Location = new System.Drawing.Point(28, 250);
+            this.btnAC.Name = "btnAC";
+            this.btnAC.Size = new System.Drawing.Size(281, 45);
+            this.btnAC.TabIndex = 11;
+            this.btnAC.Text = "Desactivar Doctor";
+            this.btnAC.UseVisualStyleBackColor = true;
+            this.btnAC.Click += new System.EventHandler(this.btnAC_Click);
             // 
             // btnEliminar
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.White;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
             this.btnEliminar.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnEliminar.Location = new System.Drawing.Point(28, 203);
+            this.btnEliminar.Location = new System.Drawing.Point(28, 183);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(281, 52);
+            this.btnEliminar.Size = new System.Drawing.Size(281, 45);
             this.btnEliminar.TabIndex = 10;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -311,7 +315,7 @@
             this.btnModificar.BackColor = System.Drawing.Color.White;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
             this.btnModificar.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnModificar.Location = new System.Drawing.Point(28, 120);
+            this.btnModificar.Location = new System.Drawing.Point(28, 108);
             this.btnModificar.Margin = new System.Windows.Forms.Padding(4);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(281, 48);
@@ -336,6 +340,7 @@
             // 
             // cmbHospital
             // 
+            this.cmbHospital.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbHospital.FormattingEnabled = true;
             this.cmbHospital.Location = new System.Drawing.Point(90, 41);
             this.cmbHospital.Name = "cmbHospital";
@@ -398,11 +403,11 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDoctores.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvDoctores.Location = new System.Drawing.Point(7, 379);
+            this.dgvDoctores.Location = new System.Drawing.Point(7, 390);
             this.dgvDoctores.Name = "dgvDoctores";
             this.dgvDoctores.ReadOnly = true;
             this.dgvDoctores.RowTemplate.Height = 24;
-            this.dgvDoctores.Size = new System.Drawing.Size(1031, 221);
+            this.dgvDoctores.Size = new System.Drawing.Size(1031, 270);
             this.dgvDoctores.TabIndex = 11;
             this.dgvDoctores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDoctores_CellDoubleClick);
             // 
@@ -411,7 +416,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.ClientSize = new System.Drawing.Size(1050, 612);
+            this.ClientSize = new System.Drawing.Size(1050, 685);
             this.Controls.Add(this.dgvDoctores);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.groupBox2);
@@ -439,7 +444,6 @@
 
         private System.Windows.Forms.GroupBox grbPersonal;
         private System.Windows.Forms.TextBox txtCelular;
-        private System.Windows.Forms.TextBox txtCelPrefijo;
         private System.Windows.Forms.NumericUpDown nucosto;
         private System.Windows.Forms.DateTimePicker dtpfechaNa;
         private System.Windows.Forms.MaskedTextBox mskCedula;
@@ -464,5 +468,6 @@
         private System.Windows.Forms.DataGridView dgvDoctores;
         private System.Windows.Forms.ComboBox cmbGenero;
         private System.Windows.Forms.Label lblGenero;
+        private System.Windows.Forms.Button btnAC;
     }
 }

@@ -16,7 +16,6 @@ namespace slnSistemaCitas
         int bandera = 0;
         DataSet ds = new DataSet();
         clsN_Seguro N_Seguro = new clsN_Seguro();
-        clsN_Genero N_Genero = new clsN_Genero();
         clsN_Usuario N_Usuario = new clsN_Usuario();
         clsN_Admin N_Admin = new clsN_Admin();
         clsN_Login N_Login = new clsN_Login();
@@ -64,15 +63,12 @@ namespace slnSistemaCitas
             DateTime hoy = DateTime.Today;
             dtpFechaN.MaxDate = new DateTime(hoy.Year, hoy.Month, hoy.Day);
             dtpFechaN.MinDate = new DateTime(hoy.Year - 120, 1, 1);
-            txtCel.MaxLength = 9;
+            txtCel.MaxLength = 10;
             txtCorreo.MaxLength = 50;
-            txtCodigoCel.Text = "+593";
-            txtCodigoCel.Enabled = false;
             txtNom1.CharacterCasing = CharacterCasing.Upper;
             txtNom2.CharacterCasing = CharacterCasing.Upper;
             txtApe1.CharacterCasing = CharacterCasing.Upper;
             txtApe2.CharacterCasing = CharacterCasing.Upper;
-            txtCodigoCel.TextAlign = HorizontalAlignment.Center;
         }
 
         private void cargarImg()
@@ -93,19 +89,8 @@ namespace slnSistemaCitas
 
         private void cargarGenero()
         {
-            try
-            {
-                ds = N_Genero.consultaGenero();
-                cmbGenero.DataSource = ds.Tables["TblGenero"];
-                cmbGenero.ValueMember = "id";
-                cmbGenero.DisplayMember = "gen_nombre";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Problemas al Cargar el Genero \n" +
-                    "Cierre y vuelva a intentarlo", "Er002",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            cmbGenero.Items.Add("FEMENINO");
+            cmbGenero.Items.Add("MASCULINO");
         }
 
         private void cargarCiudad()
@@ -115,13 +100,13 @@ namespace slnSistemaCitas
                 ds = N_Ciudad.consultaCiudad();
                 cmbCiudad.DataSource = ds.Tables["TblCiudad"];
                 cmbCiudad.ValueMember = "idCiudad";
-                cmbCiudad.DisplayMember = "nombreC";
+                cmbCiudad.DisplayMember = "nomCiudad";
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show("Problemas al Cargar las Ciudades \n" +
-                    "Cierre y vuelva a intentarlo", "Er008",
+                MessageBox.Show("Problemas al Cargar las Ciudades \n" +ex.Message+
+                    "\nCierre y vuelva a intentarlo", "Er008",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -133,11 +118,11 @@ namespace slnSistemaCitas
                 ds = N_Seguro.consultaSeguro();
                 cmbSeguro.DataSource = ds.Tables["TblSeguro"];
                 cmbSeguro.ValueMember = "idSeguro";
-                cmbSeguro.DisplayMember = "nombreSeguro";
+                cmbSeguro.DisplayMember = "nombSeguro";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problemas al Cargar el Seguro Médico \n" +
+                MessageBox.Show("Problemas al Cargar el Seguro Médico \n"+
                     "Cierre y vuelva a intentarlo\n" + ex.Message, "Er003",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

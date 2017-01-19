@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManejoUsuarios));
             this.cmbCiudad = new System.Windows.Forms.ComboBox();
-            this.txtCodigoCel = new System.Windows.Forms.TextBox();
             this.pcbSector = new System.Windows.Forms.PictureBox();
             this.pcbCelular = new System.Windows.Forms.PictureBox();
             this.pcbPass = new System.Windows.Forms.PictureBox();
@@ -94,15 +93,6 @@
             this.cmbCiudad.Name = "cmbCiudad";
             this.cmbCiudad.Size = new System.Drawing.Size(162, 24);
             this.cmbCiudad.TabIndex = 10;
-            // 
-            // txtCodigoCel
-            // 
-            this.txtCodigoCel.Enabled = false;
-            this.txtCodigoCel.Location = new System.Drawing.Point(643, 203);
-            this.txtCodigoCel.Name = "txtCodigoCel";
-            this.txtCodigoCel.Size = new System.Drawing.Size(59, 22);
-            this.txtCodigoCel.TabIndex = 77;
-            this.txtCodigoCel.Text = "+593";
             // 
             // pcbSector
             // 
@@ -567,7 +557,6 @@
             this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.grbOpciones);
             this.Controls.Add(this.cmbCiudad);
-            this.Controls.Add(this.txtCodigoCel);
             this.Controls.Add(this.pcbSector);
             this.Controls.Add(this.pcbCelular);
             this.Controls.Add(this.pcbPass);
@@ -622,7 +611,6 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cmbCiudad;
-        private System.Windows.Forms.TextBox txtCodigoCel;
         private System.Windows.Forms.PictureBox pcbSector;
         private System.Windows.Forms.PictureBox pcbCelular;
         private System.Windows.Forms.PictureBox pcbPass;

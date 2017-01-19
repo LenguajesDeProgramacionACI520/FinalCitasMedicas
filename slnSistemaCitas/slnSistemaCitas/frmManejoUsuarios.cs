@@ -16,7 +16,6 @@ namespace slnSistemaCitas
         int bandera = 0;
         DataSet ds = new DataSet();
         clsN_Seguro N_Seguro = new clsN_Seguro();
-        clsN_Genero N_Genero = new clsN_Genero();
         clsN_Usuario N_Usuario = new clsN_Usuario();
         clsN_Admin N_Admin = new clsN_Admin();
         clsN_Login N_Login = new clsN_Login();
@@ -97,15 +96,12 @@ namespace slnSistemaCitas
             DateTime hoy = DateTime.Today;
             dtpFechaN.MaxDate = new DateTime(hoy.Year, hoy.Month, hoy.Day);
             dtpFechaN.MinDate = new DateTime(hoy.Year - 120, 1, 1);
-            txtCel.MaxLength = 9;
+            txtCel.MaxLength = 10;
             txtCorreo.MaxLength = 50;
-            txtCodigoCel.Text = "+593";
-            txtCodigoCel.Enabled = false;
             txtNom1.CharacterCasing = CharacterCasing.Upper;
             txtNom2.CharacterCasing = CharacterCasing.Upper;
             txtApe1.CharacterCasing = CharacterCasing.Upper;
             txtApe2.CharacterCasing = CharacterCasing.Upper;
-            txtCodigoCel.TextAlign = HorizontalAlignment.Center;
         }
 
         private void cargarImg()
@@ -125,19 +121,8 @@ namespace slnSistemaCitas
 
         private void cargarGenero()
         {
-            try
-            {
-                ds = N_Genero.consultaGenero();
-                cmbGenero.DataSource = ds.Tables["TblGenero"];
-                cmbGenero.ValueMember = "id";
-                cmbGenero.DisplayMember = "gen_nombre";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Problemas al Cargar el Genero \n" +
-                    "Cierre y vuelva a intentarlo", "Er002",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            cmbGenero.Items.Add("FEMENINO");
+            cmbGenero.Items.Add("MASCULINO");
         }
 
         private void cargarCiudad()
@@ -147,13 +132,13 @@ namespace slnSistemaCitas
                 ds = N_Ciudad.consultaCiudad();
                 cmbCiudad.DataSource = ds.Tables["TblCiudad"];
                 cmbCiudad.ValueMember = "idCiudad";
-                cmbCiudad.DisplayMember = "nombreC";
+                cmbCiudad.DisplayMember = "nomCiudad";
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show("Problemas al Cargar las Ciudades \n" +
-                    "Cierre y vuelva a intentarlo", "Er008",
+                MessageBox.Show("Problemas al Cargar las Ciudades \n" +ex.Message+
+                    "\nCierre y vuelva a intentarlo", "Er008",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -165,7 +150,7 @@ namespace slnSistemaCitas
                 ds = N_Seguro.consultaSeguro();
                 cmbSeguro.DataSource = ds.Tables["TblSeguro"];
                 cmbSeguro.ValueMember = "idSeguro";
-                cmbSeguro.DisplayMember = "nombreSeguro";
+                cmbSeguro.DisplayMember = "nomSeguro";
             }
             catch (Exception ex)
             {
@@ -359,11 +344,11 @@ namespace slnSistemaCitas
             DateTime fechaN = dtpFechaN.Value.Date;
             string correo = txtCorreo.Text;
             string cel = txtCel.Text;
-            int seguroMedico = int.Parse(cmbSeguro.SelectedValue.ToString());
-            int sector = int.Parse(cmbCiudad.SelectedValue.ToString());
+            int seguro = int.Parse(cmbSeguro.SelectedValue.ToString());
+            int ciudad = int.Parse(cmbCiudad.SelectedValue.ToString());
             string pass = txtPass1.Text;
             if (N_Usuario.agregarUsuario(idCedula, nom1, nom2, ape1, ape2, genero, fechaN,
-                correo, cel, seguroMedico, sector))
+                correo, cel, seguro, ciudad))
             {
                 if ((N_Login.agregarPersona(idCedula, pass, 0)))
                 {
@@ -408,25 +393,28 @@ namespace slnSistemaCitas
         private void obtenerPass(string ci)
         {
             ds = N_Login.N_consulta(ci);
-            txtPass1.Text = ds.Tables[0].Rows[0]["pass"].ToString();
+            txtPass1.Text = ds.Tables[0].Rows[0]["passUsuario"].ToString();
 
         }
 
         private void cargarDatos()
         {
             txtCi.Text = (string)dgvUsuarios.CurrentRow.Cells["idCedula"].Value;
-            txtNom1.Text = (string)dgvUsuarios.CurrentRow.Cells["nombre_p"].Value;
-            txtNom2.Text = (string)dgvUsuarios.CurrentRow.Cells["nombre_s"].Value;
-            txtApe1.Text = (string)dgvUsuarios.CurrentRow.Cells["apellido_p"].Value;
-            txtApe2.Text = (string)dgvUsuarios.CurrentRow.Cells["apellido_s"].Value;
-            int genero = (int)dgvUsuarios.CurrentRow.Cells["genero"].Value;
-            DateTime fecha = (DateTime)dgvUsuarios.CurrentRow.Cells["fecha_Nacimiento"].Value;
+            txtNom1.Text = (string)dgvUsuarios.CurrentRow.Cells["nom_pUsuario"].Value;
+            txtNom2.Text = (string)dgvUsuarios.CurrentRow.Cells["nom_sUsuario"].Value;
+            txtApe1.Text = (string)dgvUsuarios.CurrentRow.Cells["ape_pUsuario"].Value;
+            txtApe2.Text = (string)dgvUsuarios.CurrentRow.Cells["ape_sUsuario"].Value;
+            string genero = (string)dgvUsuarios.CurrentRow.Cells["genUsuario"].Value;
+            DateTime fecha = (DateTime)dgvUsuarios.CurrentRow.Cells["fechaNacUsuario"].Value;
             dtpFechaN.Value = fecha.Date;
-            txtCorreo.Text = (string)dgvUsuarios.CurrentRow.Cells["correo"].Value;
-            txtCel.Text = (string)dgvUsuarios.CurrentRow.Cells["cel"].Value;
-            int seguroMedico = (int)dgvUsuarios.CurrentRow.Cells["seguroMedico"].Value;
-            int ciudad = (int)dgvUsuarios.CurrentRow.Cells["ciudad"].Value;
-            cmbGenero.SelectedValue = genero;
+            txtCorreo.Text = (string)dgvUsuarios.CurrentRow.Cells["corUsuario"].Value;
+            txtCel.Text = (string)dgvUsuarios.CurrentRow.Cells["celUsuario"].Value;
+            int seguroMedico = (int)dgvUsuarios.CurrentRow.Cells["idSeguro"].Value;
+            int ciudad = (int)dgvUsuarios.CurrentRow.Cells["idCiudad"].Value;
+            if (genero == "F")
+                cmbGenero.SelectedIndex = 0;
+            if (genero == "M")
+                cmbGenero.SelectedIndex = 1;
             cmbSeguro.SelectedValue = seguroMedico;
             cmbCiudad.SelectedValue = ciudad;
 
@@ -443,11 +431,11 @@ namespace slnSistemaCitas
             DateTime fechaN = dtpFechaN.Value.Date;
             string correo = txtCorreo.Text;
             string cel = txtCel.Text;
-            int seguroMedico = int.Parse(cmbSeguro.SelectedValue.ToString());
-            int sector = int.Parse(cmbCiudad.SelectedValue.ToString());
+            int seguro = int.Parse(cmbSeguro.SelectedValue.ToString());
+            int ciudad = int.Parse(cmbCiudad.SelectedValue.ToString());
             string pass = txtPass1.Text;
             if (N_Usuario.modificarUsuario(idCedula, nom1, nom2, ape1, ape2, genero, fechaN,
-                correo, cel, seguroMedico, sector))
+                correo, cel, seguro,ciudad))
             {
                 if ((N_Login.modificarPersona(idCedula, pass)))
                 {

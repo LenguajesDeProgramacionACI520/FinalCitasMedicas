@@ -68,7 +68,6 @@
             this.pcbPassVer = new System.Windows.Forms.PictureBox();
             this.pcbCelular = new System.Windows.Forms.PictureBox();
             this.pcbSector = new System.Windows.Forms.PictureBox();
-            this.txtCodigoCel = new System.Windows.Forms.TextBox();
             this.cmbCiudad = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbCedula)).BeginInit();
@@ -131,6 +130,7 @@
             // 
             // cmbGenero
             // 
+            this.cmbGenero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGenero.FormattingEnabled = true;
             this.cmbGenero.Location = new System.Drawing.Point(153, 280);
             this.cmbGenero.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -159,6 +159,7 @@
             // 
             // cmbSeguro
             // 
+            this.cmbSeguro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSeguro.FormattingEnabled = true;
             this.cmbSeguro.Location = new System.Drawing.Point(153, 395);
             this.cmbSeguro.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -288,7 +289,7 @@
             this.lblCel.BackColor = System.Drawing.Color.Transparent;
             this.lblCel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblCel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblCel.Location = new System.Drawing.Point(420, 280);
+            this.lblCel.Location = new System.Drawing.Point(485, 283);
             this.lblCel.Name = "lblCel";
             this.lblCel.Size = new System.Drawing.Size(72, 20);
             this.lblCel.TabIndex = 21;
@@ -503,15 +504,9 @@
             this.pcbSector.TabIndex = 40;
             this.pcbSector.TabStop = false;
             // 
-            // txtCodigoCel
-            // 
-            this.txtCodigoCel.Location = new System.Drawing.Point(498, 277);
-            this.txtCodigoCel.Name = "txtCodigoCel";
-            this.txtCodigoCel.Size = new System.Drawing.Size(59, 26);
-            this.txtCodigoCel.TabIndex = 41;
-            // 
             // cmbCiudad
             // 
+            this.cmbCiudad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCiudad.FormattingEnabled = true;
             this.cmbCiudad.Location = new System.Drawing.Point(563, 395);
             this.cmbCiudad.Name = "cmbCiudad";
@@ -525,7 +520,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(771, 634);
             this.Controls.Add(this.cmbCiudad);
-            this.Controls.Add(this.txtCodigoCel);
             this.Controls.Add(this.pcbSector);
             this.Controls.Add(this.pcbCelular);
             this.Controls.Add(this.pcbPassVer);
@@ -632,7 +626,6 @@
         private System.Windows.Forms.PictureBox pcbPassVer;
         private System.Windows.Forms.PictureBox pcbCelular;
         private System.Windows.Forms.PictureBox pcbSector;
-        private System.Windows.Forms.TextBox txtCodigoCel;
         private System.Windows.Forms.ComboBox cmbCiudad;
     }
 }

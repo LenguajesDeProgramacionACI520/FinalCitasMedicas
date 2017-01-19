@@ -60,6 +60,7 @@ namespace slnSistemaCitas
             txtNombre.Clear();
             mskDescuento.Clear();
             formatoParaAgregar();
+            mskCosto.Clear();
             cargarDgv();
         }
 
@@ -131,10 +132,11 @@ namespace slnSistemaCitas
             {
                 int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
-                int descuento = int.Parse(mskDescuento.Text);
+                decimal descuento = decimal.Parse(mskDescuento.Text);
+                decimal costo = decimal.Parse(mskDescuento.Text);
                 try
                 {
-                    if (N_Seguro.agregarSeguro(id, nombre, descuento))
+                    if (N_Seguro.agregarSeguro(id, nombre, descuento,costo))
                     {
                         MessageBox.Show("Se ha ingresado correctamente el seguro: " + txtNombre.Text + ""
                                      , "Nuevo Seguro", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -143,7 +145,7 @@ namespace slnSistemaCitas
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Errr al agregar un nuevo seguro" + ex.Message, "Er041",
+                    MessageBox.Show("Error al agregar un nuevo seguro\n" + ex.Message, "Er041",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     limpiar();
 
@@ -158,10 +160,11 @@ namespace slnSistemaCitas
             {
                 int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
-                int descuento = int.Parse(mskDescuento.Text);
+                decimal descuento = decimal.Parse(mskDescuento.Text);
+                decimal costo = decimal.Parse(mskDescuento.Text);
                 try
                 {
-                    if (N_Seguro.modificarSeguro(id, nombre, descuento))
+                    if (N_Seguro.modificarSeguro(id, nombre, descuento,costo))
                     {
                         MessageBox.Show("Se ha modificado correctamente el seguro: " + txtNombre.Text + ""
                                      , "Seguro Modificada", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -170,7 +173,7 @@ namespace slnSistemaCitas
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Errr al modificar el seguro seleccionado" + ex.Message, "Er040",
+                    MessageBox.Show("Error al modificar el seguro seleccionado\n" + ex.Message, "Er040",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     limpiar();
 
@@ -190,15 +193,15 @@ namespace slnSistemaCitas
                     {
                         if (N_usuario.cambiarSeguro(id))
                         {
-                            MessageBox.Show("Se ha eliminado correctamente el seguro: " + txtNombre.Text + ""
-                                         , "Seguro Eliminada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Se ha eliminado correctamente el seguro \n " + txtNombre.Text + ""
+                                         , "Seguro Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             limpiar();
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al eliminar el seguro seleccionado" + ex.Message, "Er039",
+                    MessageBox.Show("Error al eliminar el seguro seleccionado\n" + ex.Message, "Er039",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     limpiar();
 
@@ -227,8 +230,11 @@ namespace slnSistemaCitas
             if (id != 0)
             {
                 txtId.Text = id.ToString();
-                txtNombre.Text = (string)dgvSeguro.CurrentRow.Cells["nombreSeguro"].Value;
-                mskDescuento.Text = dgvSeguro.CurrentRow.Cells["descuentoSeguro"].Value.ToString();
+                txtNombre.Text = (string)dgvSeguro.CurrentRow.Cells["nomSeguro"].Value;
+                decimal descuento = (decimal)dgvSeguro.CurrentRow.Cells["porcenSeguro"].Value;
+                decimal costo = (decimal)dgvSeguro.CurrentRow.Cells["valorSeguro"].Value;
+                mskCosto.Text = costo.ToString();
+                mskDescuento.Text = descuento.ToString();
             }
             else
             {

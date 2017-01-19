@@ -17,9 +17,7 @@ namespace slnSistemaCitas
         DataSet ds = new DataSet();
         clsN_Admin N_Admin = new clsN_Admin();
         clsN_Login N_Login = new clsN_Login();
-        clsN_Genero N_Genero = new clsN_Genero();
         clsN_Usuario N_Usuario = new clsN_Usuario();
-        int bandera = 0;
         public frmManejoAdmin(string ci)
         {
             userLog = ci;
@@ -34,17 +32,12 @@ namespace slnSistemaCitas
 
         private void inicio()
         {
-            if (bandera == 0)
-            {
-                cargarGenero();
-            }
-            bandera = 1;
+            cargarGenero();
             restringirCampos();
             cargarDgv();
             dgvAdmin.ReadOnly = true;
-            cargar();
+            agregar();
             limpiar();
-            txtCi.Enabled = true;
 
         }
 
@@ -54,6 +47,7 @@ namespace slnSistemaCitas
             txtNombre.Clear();
             txtApellido.Clear();
             txtPass.Clear();
+            txtDireccion.Clear();
         }
 
         private void modificar()
@@ -64,10 +58,12 @@ namespace slnSistemaCitas
             btnEliminar.ForeColor = Color.CadetBlue;
             btnModificar.Enabled = true;
             btnModificar.ForeColor = Color.CadetBlue;
+            btnAC_DC.Enabled = true;
+            btnAC_DC.ForeColor = Color.CadetBlue;
             txtCi.Enabled = false;
         }
 
-        private void cargar()
+        private void agregar()
         {
             btnAgregar.Enabled = true;
             btnAgregar.ForeColor = Color.CadetBlue;
@@ -75,24 +71,15 @@ namespace slnSistemaCitas
             btnEliminar.ForeColor = Color.Silver;
             btnModificar.Enabled = false;
             btnModificar.ForeColor = Color.Silver;
+            btnAC_DC.Enabled = false;
+            btnAC_DC.ForeColor = Color.Silver;
+            txtCi.Enabled = true;
         }
 
         private void cargarGenero()
         {
-            try
-            {
-                ds = N_Genero.consultaGenero();
-                cmbGenero.DataSource = ds.Tables["TblGenero"];
-                cmbGenero.ValueMember = "id";
-                cmbGenero.DisplayMember = "gen_nombre";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Problemas al Cargar el Genero \n" +
-                    "Cierre y vuelva a intentarlo", "Er002",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            cmbGenero.Items.Add("FEMENINO");
+            cmbGenero.Items.Add("MASCULINO");
         }
 
         private void restringirCampos()
@@ -103,6 +90,7 @@ namespace slnSistemaCitas
             txtApellido.MaxLength = 20;
             txtNombre.CharacterCasing = CharacterCasing.Upper;
             txtApellido.CharacterCasing = CharacterCasing.Upper;
+            txtDireccion.MaxLength = 100;
         }
 
         private void cargarDgv()
@@ -138,7 +126,7 @@ namespace slnSistemaCitas
                 MessageBox.Show("No se puede modificar este usuario" +
                     "\nEs el usuario actual", "No se puede modificar su propia información",
                     MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                cargar();
+                agregar();
                 limpiar();
             }else
             {
@@ -158,21 +146,30 @@ namespace slnSistemaCitas
 
         private void obtenerDatos()
         {
-            string ci= (string)dgvAdmin.CurrentRow.Cells["idAdmin"].Value;
+            string ci= (string)dgvAdmin.CurrentRow.Cells["idCedula"].Value;
             txtCi.Text = ci;
             if (!(ci.Equals(userLog)))
             {
-                txtNombre.Text = (string)dgvAdmin.CurrentRow.Cells["nombre"].Value;
-                txtApellido.Text = (string)dgvAdmin.CurrentRow.Cells["apellido"].Value;
-                int genero = (int)dgvAdmin.CurrentRow.Cells["genero"].Value;
-                cmbGenero.SelectedValue = genero;
+                txtNombre.Text = (string)dgvAdmin.CurrentRow.Cells["nomAdmin"].Value;
+                txtApellido.Text = (string)dgvAdmin.CurrentRow.Cells["apeAdmin"].Value;
+                txtDireccion.Text = (string)dgvAdmin.CurrentRow.Cells["dirAdmin"].Value;
+                string gen = (string)dgvAdmin.CurrentRow.Cells["genAdmin"].Value;
+                if (gen == "F")
+                    cmbGenero.SelectedIndex = 0;
+                if (gen == "M")
+                    cmbGenero.SelectedIndex = 1;
+                string ac = (string)dgvAdmin.CurrentRow.Cells["estAdmin"].Value;
+                if (ac == "AC")
+                    btnAC_DC.Text = "Descativar Administrador";
+                if (ac == "DC")
+                    btnAC_DC.Text = "Activar Administrador";
             }
         }
 
         private void obtenerPass(string ci)
         {
             ds = N_Login.N_consulta(ci);
-            txtPass.Text = ds.Tables[0].Rows[0]["pass"].ToString();
+            txtPass.Text = ds.Tables[0].Rows[0]["passUsuario"].ToString();
 
         }
 
@@ -205,7 +202,7 @@ namespace slnSistemaCitas
                 try
                 {
                     if (N_Admin.modificarAdmin(ci, txtNombre.Text, txtApellido.Text,
-                        int.Parse(cmbGenero.SelectedValue.ToString())))
+                        int.Parse(cmbGenero.SelectedValue.ToString()), txtDireccion.Text))
                         MessageBox.Show("Se ha modificado de manera correcta el administrador" +
                           "", "Modificación Exitosa",
                           MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -276,7 +273,7 @@ namespace slnSistemaCitas
             }
             else if(txtCi.Enabled==true)
             {
-                cargar();
+                agregar();
             }
         }
 
@@ -300,16 +297,15 @@ namespace slnSistemaCitas
 
         private void txtPass_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if(txtPass.Text.Length > 6)
+            if(txtPass.Text.Length >=6)
             {
                 if(txtCi.Text.Length == 10)
                 {
-                    if (N_Admin.agregraAdmin(txtCi.Text, txtNombre.Text, txtApellido.Text, int.Parse(cmbGenero.SelectedValue.ToString())))
+                    if (N_Admin.agregraAdmin(txtCi.Text, txtNombre.Text, txtApellido.Text, int.Parse(cmbGenero.SelectedValue.ToString()),txtDireccion.Text))
                         if (N_Login.agregarPersona(txtCi.Text, txtPass.Text, 1))
                         {
                             MessageBox.Show("Se ha ingresado de manera correcta el administrador:" + txtCi.Text + ""
@@ -379,6 +375,48 @@ namespace slnSistemaCitas
         private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
             soloLetras(sender,e);
+        }
+
+        private void btnAC_DC_Click(object sender, EventArgs e)
+        {
+            if(btnAC_DC.Text.Equals("Descativar Administrador"))
+            {
+                try
+                {
+                    if (N_Admin.desactivarAdmin(txtCi.Text))
+                        MessageBox.Show("Se ha descativado de manera correcta el Administrador" + txtCi.Text + ""
+                              , "Administrador Descativado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    inicio();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Problemas al desactivar el Administrador" +
+                        "\n"+ex.Message, "Er050",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    inicio();
+                }
+
+            }
+            if (btnAC_DC.Text.Equals("Activar Administrador"))
+            {
+                try
+                {
+                    if (N_Admin.activarAdmin(txtCi.Text))
+                        MessageBox.Show("Se ha activado de manera correcta el Administrador" + txtCi.Text + ""
+                              , "Administrador Activado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    inicio();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Problemas al activar el Administrador" +
+                        "\n" + ex.Message, "Er051",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    inicio();
+                }
+
+            }
         }
     }
 }

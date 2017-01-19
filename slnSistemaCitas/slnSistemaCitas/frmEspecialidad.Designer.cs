@@ -43,6 +43,8 @@
             this.lblCosto = new System.Windows.Forms.Label();
             this.mskCosto = new System.Windows.Forms.MaskedTextBox();
             this.dgvEspe = new System.Windows.Forms.DataGridView();
+            this.lblDescripcion = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.gpbOpciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspe)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +62,7 @@
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.8F);
             this.txtNombre.Location = new System.Drawing.Point(163, 148);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(153, 24);
+            this.txtNombre.Size = new System.Drawing.Size(170, 24);
             this.txtNombre.TabIndex = 1;
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
@@ -69,11 +71,11 @@
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblID.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.lblID.Location = new System.Drawing.Point(12, 90);
+            this.lblID.Location = new System.Drawing.Point(17, 90);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(129, 24);
+            this.lblID.Size = new System.Drawing.Size(125, 24);
             this.lblID.TabIndex = 2;
-            this.lblID.Text = "Id Especialidad: ";
+            this.lblID.Text = "Id Especialidad:";
             this.lblID.UseCompatibleTextRendering = true;
             // 
             // lblNombreE
@@ -81,7 +83,7 @@
             this.lblNombreE.AutoSize = true;
             this.lblNombreE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblNombreE.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.lblNombreE.Location = new System.Drawing.Point(71, 150);
+            this.lblNombreE.Location = new System.Drawing.Point(67, 150);
             this.lblNombreE.Name = "lblNombreE";
             this.lblNombreE.Size = new System.Drawing.Size(75, 24);
             this.lblNombreE.TabIndex = 3;
@@ -103,9 +105,9 @@
             this.gpbOpciones.Controls.Add(this.btnEliminar);
             this.gpbOpciones.Controls.Add(this.btnModificar);
             this.gpbOpciones.Controls.Add(this.btnAgregar);
-            this.gpbOpciones.Location = new System.Drawing.Point(348, 59);
+            this.gpbOpciones.Location = new System.Drawing.Point(368, 100);
             this.gpbOpciones.Name = "gpbOpciones";
-            this.gpbOpciones.Size = new System.Drawing.Size(205, 177);
+            this.gpbOpciones.Size = new System.Drawing.Size(204, 188);
             this.gpbOpciones.TabIndex = 3;
             this.gpbOpciones.TabStop = false;
             this.gpbOpciones.Text = "Opciones";
@@ -148,7 +150,7 @@
             this.lblCosto.AutoSize = true;
             this.lblCosto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblCosto.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.lblCosto.Location = new System.Drawing.Point(83, 204);
+            this.lblCosto.Location = new System.Drawing.Point(84, 204);
             this.lblCosto.Name = "lblCosto";
             this.lblCosto.Size = new System.Drawing.Size(58, 20);
             this.lblCosto.TabIndex = 7;
@@ -159,7 +161,7 @@
             this.mskCosto.Location = new System.Drawing.Point(163, 204);
             this.mskCosto.Mask = "999.99";
             this.mskCosto.Name = "mskCosto";
-            this.mskCosto.Size = new System.Drawing.Size(138, 22);
+            this.mskCosto.Size = new System.Drawing.Size(170, 22);
             this.mskCosto.TabIndex = 2;
             // 
             // dgvEspe
@@ -192,19 +194,41 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvEspe.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvEspe.Location = new System.Drawing.Point(12, 251);
+            this.dgvEspe.Location = new System.Drawing.Point(12, 358);
             this.dgvEspe.Name = "dgvEspe";
             this.dgvEspe.ReadOnly = true;
             this.dgvEspe.RowTemplate.Height = 24;
-            this.dgvEspe.Size = new System.Drawing.Size(541, 186);
+            this.dgvEspe.Size = new System.Drawing.Size(550, 193);
             this.dgvEspe.TabIndex = 6;
+            // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
+            this.lblDescripcion.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.lblDescripcion.Location = new System.Drawing.Point(38, 253);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(104, 20);
+            this.lblDescripcion.TabIndex = 8;
+            this.lblDescripcion.Text = "Descripción:";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.8F);
+            this.txtDescripcion.Location = new System.Drawing.Point(163, 251);
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(170, 101);
+            this.txtDescripcion.TabIndex = 9;
             // 
             // frmEspecialidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ClientSize = new System.Drawing.Size(565, 449);
+            this.ClientSize = new System.Drawing.Size(574, 563);
+            this.Controls.Add(this.txtDescripcion);
+            this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.dgvEspe);
             this.Controls.Add(this.mskCosto);
             this.Controls.Add(this.lblCosto);
@@ -240,5 +264,7 @@
         private System.Windows.Forms.Label lblCosto;
         private System.Windows.Forms.MaskedTextBox mskCosto;
         private System.Windows.Forms.DataGridView dgvEspe;
+        private System.Windows.Forms.Label lblDescripcion;
+        private System.Windows.Forms.TextBox txtDescripcion;
     }
 }

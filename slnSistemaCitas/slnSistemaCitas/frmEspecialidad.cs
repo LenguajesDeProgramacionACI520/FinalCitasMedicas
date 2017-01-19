@@ -30,6 +30,7 @@ namespace slnSistemaCitas
             txtId.Enabled = false;
             txtNombre.MaxLength = 20;
             txtNombre.CharacterCasing = CharacterCasing.Upper;
+            txtDescripcion.MaxLength = 500;
         }
 
         private void limpiar()
@@ -127,10 +128,11 @@ namespace slnSistemaCitas
             {
                 int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
-                float costo = float.Parse(mskCosto.Text);
+                decimal costo = decimal.Parse(mskCosto.Text);
+                string descripcion = txtDescripcion.Text;
                 try
                 {
-                    if (N_Especialidad.agregarEspecialidad(id, nombre, costo))
+                    if (N_Especialidad.agregarEspecialidad(id, nombre,descripcion, costo))
                     {
                         MessageBox.Show("Se ha ingresado correctamente la especialidad:" + txtNombre.Text + ""
                                      , "Nuevo Especialidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -142,7 +144,7 @@ namespace slnSistemaCitas
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("" + ex.Message, "Er016",
+                    MessageBox.Show("Error al ingresar la especialidad" + ex.Message, "Er016",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
@@ -152,9 +154,11 @@ namespace slnSistemaCitas
         
         private void cargarDatos()
         {
-            txtId.Text = dgvEspe.CurrentRow.Cells["id"].Value.ToString();
-            txtNombre.Text = (string)dgvEspe.CurrentRow.Cells["nombre"].Value;
-            mskCosto.Text = dgvEspe.CurrentRow.Cells["costo"].Value.ToString();
+            txtId.Text = dgvEspe.CurrentRow.Cells["idEspecialidad"].Value.ToString();
+            txtNombre.Text = (string)dgvEspe.CurrentRow.Cells["nomEspecialidad"].Value;
+            decimal costo = (decimal)dgvEspe.CurrentRow.Cells["costoEspecialidad"].Value;
+            mskCosto.Text = costo.ToString();
+            txtDescripcion.Text = (string)dgvEspe.CurrentRow.Cells["descEspecialidad"].Value;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -163,10 +167,11 @@ namespace slnSistemaCitas
             {
                 int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
-                float costo = float.Parse(mskCosto.Text);
+                decimal costo = decimal.Parse(mskCosto.Text);
+                string descripcion = txtDescripcion.Text;
                 try
                 {
-                    if (N_Especialidad.modificarEspecialidad(id, nombre, costo))
+                    if (N_Especialidad.modificarEspecialidad(id, nombre,descripcion, costo))
                     {
                         MessageBox.Show("Se ha modificado correctamente la especialidad: " + txtNombre.Text + ""
                                  , "Especialidad Modificada", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -179,7 +184,7 @@ namespace slnSistemaCitas
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show("Erro al modificar la especialidad"+ex.Message, "Er018",
+                    MessageBox.Show("Erro al modificar la especialidad\n"+ex.Message, "Er018",
                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -202,6 +207,8 @@ namespace slnSistemaCitas
             }
             catch(Exception ex)
             {
+                MessageBox.Show("Erro al eliminar la especialidad\n" + ex.Message, "Er053",
+                             MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }

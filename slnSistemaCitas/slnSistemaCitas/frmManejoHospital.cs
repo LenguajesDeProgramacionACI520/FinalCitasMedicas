@@ -36,6 +36,7 @@ namespace slnSistemaCitas
             txtId.Enabled = false;
             txtNombre.MaxLength = 20;
             txtNombre.CharacterCasing = CharacterCasing.Upper;
+            txtDireccion.MaxLength = 100;
             cargarDgv();
 
         }
@@ -55,7 +56,7 @@ namespace slnSistemaCitas
                 ds = N_ciudad.consultaCiudad();
                 cmbCiudad.DataSource = ds.Tables["TblCiudad"];
                 cmbCiudad.ValueMember = "idCiudad";
-                cmbCiudad.DisplayMember = "nombreC";
+                cmbCiudad.DisplayMember = "nomCiudad";
             }
             catch (Exception ex)
             {
@@ -127,9 +128,10 @@ namespace slnSistemaCitas
 
         private void obtenerDatos()
         {
-            txtId.Text = dgvHosp.CurrentRow.Cells["idH"].Value.ToString();
-            txtNombre.Text = dgvHosp.CurrentRow.Cells["nombreH"].Value.ToString();
-            int ciudad = (int)dgvHosp.CurrentRow.Cells["ciudadH"].Value;
+            txtId.Text = dgvHosp.CurrentRow.Cells["idHospital"].Value.ToString();
+            txtNombre.Text = dgvHosp.CurrentRow.Cells["nomHospital"].Value.ToString();
+            txtDireccion.Text = dgvHosp.CurrentRow.Cells["dirHospital"].Value.ToString();
+            int ciudad = (int)dgvHosp.CurrentRow.Cells["idCiudad"].Value;
             cmbCiudad.SelectedValue = ciudad;
         }
 
@@ -141,7 +143,7 @@ namespace slnSistemaCitas
 
         private bool comprobar()
         {
-            if (txtNombre.Text != "")
+            if (txtNombre.Text != "" && txtDireccion.Text != "")
                 return true;
             else
             {
@@ -157,10 +159,11 @@ namespace slnSistemaCitas
             {
                 int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
+                string dir = txtDireccion.Text;
                 int ciudad = int.Parse(cmbCiudad.SelectedValue.ToString());
                 try
                 {
-                    if (N_Hospital.agregarHospital(id, nombre, ciudad))
+                    if (N_Hospital.agregarHospital(id, nombre,dir, ciudad))
                     {
                         MessageBox.Show("Se ha ingresado correctamente el hospital:" + txtNombre.Text + ""
                                      , "Nuevo Hospital", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -170,7 +173,7 @@ namespace slnSistemaCitas
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Errr al agregar un nuevo hospital" + ex.Message, "Er028",
+                    MessageBox.Show("Error al agregar un nuevo hospital\n" + ex.Message, "Er028",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     limpiar();
 
@@ -185,10 +188,11 @@ namespace slnSistemaCitas
             {
                 int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
+                string dir = txtDireccion.Text;
                 int ciudad = int.Parse(cmbCiudad.SelectedValue.ToString());
                 try
                 {
-                    if (N_Hospital.modificarHospital(id, nombre, ciudad))
+                    if (N_Hospital.modificarHospital(id, nombre,dir, ciudad))
                     {
                         MessageBox.Show("Se ha modificado correctamente el hospital:" + txtNombre.Text + ""
                                      , "Hospital Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -198,7 +202,7 @@ namespace slnSistemaCitas
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Errr al modificar el hospital seleccionado" + ex.Message, "Er029",
+                    MessageBox.Show("Error al modificar el hospital seleccionado\n" + ex.Message, "Er029",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     limpiar();
 
@@ -222,7 +226,7 @@ namespace slnSistemaCitas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Errr al eliminar el hospital seleccionado" + ex.Message, "Er030",
+                MessageBox.Show("Error al eliminar el hospital seleccionado\n" + ex.Message, "Er030",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 limpiar();
 

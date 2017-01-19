@@ -44,6 +44,9 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.txtNombre = new System.Windows.Forms.TextBox();
+            this.lblCosto = new System.Windows.Forms.Label();
+            this.mskCosto = new System.Windows.Forms.MaskedTextBox();
+            this.lblDinero = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSeguro)).BeginInit();
             this.grbOpciones.SuspendLayout();
             this.SuspendLayout();
@@ -152,11 +155,11 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvSeguro.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvSeguro.Location = new System.Drawing.Point(23, 267);
+            this.dgvSeguro.Location = new System.Drawing.Point(24, 301);
             this.dgvSeguro.Name = "dgvSeguro";
             this.dgvSeguro.ReadOnly = true;
             this.dgvSeguro.RowTemplate.Height = 24;
-            this.dgvSeguro.Size = new System.Drawing.Size(541, 186);
+            this.dgvSeguro.Size = new System.Drawing.Size(541, 225);
             this.dgvSeguro.TabIndex = 6;
             this.dgvSeguro.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSeguro_CellDoubleClick);
             // 
@@ -168,7 +171,7 @@
             this.grbOpciones.Controls.Add(this.btnAgregar);
             this.grbOpciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.grbOpciones.ForeColor = System.Drawing.Color.MintCream;
-            this.grbOpciones.Location = new System.Drawing.Point(328, 85);
+            this.grbOpciones.Location = new System.Drawing.Point(325, 104);
             this.grbOpciones.Name = "grbOpciones";
             this.grbOpciones.Size = new System.Drawing.Size(226, 172);
             this.grbOpciones.TabIndex = 3;
@@ -216,12 +219,45 @@
             this.txtNombre.Size = new System.Drawing.Size(163, 22);
             this.txtNombre.TabIndex = 1;
             // 
+            // lblCosto
+            // 
+            this.lblCosto.AutoSize = true;
+            this.lblCosto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
+            this.lblCosto.ForeColor = System.Drawing.Color.MintCream;
+            this.lblCosto.Location = new System.Drawing.Point(49, 256);
+            this.lblCosto.Name = "lblCosto";
+            this.lblCosto.Size = new System.Drawing.Size(58, 20);
+            this.lblCosto.TabIndex = 72;
+            this.lblCosto.Text = "Costo:";
+            // 
+            // mskCosto
+            // 
+            this.mskCosto.Location = new System.Drawing.Point(114, 256);
+            this.mskCosto.Mask = "99999999,99";
+            this.mskCosto.Name = "mskCosto";
+            this.mskCosto.Size = new System.Drawing.Size(144, 22);
+            this.mskCosto.TabIndex = 73;
+            // 
+            // lblDinero
+            // 
+            this.lblDinero.AutoSize = true;
+            this.lblDinero.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
+            this.lblDinero.ForeColor = System.Drawing.Color.MintCream;
+            this.lblDinero.Location = new System.Drawing.Point(256, 258);
+            this.lblDinero.Name = "lblDinero";
+            this.lblDinero.Size = new System.Drawing.Size(18, 20);
+            this.lblDinero.TabIndex = 74;
+            this.lblDinero.Text = "$";
+            // 
             // frmManejoSeguro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Brown;
-            this.ClientSize = new System.Drawing.Size(577, 484);
+            this.ClientSize = new System.Drawing.Size(577, 538);
+            this.Controls.Add(this.lblDinero);
+            this.Controls.Add(this.mskCosto);
+            this.Controls.Add(this.lblCosto);
             this.Controls.Add(this.lblPrct);
             this.Controls.Add(this.mskDescuento);
             this.Controls.Add(this.txtId);
@@ -259,5 +295,8 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.Label lblCosto;
+        private System.Windows.Forms.MaskedTextBox mskCosto;
+        private System.Windows.Forms.Label lblDinero;
     }
 }
