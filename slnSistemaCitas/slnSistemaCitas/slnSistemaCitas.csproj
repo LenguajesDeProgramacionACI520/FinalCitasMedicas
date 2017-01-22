@@ -47,17 +47,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsValidaciones.cs" />
+    <Compile Include="frmConsultaMedica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsultaMedica.Designer.cs">
+      <DependentUpon>frmConsultaMedica.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEspecialidad.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmEspecialidad.Designer.cs">
       <DependentUpon>frmEspecialidad.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEspecialidadPromocion.cs">
+    <Compile Include="frmFactura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEspecialidadPromocion.Designer.cs">
-      <DependentUpon>frmEspecialidadPromocion.cs</DependentUpon>
+    <Compile Include="frmFactura.Designer.cs">
+      <DependentUpon>frmFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -115,11 +121,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmConsultaMedica.resx">
+      <DependentUpon>frmConsultaMedica.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEspecialidad.resx">
       <DependentUpon>frmEspecialidad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEspecialidadPromocion.resx">
-      <DependentUpon>frmEspecialidadPromocion.cs</DependentUpon>
+    <EmbeddedResource Include="frmFactura.resx">
+      <DependentUpon>frmFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -156,7 +165,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -175,6 +186,18 @@
       <Project>{f726d06c-ff2a-4da8-abe8-04e6cc09cce9}</Project>
       <Name>CapaNegocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondo 3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondo2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondo3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondo5.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -33,20 +33,21 @@ namespace CapaDatos
             }
         }
 
-        public bool agregarEspecialidad(int id, string nombre, string desc ,decimal costo)
+        public bool agregarEspecialidad(int id, string nombre, string desc ,decimal costo, int idProm)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "insert into TblEspecialidad values (@id,@nombre,@desc,@costo)";
+                string sql = "insert into TblEspecialidad values (@id,@nombre,@desc,@costo,@idProm)";
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
                 comando.Parameters.Add("@id", SqlDbType.Int, 4, "idEspecialidad").Value = id;
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar, 50, "nomEspecialidad").Value = nombre;
                 comando.Parameters.Add("@desc", SqlDbType.VarChar, 500, "descEspecialidad").Value = desc;
+                comando.Parameters.Add("@idProm", SqlDbType.Int, 4, "idPromocion").Value = idProm;
                 //Agregar costo, Valor decimal
                 SqlParameter param = new SqlParameter("@costo", SqlDbType.Decimal);
                 param.SourceColumn = "costoEspecialidad";
-                param.Precision = 6;
+                param.Precision = 7;
                 param.Scale = 2;
                 comando.Parameters.Add(param).Value = costo;
 
@@ -65,21 +66,23 @@ namespace CapaDatos
             }
         }
 
-        public bool modificarEspecialidad(int id, string nombre, string desc, decimal costo)
+        public bool modificarEspecialidad(int id, string nombre, string desc, decimal costo, int idProm)
         {
             try
             {
                 clsConexion.abrirConexion();
                 string sql = "update TblEspecialidad set nomEspecialidad= " +
-                    " @nombre, descEspecialidad=@desc costoEspecialidad=@costo where idEspecialidad=" + id;
+                    " @nombre, descEspecialidad=@desc, costoEspecialidad=@costo, idPromocion=@idProm"+
+                    "where idEspecialidad=" + id;
 
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nombre").Value = nombre;
                 comando.Parameters.Add("@desc", SqlDbType.VarChar, 500, "descEspecialidad").Value = desc;
+                comando.Parameters.Add("@idProm", SqlDbType.Int, 4, "idPromocion").Value = idProm;
                 //Agregar costo, Valor decimal
                 SqlParameter param = new SqlParameter("@costo", SqlDbType.Decimal);
                 param.SourceColumn = "costoEspecialidad";
-                param.Precision = 6;
+                param.Precision = 7;
                 param.Scale = 2;
                 comando.Parameters.Add(param).Value=costo;
 

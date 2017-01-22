@@ -60,6 +60,30 @@ namespace CapaDatos
 
         }
 
+        public DataSet consultaHosCiuEsp(int especialidad, int ciudadH)
+        {
+            DataSet ds = new DataSet();
+            SqlDataAdapter adaptador;
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "SELECT idHospital, nomHospital FROM TblHospital h, TblEspecialidadHospital e " +
+                    "WHERE h.idHospital = e.idHospital AND e.idCiudad =" + ciudadH +" AND e.idEspecialidad = "
+                    + especialidad;
+                adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
+                adaptador.Fill(ds, "TblHospital , TblHospEsp");
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
         public DataSet consultarId()
         {
             DataSet ds = new DataSet();
@@ -68,7 +92,7 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sqlCOnsulta = "select max(idH) from TblHospital";
+                string sqlCOnsulta = "select max(idHospital) from TblHospital";
                 adaptador = new SqlDataAdapter(sqlCOnsulta, clsConexion.conexion);
                 adaptador.Fill(ds, "TblHospital");
                 return ds;

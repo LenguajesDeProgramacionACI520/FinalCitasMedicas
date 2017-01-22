@@ -13,7 +13,7 @@ namespace CapaNegocio
     {
         public int idP { get; set; }
         public string nombreP { get; set; }
-        public int descuentoP { get; set; }
+        public decimal descuentoP { get; set; }
 
         clsD_Promociones D_Promociones = new clsD_Promociones();
 
@@ -27,7 +27,7 @@ namespace CapaNegocio
             return D_Promociones.consultaPromociones();
         }
 
-        public bool agregarPromocion(int id, string nombre, int descuento)
+        public bool agregarPromocion(int id, string nombre, decimal descuento)
         {
             idP = id;
             nombreP = nombre;
@@ -35,7 +35,7 @@ namespace CapaNegocio
             return (D_Promociones.agregarPromocion(idP, nombreP, descuentoP));
         }
 
-        public bool modificarPromocion(int id, string nombre, int descuento)
+        public bool modificarPromocion(int id, string nombre, decimal descuento)
         {
             idP = id;
             nombreP = nombre;

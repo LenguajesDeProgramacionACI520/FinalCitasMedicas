@@ -37,7 +37,7 @@ namespace slnSistemaCitas
             {
                 ds = N_Promociones.consultaPromociones();
                 dgvPro.DataSource = ds;
-                dgvPro.DataMember = "TblPromociones";
+                dgvPro.DataMember = "TblPromocion";
             }
             catch (Exception ex)
             {
@@ -125,7 +125,7 @@ namespace slnSistemaCitas
             {
                 int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
-                int descuento = int.Parse(mskDescuento.Text);
+                decimal descuento = decimal.Parse(mskDescuento.Text);
                 try
                 {
                     if (N_Promociones.agregarPromocion(id, nombre, descuento))
@@ -152,7 +152,7 @@ namespace slnSistemaCitas
             {
                 int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
-                int descuento = int.Parse(mskDescuento.Text);
+                decimal descuento = decimal.Parse(mskDescuento.Text);
                 try
                 {
                     if (N_Promociones.modificarPromocion(id, nombre, descuento))
@@ -209,9 +209,9 @@ namespace slnSistemaCitas
 
         private void cargarDatos()
         {
-            txtId.Text = dgvPro.CurrentRow.Cells["id"].Value.ToString();
-            txtNombre.Text = (string)dgvPro.CurrentRow.Cells["nombre"].Value;
-            mskDescuento.Text = dgvPro.CurrentRow.Cells["descuento"].Value.ToString();
+            txtId.Text = dgvPro.CurrentRow.Cells["idPromocion"].Value.ToString();
+            txtNombre.Text = (string)dgvPro.CurrentRow.Cells["nomPromocion"].Value;
+            mskDescuento.Text = dgvPro.CurrentRow.Cells["descuPromocion"].Value.ToString();
         }
     }
 }

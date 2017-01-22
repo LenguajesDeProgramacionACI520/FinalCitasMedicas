@@ -49,5 +49,10 @@ namespace CapaNegocio
             idSeguro = id;
             return (D_seguro.eliminarSeguro(idSeguro));
         }
+
+        public DataSet consultaSeguro(int idSeguro)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

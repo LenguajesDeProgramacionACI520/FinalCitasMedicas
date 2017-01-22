@@ -18,9 +18,9 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "select max(id) from TblPromociones";
+                string sql = "select max(id) from TblPromocion";
                 adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
-                adaptador.Fill(ds, "TblPromociones");
+                adaptador.Fill(ds, "TblPromocion");
                 return ds;
             }
             catch (Exception ex)
@@ -34,16 +34,21 @@ namespace CapaDatos
 
         }
 
-        public bool agregarPromocion(int idP, string nombreP, int descuentoP)
+        public bool agregarPromocion(int idP, string nombreP, decimal descuentoP)
         {
             try
             {
                 clsConexion.abrirConexion();
                 string sql = "insert into TblPromociones values (@id,@nombre,@descuento)";
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@id", SqlDbType.Int, 4, "id").Value = idP;
-                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nombre").Value = nombreP;
-                comando.Parameters.Add("@descuento", SqlDbType.Int, 4, "descuento").Value = descuentoP;
+                comando.Parameters.Add("@id", SqlDbType.Int, 4, "idPromocion").Value = idP;
+                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nomPromocion").Value = nombreP;
+
+                SqlParameter param = new SqlParameter("@descuento", SqlDbType.Decimal);
+                param.SourceColumn = "descuPromocion";
+                param.Precision = 5;
+                param.Scale = 2;
+                comando.Parameters.Add(param).Value = descuentoP;
                 comando.ExecuteNonQuery();
                 return true;
             }
@@ -101,7 +106,7 @@ namespace CapaDatos
             }
         }
 
-        public bool modificarPromocion(int idP, string nombreP, int descuentoP)
+        public bool modificarPromocion(int idP, string nombreP, decimal descuentoP)
         {
             try
             {
@@ -111,7 +116,11 @@ namespace CapaDatos
 
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nombre").Value = nombreP;
-                comando.Parameters.Add("@descuento", SqlDbType.Int, 4, "descuento").Value = descuentoP;
+                SqlParameter param = new SqlParameter("@descuento", SqlDbType.Decimal);
+                param.SourceColumn = "descuPromocion";
+                param.Precision = 5;
+                param.Scale = 2;
+                comando.Parameters.Add(param).Value = descuentoP;
                 comando.ExecuteNonQuery();
                 return true;
             }

@@ -45,6 +45,8 @@
             this.dgvEspe = new System.Windows.Forms.DataGridView();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.lblPromocion = new System.Windows.Forms.Label();
+            this.cmbPromocion = new System.Windows.Forms.ComboBox();
             this.gpbOpciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspe)).BeginInit();
             this.SuspendLayout();
@@ -93,10 +95,12 @@
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.8F);
-            this.lblTitulo.Location = new System.Drawing.Point(91, 23);
+            this.lblTitulo.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.lblTitulo.Location = new System.Drawing.Point(192, 22);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(159, 26);
+            this.lblTitulo.Size = new System.Drawing.Size(193, 29);
             this.lblTitulo.TabIndex = 4;
             this.lblTitulo.Text = "Especialidades";
             // 
@@ -159,7 +163,7 @@
             // mskCosto
             // 
             this.mskCosto.Location = new System.Drawing.Point(163, 204);
-            this.mskCosto.Mask = "999.99";
+            this.mskCosto.Mask = "99999999,99";
             this.mskCosto.Name = "mskCosto";
             this.mskCosto.Size = new System.Drawing.Size(170, 22);
             this.mskCosto.TabIndex = 2;
@@ -194,7 +198,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvEspe.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvEspe.Location = new System.Drawing.Point(12, 358);
+            this.dgvEspe.Location = new System.Drawing.Point(12, 425);
             this.dgvEspe.Name = "dgvEspe";
             this.dgvEspe.ReadOnly = true;
             this.dgvEspe.RowTemplate.Height = 24;
@@ -206,7 +210,7 @@
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblDescripcion.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.lblDescripcion.Location = new System.Drawing.Point(38, 253);
+            this.lblDescripcion.Location = new System.Drawing.Point(38, 296);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(104, 20);
             this.lblDescripcion.TabIndex = 8;
@@ -215,18 +219,40 @@
             // txtDescripcion
             // 
             this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.8F);
-            this.txtDescripcion.Location = new System.Drawing.Point(163, 251);
+            this.txtDescripcion.Location = new System.Drawing.Point(163, 294);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(170, 101);
             this.txtDescripcion.TabIndex = 9;
+            // 
+            // lblPromocion
+            // 
+            this.lblPromocion.AutoSize = true;
+            this.lblPromocion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
+            this.lblPromocion.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.lblPromocion.Location = new System.Drawing.Point(48, 251);
+            this.lblPromocion.Name = "lblPromocion";
+            this.lblPromocion.Size = new System.Drawing.Size(94, 20);
+            this.lblPromocion.TabIndex = 10;
+            this.lblPromocion.Text = "Promocion:";
+            // 
+            // cmbPromocion
+            // 
+            this.cmbPromocion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPromocion.FormattingEnabled = true;
+            this.cmbPromocion.Location = new System.Drawing.Point(163, 251);
+            this.cmbPromocion.Name = "cmbPromocion";
+            this.cmbPromocion.Size = new System.Drawing.Size(170, 24);
+            this.cmbPromocion.TabIndex = 11;
             // 
             // frmEspecialidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ClientSize = new System.Drawing.Size(574, 563);
+            this.ClientSize = new System.Drawing.Size(600, 643);
+            this.Controls.Add(this.cmbPromocion);
+            this.Controls.Add(this.lblPromocion);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.dgvEspe);
@@ -266,5 +292,7 @@
         private System.Windows.Forms.DataGridView dgvEspe;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.Label lblPromocion;
+        private System.Windows.Forms.ComboBox cmbPromocion;
     }
 }

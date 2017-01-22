@@ -18,6 +18,8 @@ namespace CapaNegocio
         public string celDoc { get; set; }
         public int idHospital { get; set; }
         public int idEspecialidad { get; set; }
+        public DateTime fechaC { get; set; }
+        public int idHora { get; set; }
         clsD_Doctores D_Doctores = new clsD_Doctores();
 
         public DataSet consultaDoctores()
@@ -74,6 +76,20 @@ namespace CapaNegocio
         {
             cedulaDoc = ci;
             return (D_Doctores.desactivarDoctor(cedulaDoc));
+        }
+
+        public DataSet consultaDocHora(int esp, int hosp, DateTime fecha, int hora)
+        {
+            this.idEspecialidad = esp;
+            this.idHora = hora;
+            this.idHospital = hosp;
+            this.fechaC = fecha;
+            return (D_Doctores.consultaDocHora(idEspecialidad, idHospital, fechaC, idHora));
+        }
+
+        public DataSet consultaDoctores(int idDoctor)
+        {
+            throw new NotImplementedException();
         }
     }
 }

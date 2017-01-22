@@ -14,6 +14,7 @@ namespace CapaNegocio
         public string nombre { get; set; }
         public decimal costo { get; set; }
         public string descrip { get; set; }
+        public int idProm { get; set; }
 
         clsD_Especialidad D_Especialidad = new clsD_Especialidad();
         
@@ -22,13 +23,14 @@ namespace CapaNegocio
             return D_Especialidad.consultaId();
         }
 
-        public bool agregarEspecialidad(int id, string nombre,string desc, decimal costo)
+        public bool agregarEspecialidad(int id, string nombre,string desc, decimal costo, int prom)
         {
             this.id = id;
             this.nombre = nombre;
             this.costo = costo;
             descrip = desc;
-            return (D_Especialidad.agregarEspecialidad(this.id, this.nombre,descrip, this.costo));
+            idProm = prom;
+            return (D_Especialidad.agregarEspecialidad(this.id, this.nombre,descrip, this.costo, idProm));
         }
 
         public DataSet consultaEspecialidad()
@@ -36,19 +38,25 @@ namespace CapaNegocio
             return (D_Especialidad.consultarEspecialidad());
         }
 
-        public bool modificarEspecialidad(int id, string nombre, string desc, decimal costo)
+        public bool modificarEspecialidad(int id, string nombre, string desc, decimal costo, int prom)
         {
             this.id = id;
             this.nombre = nombre;
             this.costo = costo;
             descrip = desc;
-            return (D_Especialidad.modificarEspecialidad(this.id, this.nombre, this.costo,descrip));
+            idProm = prom;
+            return (D_Especialidad.modificarEspecialidad(this.id, this.nombre, descrip, this.costo, idProm));
         }
 
         public bool eliminarEspecialidad(int id)
         {
             this.id = id;
             return (D_Especialidad.eliminarEspecialidad(this.id));
+        }
+
+        public DataSet consultaEspecialidad(int idEsp)
+        {
+            throw new NotImplementedException();
         }
     }
 }

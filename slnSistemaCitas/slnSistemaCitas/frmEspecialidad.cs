@@ -15,6 +15,7 @@ namespace slnSistemaCitas
     {
         DataSet ds = new DataSet();
         clsN_Especialidad N_Especialidad = new clsN_Especialidad();
+        clsN_Promociones N_Promociones = new clsN_Promociones();
         public frmEspecialidad()
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace slnSistemaCitas
         private void frmEspecialidad_Load(object sender, EventArgs e)
         {
             limpiar();
+            cargarPromocion();
             cargarDgv();
             asignarId();
             formatoParaIngresar();
@@ -33,11 +35,30 @@ namespace slnSistemaCitas
             txtDescripcion.MaxLength = 500;
         }
 
+        public void cargarPromocion()
+        {
+            try
+            {
+                ds = N_Promociones.consultaPromociones();
+                cmbPromocion.DataSource = ds.Tables["TblPromocion"];
+                cmbPromocion.ValueMember = "idPromocion";
+                cmbPromocion.DisplayMember = "nomPromocion";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las Promociones\n" + ex.Message +
+                    "\nIntente Nuevamente", "Er071",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
+
         private void limpiar()
         {
             txtId.Clear();
             txtNombre.Clear();
             mskCosto.Clear();
+            cargarPromocion();
         }
         private void cargarDgv()
         {
@@ -130,13 +151,15 @@ namespace slnSistemaCitas
                 string nombre = txtNombre.Text;
                 decimal costo = decimal.Parse(mskCosto.Text);
                 string descripcion = txtDescripcion.Text;
+                int promo = int.Parse(cmbPromocion.SelectedIndex.ToString());
                 try
                 {
-                    if (N_Especialidad.agregarEspecialidad(id, nombre,descripcion, costo))
+                    if (N_Especialidad.agregarEspecialidad(id, nombre,descripcion, costo, promo))
                     {
                         MessageBox.Show("Se ha ingresado correctamente la especialidad:" + txtNombre.Text + ""
                                      , "Nuevo Especialidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         limpiar();
+                        cargarPromocion();
                         cargarDgv();
                         asignarId();
                         formatoParaIngresar();
@@ -159,6 +182,7 @@ namespace slnSistemaCitas
             decimal costo = (decimal)dgvEspe.CurrentRow.Cells["costoEspecialidad"].Value;
             mskCosto.Text = costo.ToString();
             txtDescripcion.Text = (string)dgvEspe.CurrentRow.Cells["descEspecialidad"].Value;
+            cmbPromocion.SelectedIndex = (int)dgvEspe.CurrentRow.Cells["idPromocion"].Value;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -169,9 +193,10 @@ namespace slnSistemaCitas
                 string nombre = txtNombre.Text;
                 decimal costo = decimal.Parse(mskCosto.Text);
                 string descripcion = txtDescripcion.Text;
+                int promo = int.Parse(cmbPromocion.SelectedIndex.ToString());
                 try
                 {
-                    if (N_Especialidad.modificarEspecialidad(id, nombre,descripcion, costo))
+                    if (N_Especialidad.modificarEspecialidad(id, nombre,descripcion, costo, promo))
                     {
                         MessageBox.Show("Se ha modificado correctamente la especialidad: " + txtNombre.Text + ""
                                  , "Especialidad Modificada", MessageBoxButtons.OK, MessageBoxIcon.Information);

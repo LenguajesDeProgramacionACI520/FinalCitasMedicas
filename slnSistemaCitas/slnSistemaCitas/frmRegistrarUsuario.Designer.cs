@@ -517,8 +517,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(771, 634);
+            this.BackgroundImage = global::slnSistemaCitas.Properties.Resources.fondo5;
+            this.ClientSize = new System.Drawing.Size(771, 642);
             this.Controls.Add(this.cmbCiudad);
             this.Controls.Add(this.pcbSector);
             this.Controls.Add(this.pcbCelular);

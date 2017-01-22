@@ -14,6 +14,7 @@ namespace CapaNegocio
         public string nombreH { get; set; }
         public string direccionH { get; set; }
         public int ciudadH { get; set; }
+        public int especialidad { get; set; }
 
         clsD_Hospital D_Hospitales = new clsD_Hospital();
 
@@ -49,6 +50,18 @@ namespace CapaNegocio
         public DataSet consultaId()
         {
             return D_Hospitales.consultarId();
+        }
+
+        public DataSet consultaHosCiuEsp(int idEspecialidad, int idCiudad)
+        {
+            this.ciudadH = idCiudad;
+            this.especialidad = idEspecialidad;
+            return (D_Hospitales.consultaHosCiuEsp(especialidad, ciudadH));
+        }
+
+        public DataSet consultaHospitales(int idHos)
+        {
+            throw new NotImplementedException();
         }
     }
 

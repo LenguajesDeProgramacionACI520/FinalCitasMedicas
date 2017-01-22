@@ -85,5 +85,10 @@ namespace CapaNegocio
             seguro = id;
             return (D_Usuario.cambiarSeguro(id));
         }
+
+        public DataSet consultaUsurio(int idUsuario)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

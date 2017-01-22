@@ -15,5 +15,15 @@ namespace CapaNegocio
         {
             return (D_Ciudad.consultaCiudad());
         }
+
+        public DataSet consultaCiuEsp()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataSet consultaCiudad(int idCiudad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

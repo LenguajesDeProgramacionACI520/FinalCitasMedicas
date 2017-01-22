@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public class clsD_EspecialidadPromocion
+    public class clsD_EspeHosp
     {
     }
 }

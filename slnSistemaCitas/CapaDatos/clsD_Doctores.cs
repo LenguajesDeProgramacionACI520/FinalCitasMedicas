@@ -86,6 +86,32 @@ namespace CapaDatos
             }
         }
 
+        public DataSet consultaDocHora(int idEspecialidad, int idHospital, DateTime fechaC, int idHora)
+        {
+            DataSet ds = new DataSet();
+            SqlDataAdapter adaptador;
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "SELECT idCedula, nomDoctor, apeDoctor FROM TblDoctor d, TblDoctorHora h" +
+                    "WHERE h.idDoctor = d.idCedula AND h.idHora =" + idHora + "AND h.estHora= 'AC'" +
+                    "MINUS SELECT idCedula, nomDoctor, apeDoctor FROM"+
+                    "TblDoctor doc, TblCita c WHERE doc.idCedula = c.idDoctor AND c.fechaCita= "+fechaC +
+                    "c.horaCita= "+idHora;
+                adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
+                adaptador.Fill(ds, "TblDoctor");
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
         public bool modificarDoctor(string cedulaDoc, string nombreDoc, string apellidoDoc, string generoDoc, DateTime fechaN_Doc, string celDoc, int idHospital, int idEspecialidad)
         {
 
