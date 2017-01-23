@@ -62,7 +62,7 @@ namespace slnSistemaCitas
             try
             {
                 ds = N_Promociones.obtenerId();
-                int id = int.Parse(ds.Tables[0].Rows[0][0].ToString());
+                int id = (int)ds.Tables[0].Rows[0][0];
                 id = id + 1;
                 txtId.Text = id.ToString();
             }
@@ -123,12 +123,11 @@ namespace slnSistemaCitas
         {
             if (comprobar())
             {
-                int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
                 decimal descuento = decimal.Parse(mskDescuento.Text);
                 try
                 {
-                    if (N_Promociones.agregarPromocion(id, nombre, descuento))
+                    if (N_Promociones.agregarPromocion(nombre, descuento))
                     {
                         MessageBox.Show("Se ha ingresado correctamente la prmoción: " + txtNombre.Text + ""
                                      , "Nuevo Promoción", MessageBoxButtons.OK, MessageBoxIcon.Information);

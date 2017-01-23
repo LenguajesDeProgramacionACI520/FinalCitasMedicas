@@ -26,13 +26,12 @@ namespace CapaNegocio
             return (D_seguro.obtenerId());
         }
 
-        public bool agregarSeguro(int id, string nombre, decimal descuento,decimal valor)
+        public bool agregarSeguro( string nombre, decimal descuento,decimal valor)
         {
-            idSeguro = id;
             nombreSeguro = nombre;
             descuentoSeguro = descuento;
             valorSeguro = valor;
-            return (D_seguro.agregarSeguro(idSeguro, nombreSeguro, descuentoSeguro, valor));
+            return (D_seguro.agregarSeguro(nombreSeguro, descuentoSeguro, valor));
         }
 
         public bool modificarSeguro(int id, string nombre, decimal descuento, decimal valor)
@@ -52,7 +51,8 @@ namespace CapaNegocio
 
         public DataSet consultaSeguro(int idSeguro)
         {
-            throw new NotImplementedException();
+            this.idSeguro = idSeguro;
+            return (D_seguro.consultaSeguro(this.idSeguro));
         }
     }
 }

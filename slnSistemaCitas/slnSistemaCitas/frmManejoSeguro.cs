@@ -69,7 +69,7 @@ namespace slnSistemaCitas
             try
             {
                 ds = N_Seguro.obtenerId();
-                int id = int.Parse(ds.Tables[0].Rows[0][0].ToString());
+                int id = (int)ds.Tables[0].Rows[0][0];
                 id = id + 1;
                 txtId.Text = id.ToString();
             }
@@ -130,13 +130,12 @@ namespace slnSistemaCitas
         {
             if (comprobar())
             {
-                int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
                 decimal descuento = decimal.Parse(mskDescuento.Text);
                 decimal costo = decimal.Parse(mskDescuento.Text);
                 try
                 {
-                    if (N_Seguro.agregarSeguro(id, nombre, descuento,costo))
+                    if (N_Seguro.agregarSeguro(nombre, descuento,costo))
                     {
                         MessageBox.Show("Se ha ingresado correctamente el seguro: " + txtNombre.Text + ""
                                      , "Nuevo Seguro", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -185,7 +184,7 @@ namespace slnSistemaCitas
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             int id = int.Parse(txtId.Text);
-            if (id != 0)
+            if (id != 1)
             {
                 try
                 {
@@ -227,7 +226,7 @@ namespace slnSistemaCitas
         private void cargarDatos()
         {
             int id = int.Parse(dgvSeguro.CurrentRow.Cells["idSeguro"].Value.ToString());
-            if (id != 0)
+            if (id != 1)
             {
                 txtId.Text = id.ToString();
                 txtNombre.Text = (string)dgvSeguro.CurrentRow.Cells["nomSeguro"].Value;

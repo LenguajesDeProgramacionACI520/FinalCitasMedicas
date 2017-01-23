@@ -32,5 +32,28 @@ namespace CapaDatos
                 clsConexion.cerrarConexion();
             }
         }
+
+        public DataSet consultaHora(int idHora)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                SqlDataAdapter adaptador;
+                clsConexion.abrirConexion();
+                string sql = "SELECT * FROM TblHora where idHora ="+idHora;
+                adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
+                adaptador.Fill(ds, "TblHora");
+                clsConexion.cerrarConexion();
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
     }
 }

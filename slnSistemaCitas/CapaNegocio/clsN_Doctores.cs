@@ -27,6 +27,12 @@ namespace CapaNegocio
             return D_Doctores.consultaDoctores();
         }
 
+        public DataSet consultaDoctores(string ci)
+        {
+            cedulaDoc = ci;
+            return (D_Doctores.consultaDoctores(cedulaDoc));
+        }
+
         public bool agregarDocotor(string cedula, string nombre, string apellido, int genero, DateTime fechaN, string cel, int idHospital, int idEspecialidad)
         {
             cedulaDoc = cedula;

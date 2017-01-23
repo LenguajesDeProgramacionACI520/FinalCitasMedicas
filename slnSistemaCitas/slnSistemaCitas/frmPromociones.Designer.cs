@@ -50,7 +50,7 @@
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(132, 96);
+            this.txtId.Location = new System.Drawing.Point(136, 96);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(85, 22);
             this.txtId.TabIndex = 0;
@@ -191,7 +191,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(132, 148);
+            this.txtNombre.Location = new System.Drawing.Point(136, 148);
             this.txtNombre.MaxLength = 20;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(163, 22);
@@ -200,7 +200,7 @@
             // 
             // mskDescuento
             // 
-            this.mskDescuento.Location = new System.Drawing.Point(133, 198);
+            this.mskDescuento.Location = new System.Drawing.Point(136, 198);
             this.mskDescuento.Mask = "999";
             this.mskDescuento.Name = "mskDescuento";
             this.mskDescuento.Size = new System.Drawing.Size(144, 22);
@@ -211,7 +211,7 @@
             this.lblPrct.AutoSize = true;
             this.lblPrct.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F);
             this.lblPrct.ForeColor = System.Drawing.Color.MintCream;
-            this.lblPrct.Location = new System.Drawing.Point(275, 201);
+            this.lblPrct.Location = new System.Drawing.Point(286, 200);
             this.lblPrct.Name = "lblPrct";
             this.lblPrct.Size = new System.Drawing.Size(24, 20);
             this.lblPrct.TabIndex = 61;
@@ -233,6 +233,8 @@
             this.Controls.Add(this.dgvPro);
             this.Controls.Add(this.grbOpciones);
             this.Controls.Add(this.txtNombre);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmPromociones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manejo de Promociones";

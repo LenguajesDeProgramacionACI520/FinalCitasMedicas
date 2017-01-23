@@ -49,7 +49,6 @@ namespace slnSistemaCitas
                 MessageBox.Show("Error al cargar las Promociones\n" + ex.Message +
                     "\nIntente Nuevamente", "Er071",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
             }
         }
 
@@ -59,6 +58,7 @@ namespace slnSistemaCitas
             txtNombre.Clear();
             mskCosto.Clear();
             cargarPromocion();
+            txtDescripcion.Clear();
         }
         private void cargarDgv()
         {
@@ -100,7 +100,7 @@ namespace slnSistemaCitas
             try
             {
                 ds = N_Especialidad.consultaId();
-                int id = int.Parse(ds.Tables[0].Rows[0][0].ToString());
+                int id = (int)ds.Tables[0].Rows[0][0];
                 id = id + 1;
                 txtId.Text = id.ToString();
             }
@@ -147,14 +147,14 @@ namespace slnSistemaCitas
         {
             if (comprobar())
             {
-                int id = int.Parse(txtId.Text);
                 string nombre = txtNombre.Text;
                 decimal costo = decimal.Parse(mskCosto.Text);
                 string descripcion = txtDescripcion.Text;
-                int promo = int.Parse(cmbPromocion.SelectedIndex.ToString());
+                int promo = int.Parse(cmbPromocion.SelectedValue.ToString());
+                Console.Write("Promocion: "+promo);
                 try
                 {
-                    if (N_Especialidad.agregarEspecialidad(id, nombre,descripcion, costo, promo))
+                    if (N_Especialidad.agregarEspecialidad(nombre,descripcion, costo, promo))
                     {
                         MessageBox.Show("Se ha ingresado correctamente la especialidad:" + txtNombre.Text + ""
                                      , "Nuevo Especialidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -181,8 +181,8 @@ namespace slnSistemaCitas
             txtNombre.Text = (string)dgvEspe.CurrentRow.Cells["nomEspecialidad"].Value;
             decimal costo = (decimal)dgvEspe.CurrentRow.Cells["costoEspecialidad"].Value;
             mskCosto.Text = costo.ToString();
-            txtDescripcion.Text = (string)dgvEspe.CurrentRow.Cells["descEspecialidad"].Value;
-            cmbPromocion.SelectedIndex = (int)dgvEspe.CurrentRow.Cells["idPromocion"].Value;
+            txtDescripcion.Text = (string)dgvEspe.CurrentRow.Cells["descEpecialidad"].Value;
+            cmbPromocion.SelectedValue = (int)dgvEspe.CurrentRow.Cells["idPromocion"].Value;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -193,7 +193,7 @@ namespace slnSistemaCitas
                 string nombre = txtNombre.Text;
                 decimal costo = decimal.Parse(mskCosto.Text);
                 string descripcion = txtDescripcion.Text;
-                int promo = int.Parse(cmbPromocion.SelectedIndex.ToString());
+                int promo = int.Parse(cmbPromocion.SelectedValue.ToString());
                 try
                 {
                     if (N_Especialidad.modificarEspecialidad(id, nombre,descripcion, costo, promo))
@@ -238,16 +238,15 @@ namespace slnSistemaCitas
             }
         }
 
-        private void dgvEspe_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            formatoModificarEliminar();
-            cargarDatos();
-
-        }
-
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             soloLetras(sender,e);
+        }
+
+        private void dgvEspe_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            formatoModificarEliminar();
+            cargarDatos();
         }
     }
 }

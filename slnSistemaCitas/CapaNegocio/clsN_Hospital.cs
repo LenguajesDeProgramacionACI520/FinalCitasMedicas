@@ -23,13 +23,12 @@ namespace CapaNegocio
             return D_Hospitales.consultaHospital();
         }
 
-        public bool agregarHospital(int id, string nombre, string direccion, int ciudad)
+        public bool agregarHospital( string nombre, string direccion, int ciudad)
         {
-            idH = id;
             nombreH = nombre;
             direccionH = direccion;
             ciudadH = ciudad;
-            return D_Hospitales.agregarHospital(idH, nombreH, direccionH, ciudadH);
+            return D_Hospitales.agregarHospital( nombreH, direccionH, ciudadH);
         }
 
         public bool modificarHospital(int id, string nombre, string direccion, int ciudad)
@@ -61,7 +60,8 @@ namespace CapaNegocio
 
         public DataSet consultaHospitales(int idHos)
         {
-            throw new NotImplementedException();
+            idH = idHos;
+            return (D_Hospitales.consultaHospital(idH));
         }
     }
 

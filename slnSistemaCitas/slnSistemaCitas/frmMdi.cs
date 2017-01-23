@@ -112,9 +112,13 @@ namespace slnSistemaCitas
 
         private void asignarPromocionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmEspecialidadPromocion espeProm = new frmEspecialidadPromocion();
-            espeProm.MdiParent = this;
-            espeProm.Show();
+        }
+
+        private void solicitarCitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConsultaMedia citaMedica = new frmConsultaMedia(ci);
+            citaMedica.MdiParent = this;
+            MdiParent.Show();
         }
     }
 }

@@ -91,6 +91,7 @@ namespace slnSistemaCitas
         {
             cmbGenero.Items.Add("FEMENINO");
             cmbGenero.Items.Add("MASCULINO");
+            cmbGenero.SelectedIndex = 0;
         }
 
         private void cargarCiudad()
@@ -222,7 +223,7 @@ namespace slnSistemaCitas
 
         private void txtCel_TextChanged(object sender, EventArgs e)
         {
-            if (txtCel.Text.Length == 9)
+            if (txtCel.Text.Length == 10)
             {
                 pcbCelular.Image = check;
                 comprobarRegistro();

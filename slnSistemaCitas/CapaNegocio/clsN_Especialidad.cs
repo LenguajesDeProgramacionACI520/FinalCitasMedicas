@@ -23,14 +23,13 @@ namespace CapaNegocio
             return D_Especialidad.consultaId();
         }
 
-        public bool agregarEspecialidad(int id, string nombre,string desc, decimal costo, int prom)
+        public bool agregarEspecialidad( string nombre,string desc, decimal costo, int prom)
         {
-            this.id = id;
             this.nombre = nombre;
             this.costo = costo;
             descrip = desc;
             idProm = prom;
-            return (D_Especialidad.agregarEspecialidad(this.id, this.nombre,descrip, this.costo, idProm));
+            return (D_Especialidad.agregarEspecialidad( this.nombre,descrip, this.costo, idProm));
         }
 
         public DataSet consultaEspecialidad()
@@ -56,7 +55,8 @@ namespace CapaNegocio
 
         public DataSet consultaEspecialidad(int idEsp)
         {
-            throw new NotImplementedException();
+            id = idEsp;
+            return (D_Especialidad.consultarEspecialidad(id));
         }
     }
 }

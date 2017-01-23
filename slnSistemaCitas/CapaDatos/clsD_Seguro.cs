@@ -58,14 +58,13 @@ namespace CapaDatos
             }
         }
 
-        public bool agregarSeguro(int idSeguro, string nombreSeguro, decimal descuentoSeguro, decimal valor)
+        public bool agregarSeguro(string nombreSeguro, decimal descuentoSeguro, decimal valor)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "insert into TblSeguro values (@id,@nombre,@descuento,@costo)";
+                string sql = "insert into TblSeguro values (@nombre,@descuento,@costo)";
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@id", SqlDbType.Int, 4, "idSeguro").Value = idSeguro;
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nomSeguro").Value = nombreSeguro;
 
                 SqlParameter param = new SqlParameter("@descuento", SqlDbType.Decimal);
@@ -94,6 +93,30 @@ namespace CapaDatos
                 clsConexion.cerrarConexion();
             }
         }
+
+        public DataSet consultaSeguro(int idSeguro)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                SqlDataAdapter adaptador;
+                clsConexion.abrirConexion();
+
+                string sql = "SELECT * FROM TblSeguro WHERE idSeguro= "+idSeguro;
+                adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
+                adaptador.Fill(ds, "TblSeguro");
+
+                clsConexion.cerrarConexion();
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }        }
 
         public bool modificarSeguro(int idSeguro, string nombreSeguro, decimal descuentoSeguro, decimal valor)
         {

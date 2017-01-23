@@ -19,11 +19,10 @@ namespace slnSistemaCitas
         clsN_Doctores objN_Doctor = new clsN_Doctores();
         clsN_Hospital objN_Hospital = new clsN_Hospital();
         clsN_Hora objN_Hora = new clsN_Hora();
-        clsN_EspeHosp objN_EspeHosp = new clsN_EspeHosp();
         DataSet ds = new DataSet();
-        public int idUser { get; set; }
+        public string idUser { get; set; }
         public int idCita { get; set; }
-        public frmConsultaMedia(int idUsuario)
+        public frmConsultaMedia(string idUsuario)
         {
             InitializeComponent();
             cargar();
@@ -83,8 +82,8 @@ namespace slnSistemaCitas
         {
             try
             {
-                ds = objN_Hospital.consultaHosCiuEsp(int.Parse(lstEspecialidad.SelectedIndex.ToString()),
-                    int.Parse(cmbCiudad.SelectedIndex.ToString()));
+                ds = objN_Hospital.consultaHosCiuEsp(int.Parse(lstEspecialidad.SelectedValue.ToString()),
+                    int.Parse(cmbCiudad.SelectedValue.ToString()));
                 if (ds == null)
                     lstEspecialidad.Items.Add("No Disponible");
                 else
@@ -225,10 +224,10 @@ namespace slnSistemaCitas
         {
             try
             {
-                int esp = int.Parse(lstEspecialidad.SelectedIndex.ToString());
-                int hosp = int.Parse(lstHospital.SelectedIndex.ToString());
+                int esp = int.Parse(lstEspecialidad.SelectedValue.ToString());
+                int hosp = int.Parse(lstHospital.SelectedValue.ToString());
                 DateTime fecha = mtcFecha.SelectionStart.Date;
-                int hora = int.Parse(cmbCiudad.SelectedIndex.ToString());
+                int hora = int.Parse(cmbCiudad.SelectedValue.ToString());
                 ds = objN_Doctor.consultaDocHora(esp,hosp,fecha,hora);
                 if (ds == null)
                     lstDoctor.Items.Add("No Disponible");
@@ -329,17 +328,17 @@ namespace slnSistemaCitas
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             DateTime fechaCita = mtcFecha.SelectionStart.Date;
-            int idHora = int.Parse(cmbHora.SelectedIndex.ToString());
-            int idDoctor = int.Parse(lstDoctor.SelectedIndex.ToString());
-            int idEspecialidad = int.Parse(lstEspecialidad.SelectedIndex.ToString());
-            int idCiudad = int.Parse(cmbCiudad.SelectedIndex.ToString());
-            int idHospital = int.Parse(lstHospital.SelectedIndex.ToString());
+            int idHora = int.Parse(cmbHora.SelectedValue.ToString());
+            string idDoctor = lstDoctor.SelectedValue.ToString();
+            int idEspecialidad = int.Parse(lstEspecialidad.SelectedValue.ToString());
+            int idCiudad = int.Parse(cmbCiudad.SelectedValue.ToString());
+            int idHospital = int.Parse(lstHospital.SelectedValue.ToString());
             try
             {
                 obteneridCita();       
                 if(objN_ConsultaMedica.agregarCita(idUser,idDoctor,fechaCita,idHora,"AC"))
                 {
-                    frmFactura factura = new frmFactura();
+                    frmFactura factura = new frmFactura(idCita, this);
                     factura.ShowDialog();                   
                 }
                 else

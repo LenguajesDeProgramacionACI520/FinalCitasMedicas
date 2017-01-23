@@ -100,7 +100,7 @@
             this.lblTitulo.ForeColor = System.Drawing.Color.PaleTurquoise;
             this.lblTitulo.Location = new System.Drawing.Point(192, 22);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(193, 29);
+            this.lblTitulo.Size = new System.Drawing.Size(173, 26);
             this.lblTitulo.TabIndex = 4;
             this.lblTitulo.Text = "Especialidades";
             // 
@@ -183,7 +183,7 @@
             this.dgvEspe.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightCoral;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("HP Simplified", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("HP Simplified", 8.8F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -202,8 +202,9 @@
             this.dgvEspe.Name = "dgvEspe";
             this.dgvEspe.ReadOnly = true;
             this.dgvEspe.RowTemplate.Height = 24;
-            this.dgvEspe.Size = new System.Drawing.Size(550, 193);
+            this.dgvEspe.Size = new System.Drawing.Size(576, 193);
             this.dgvEspe.TabIndex = 6;
+            this.dgvEspe.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEspe_CellDoubleClick);
             // 
             // lblDescripcion
             // 
@@ -265,6 +266,7 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtId);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmEspecialidad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manejo de Especialidades";

@@ -32,15 +32,36 @@ namespace CapaDatos
                 clsConexion.cerrarConexion();
             }
         }
+        public DataSet consultaHospital(int idH)
+        {
 
-        public bool agregarHospital(int id, string nombreH,string dirH, int ciudadH)
+            DataSet ds = new DataSet();
+            SqlDataAdapter adaptador;
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "select * from TblHospital WHERE idHospital ="+idH;
+                adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
+                adaptador.Fill(ds, "TblHospital");
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
+        public bool agregarHospital( string nombreH,string dirH, int ciudadH)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "insert into TblHospital values (@idH,@nombreH,@dirH,@ciudadH)";
+                string sql = "insert into TblHospital values (@nombreH,@dirH,@ciudadH)";
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@idH", SqlDbType.Int, 4, "idHospital").Value = id;
                 comando.Parameters.Add("@nombreH", SqlDbType.VarChar, 20, "nomHospital").Value = nombreH;
                 comando.Parameters.Add("@dirH", SqlDbType.VarChar, 100, "dirHospital").Value = dirH;
                 comando.Parameters.Add("@ciudadH", SqlDbType.Int, 4, "idCiudad").Value = ciudadH;

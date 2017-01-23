@@ -19,9 +19,10 @@ namespace CapaNegocio
             return (objD_Hora.consultaHoraAc());
         }
 
-        public DataSet consultaHora(object idCiudad)
+        public DataSet consultaHora(int idHora)
         {
-            throw new NotImplementedException();
+            this.idHora = idHora;
+            return (objD_Hora.consultaHora(this.idHora));
         }
     }
 }

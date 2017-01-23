@@ -18,7 +18,7 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "select max(id) from TblPromocion";
+                string sql = "select max(idPromocion) from TblPromocion";
                 adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
                 adaptador.Fill(ds, "TblPromocion");
                 return ds;
@@ -34,14 +34,13 @@ namespace CapaDatos
 
         }
 
-        public bool agregarPromocion(int idP, string nombreP, decimal descuentoP)
+        public bool agregarPromocion( string nombreP, decimal descuentoP)
         {
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "insert into TblPromociones values (@id,@nombre,@descuento)";
+                string sql = "insert into TblPromocion values (@nombre,@descuento)";
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@id", SqlDbType.Int, 4, "idPromocion").Value = idP;
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nomPromocion").Value = nombreP;
 
                 SqlParameter param = new SqlParameter("@descuento", SqlDbType.Decimal);
@@ -71,9 +70,9 @@ namespace CapaDatos
                 clsConexion.abrirConexion();
                 DataSet ds = new DataSet();
                 SqlDataAdapter adapter;
-                string sql = "SELECT * FROM TblPromociones";
+                string sql = "SELECT * FROM TblPromocion";
                 adapter = new SqlDataAdapter(sql, clsConexion.conexion);
-                adapter.Fill(ds, "TblPromociones");
+                adapter.Fill(ds, "TblPromocion");
                 return ds;
             }
             catch (Exception ex)
@@ -91,7 +90,7 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "DELETE FROM TblPromociones where id = " + idP;
+                string sql = "DELETE FROM TblPromocion where idPromocion = " + idP;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
                 command.ExecuteNonQuery();
                 return true;
@@ -111,11 +110,11 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "update TblPromociones set nombre= " +
-                    " @nombre, descuento=@descuento where id=" + idP;
+                string sql = "update TblPromocion set nomPromocion= " +
+                    " @nombre, descuPromocion=@descuento where idPromocion=" + idP;
 
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
-                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nombre").Value = nombreP;
+                comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nomPromocion").Value = nombreP;
                 SqlParameter param = new SqlParameter("@descuento", SqlDbType.Decimal);
                 param.SourceColumn = "descuPromocion";
                 param.Precision = 5;

@@ -54,7 +54,7 @@ namespace slnSistemaCitas
             {
                 ds = N_Doctores.consultaDoctores();
                 dgvDoctores.DataSource = ds;
-                dgvDoctores.DataMember = "TblDoctores";
+                dgvDoctores.DataMember = "TblDoctor";
             }
             catch(Exception ex)
             {

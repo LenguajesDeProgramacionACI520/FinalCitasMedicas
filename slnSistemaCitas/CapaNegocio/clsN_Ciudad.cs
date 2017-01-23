@@ -11,6 +11,8 @@ namespace CapaNegocio
     public class clsN_Ciudad
     {
         clsD_Ciudad D_Ciudad = new clsD_Ciudad();
+        public int idCiudad { get; set; }
+
         public DataSet consultaCiudad()
         {
             return (D_Ciudad.consultaCiudad());
@@ -23,7 +25,8 @@ namespace CapaNegocio
 
         public DataSet consultaCiudad(int idCiudad)
         {
-            throw new NotImplementedException();
+            this.idCiudad = idCiudad;
+            return (D_Ciudad.consultaCiudad(this.idCiudad));
         }
     }
 }

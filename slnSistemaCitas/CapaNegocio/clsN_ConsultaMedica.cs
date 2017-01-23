@@ -12,12 +12,12 @@ namespace CapaNegocio
     {
         clsD_ConsutlaMedica objD_ConsultaMedica = new clsD_ConsutlaMedica();
         public int idCita { get; set; }
-        public int idUsaruio { get; set; }
-        public int idDoctor { get; set; }
+        public string idUsaruio { get; set; }
+        public string idDoctor { get; set; }
         public DateTime fechaCita { get; set; }
         public int idHora { get; set; }
         public string estCita { get; set; }
-        public bool agregarCita(int idUser, int idDoctor, DateTime fechaCita, int idHora, string estCita)
+        public bool agregarCita(string idUser, string idDoctor, DateTime fechaCita, int idHora, string estCita)
         {
             idUsaruio = idUser;
             this.idDoctor = idDoctor;
@@ -39,7 +39,8 @@ namespace CapaNegocio
 
         public DataSet consultaCita(int idCita)
         {
-            throw new NotImplementedException();
+            this.idCita = idCita;
+            return (objD_ConsultaMedica.consultaCita(this.idCita));
         }
     }
 }

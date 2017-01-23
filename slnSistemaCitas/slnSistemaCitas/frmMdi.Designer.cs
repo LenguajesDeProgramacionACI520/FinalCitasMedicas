@@ -36,13 +36,12 @@
             this.manejoDeDoctoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manejoDeHorariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.segurosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.promocionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manejoDeAdministradoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asignarPromocionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.promocionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asignarPromocionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.solicitarCitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mestInicio.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,8 +76,6 @@
             // 
             // manejoDeUsuariosToolStripMenuItem
             // 
-            this.manejoDeUsuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.asignarPromocionToolStripMenuItem1});
             this.manejoDeUsuariosToolStripMenuItem.Name = "manejoDeUsuariosToolStripMenuItem";
             this.manejoDeUsuariosToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
             this.manejoDeUsuariosToolStripMenuItem.Text = "Usuarios";
@@ -86,8 +83,6 @@
             // 
             // manejoDeEspecialidadesToolStripMenuItem
             // 
-            this.manejoDeEspecialidadesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.asignarPromocionToolStripMenuItem});
             this.manejoDeEspecialidadesToolStripMenuItem.Name = "manejoDeEspecialidadesToolStripMenuItem";
             this.manejoDeEspecialidadesToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
             this.manejoDeEspecialidadesToolStripMenuItem.Text = "Especialidades";
@@ -120,6 +115,13 @@
             this.segurosToolStripMenuItem.Text = "Seguros";
             this.segurosToolStripMenuItem.Click += new System.EventHandler(this.segurosToolStripMenuItem_Click);
             // 
+            // promocionesToolStripMenuItem
+            // 
+            this.promocionesToolStripMenuItem.Name = "promocionesToolStripMenuItem";
+            this.promocionesToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.promocionesToolStripMenuItem.Text = "Promociones";
+            this.promocionesToolStripMenuItem.Click += new System.EventHandler(this.promocionesToolStripMenuItem_Click);
+            // 
             // manejoDeAdministradoresToolStripMenuItem
             // 
             this.manejoDeAdministradoresToolStripMenuItem.Name = "manejoDeAdministradoresToolStripMenuItem";
@@ -129,6 +131,8 @@
             // 
             // usuarioToolStripMenuItem
             // 
+            this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.solicitarCitToolStripMenuItem});
             this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
             this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.usuarioToolStripMenuItem.Text = "Usuario";
@@ -146,25 +150,12 @@
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
-            // asignarPromocionToolStripMenuItem
+            // solicitarCitToolStripMenuItem
             // 
-            this.asignarPromocionToolStripMenuItem.Name = "asignarPromocionToolStripMenuItem";
-            this.asignarPromocionToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
-            this.asignarPromocionToolStripMenuItem.Text = "Asignar Promoción";
-            this.asignarPromocionToolStripMenuItem.Click += new System.EventHandler(this.asignarPromocionToolStripMenuItem_Click);
-            // 
-            // promocionesToolStripMenuItem
-            // 
-            this.promocionesToolStripMenuItem.Name = "promocionesToolStripMenuItem";
-            this.promocionesToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
-            this.promocionesToolStripMenuItem.Text = "Promociones";
-            this.promocionesToolStripMenuItem.Click += new System.EventHandler(this.promocionesToolStripMenuItem_Click);
-            // 
-            // asignarPromocionToolStripMenuItem1
-            // 
-            this.asignarPromocionToolStripMenuItem1.Name = "asignarPromocionToolStripMenuItem1";
-            this.asignarPromocionToolStripMenuItem1.Size = new System.Drawing.Size(210, 26);
-            this.asignarPromocionToolStripMenuItem1.Text = "Asignar Promocion";
+            this.solicitarCitToolStripMenuItem.Name = "solicitarCitToolStripMenuItem";
+            this.solicitarCitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.solicitarCitToolStripMenuItem.Text = "Nueva Cita";
+            this.solicitarCitToolStripMenuItem.Click += new System.EventHandler(this.solicitarCitToolStripMenuItem_Click);
             // 
             // frmMdi
             // 
@@ -202,9 +193,8 @@
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem segurosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manejoDeAdministradoresToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem asignarPromocionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem promocionesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem asignarPromocionToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem solicitarCitToolStripMenuItem;
     }
 }
 

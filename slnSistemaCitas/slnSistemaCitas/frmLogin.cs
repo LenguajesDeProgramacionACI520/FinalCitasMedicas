@@ -71,7 +71,7 @@ namespace slnSistemaCitas
                 try
                 {
                     ds = login.N_consulta(txtCi.Text);
-                    string ci = ds.Tables[0].Rows[0]["usuario"].ToString();
+                    string ci = ds.Tables[0].Rows[0]["idLogin"].ToString();
                     int rol = int.Parse(ds.Tables[0].Rows[0]["rol"].ToString());
                     Console.WriteLine(ci);
                     limpiar();
@@ -82,9 +82,9 @@ namespace slnSistemaCitas
                 catch (Exception ex)
                 {
                     limpiar();
-                    MessageBox.Show("No se encontró usuario en la base\n"+
+                    MessageBox.Show("No se encontró usuario en la base\n"+ ex.Message+"\n"+
                         "Comunicarse con el Administrador","Er001",MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    throw ex;
+                    
                 }
             }
             else

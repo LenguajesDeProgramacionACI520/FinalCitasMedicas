@@ -66,6 +66,28 @@ namespace CapaDatos
             }
         }
 
+        public DataSet consultaDoctores(string cedulaDoc)
+        {
+            DataSet ds = new DataSet();
+            SqlDataAdapter adaptador;
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "select * from TblDoctor WHERE idCedula =" +cedulaDoc;
+                adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
+                adaptador.Fill(ds, "TblDoctor");
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
         public bool eliminarDoctor(string cedulaDoc)
         {
             try
@@ -93,9 +115,9 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = "SELECT idCedula, nomDoctor, apeDoctor FROM TblDoctor d, TblDoctorHora h" +
-                    "WHERE h.idDoctor = d.idCedula AND h.idHora =" + idHora + "AND h.estHora= 'AC'" +
-                    "MINUS SELECT idCedula, nomDoctor, apeDoctor FROM"+
+                string sql = "SELECT idCedula, nomDoctor, apeDoctor FROM TblDoctor d, TblDoctorHora dh, TblHora h" +
+                    "WHERE dh.idDoctor = d.idCedula AND h.idHora =" + idHora + "AND h.estHora= 'AC'" +
+                    "EXCEPT SELECT idCedula, nomDoctor, apeDoctor FROM"+
                     "TblDoctor doc, TblCita c WHERE doc.idCedula = c.idDoctor AND c.fechaCita= "+fechaC +
                     "c.horaCita= "+idHora;
                 adaptador = new SqlDataAdapter(sql, clsConexion.conexion);

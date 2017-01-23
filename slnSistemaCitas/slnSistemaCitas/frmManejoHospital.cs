@@ -37,6 +37,7 @@ namespace slnSistemaCitas
             txtNombre.MaxLength = 20;
             txtNombre.CharacterCasing = CharacterCasing.Upper;
             txtDireccion.MaxLength = 100;
+            txtDireccion.CharacterCasing = CharacterCasing.Upper;
             cargarDgv();
 
         }
@@ -46,6 +47,7 @@ namespace slnSistemaCitas
             cargarId();
             txtNombre.Clear();
             cargarCiudad();
+            txtDireccion.Clear();
             formatoParaAgregar();
         }
 
@@ -89,7 +91,7 @@ namespace slnSistemaCitas
             try
             {
                 ds = N_Hospital.consultaId();
-                int id = int.Parse(ds.Tables[0].Rows[0][0].ToString());
+                int id = (int)ds.Tables[0].Rows[0][0];
                 id = id + 1;
                 txtId.Text = id.ToString();
             }
@@ -97,7 +99,6 @@ namespace slnSistemaCitas
             {
                 MessageBox.Show("Eror al obtener un nuevo id\n" + ex.Message, "Er014",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
             }
         }
 
@@ -156,14 +157,13 @@ namespace slnSistemaCitas
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (comprobar())
-            {
-                int id = int.Parse(txtId.Text);
+            {;
                 string nombre = txtNombre.Text;
                 string dir = txtDireccion.Text;
                 int ciudad = int.Parse(cmbCiudad.SelectedValue.ToString());
                 try
                 {
-                    if (N_Hospital.agregarHospital(id, nombre,dir, ciudad))
+                    if (N_Hospital.agregarHospital( nombre,dir, ciudad))
                     {
                         MessageBox.Show("Se ha ingresado correctamente el hospital:" + txtNombre.Text + ""
                                      , "Nuevo Hospital", MessageBoxButtons.OK, MessageBoxIcon.Information);

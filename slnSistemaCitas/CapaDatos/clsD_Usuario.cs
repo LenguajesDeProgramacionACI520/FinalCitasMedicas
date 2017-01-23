@@ -80,7 +80,7 @@ namespace CapaDatos
                 clsConexion.abrirConexion();
                 string sql = "update TblUsuario set idSeguro = @seguro where seguroMedico=" + id;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
-                command.Parameters.Add("@seguro", SqlDbType.Int, 4, "idSeguro").Value = 0;
+                command.Parameters.Add("@seguro", SqlDbType.Int, 4, "idSeguro").Value = 1;
                 command.ExecuteNonQuery();
                 return true;
             }
@@ -161,6 +161,28 @@ namespace CapaDatos
                 DataSet ds = new DataSet();
                 SqlDataAdapter adapter;
                 string sql = "SELECT * FROM TblUsuario";
+                adapter = new SqlDataAdapter(sql, clsConexion.conexion);
+                adapter.Fill(ds, "TblUsuario");
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+
+        }
+        public DataSet consultaUsuarios(string idCedula)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                DataSet ds = new DataSet();
+                SqlDataAdapter adapter;
+                string sql = "SELECT * FROM TblUsuario WHERE idCedula = "+idCedula;
                 adapter = new SqlDataAdapter(sql, clsConexion.conexion);
                 adapter.Fill(ds, "TblUsuario");
                 return ds;

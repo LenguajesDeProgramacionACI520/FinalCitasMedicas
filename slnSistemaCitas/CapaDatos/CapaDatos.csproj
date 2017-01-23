@@ -45,7 +45,6 @@
     <Compile Include="clsD_ConsutlaMedica.cs" />
     <Compile Include="clsD_Doctores.cs" />
     <Compile Include="clsD_Especialidad.cs" />
-    <Compile Include="clsD_EspeHosp.cs" />
     <Compile Include="clsD_Factura.cs" />
     <Compile Include="clsD_Hora.cs" />
     <Compile Include="clsD_Login.cs" />

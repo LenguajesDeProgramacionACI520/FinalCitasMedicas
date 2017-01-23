@@ -27,12 +27,11 @@ namespace CapaNegocio
             return D_Promociones.consultaPromociones();
         }
 
-        public bool agregarPromocion(int id, string nombre, decimal descuento)
+        public bool agregarPromocion(string nombre, decimal descuento)
         {
-            idP = id;
             nombreP = nombre;
             descuentoP = descuento;
-            return (D_Promociones.agregarPromocion(idP, nombreP, descuentoP));
+            return (D_Promociones.agregarPromocion(nombreP, descuentoP));
         }
 
         public bool modificarPromocion(int id, string nombre, decimal descuento)
