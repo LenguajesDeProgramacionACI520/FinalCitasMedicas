@@ -81,6 +81,29 @@ namespace CapaDatos
 
         }
 
+        public DataSet consultaHospitalCiudad(int ciudadH)
+        {
+
+            DataSet ds = new DataSet();
+            SqlDataAdapter adaptador;
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "select * from TblHospital WHERE idCiudad =" + ciudadH;
+                adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
+                adaptador.Fill(ds, "TblHospital");
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
         public DataSet consultaHosCiuEsp(int especialidad, int ciudadH)
         {
             DataSet ds = new DataSet();

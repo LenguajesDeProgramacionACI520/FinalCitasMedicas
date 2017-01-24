@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbSistemaCitas" Class="MER_CitasMedicasDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JUANMAVIANA;Initial Catalog=dbSistemaCitas;Integrated Security=True" SettingsObjectName="CapaDatos.Properties.Settings" SettingsPropertyName="dbSistemaCitasConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TblDoctor" Member="TblDoctor">
+    <Type Name="TblDoctor">
+      <Column Name="idCedula" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nomDoctor" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="apeDoctor" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="genDoctor" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="fechaN_Doctor" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="celDoctor" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="estDoctor" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="idHospital" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idEspecialidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TblDoctor_TblDoctorHora" Member="TblDoctorHora" ThisKey="idCedula" OtherKey="idDoctor" Type="TblDoctorHora" />
+      <Association Name="TblDoctor_TblCita" Member="TblCita" ThisKey="idCedula" OtherKey="idDoctor" Type="TblCita" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblDoctorHora" Member="TblDoctorHora">
+    <Type Name="TblDoctorHora">
+      <Column Name="idDoctorHora" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idDoctor" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="idHora" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TblDoctor_TblDoctorHora" Member="TblDoctor" ThisKey="idDoctor" OtherKey="idCedula" Type="TblDoctor" IsForeignKey="true" />
+      <Association Name="TblHora_TblDoctorHora" Member="TblHora" ThisKey="idHora" OtherKey="idHora" Type="TblHora" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblCita" Member="TblCita">
+    <Type Name="TblCita">
+      <Column Name="idCita" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fechaCita" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="estCita" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="idHora" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idUsuario" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="idDoctor" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Association Name="TblDoctor_TblCita" Member="TblDoctor" ThisKey="idDoctor" OtherKey="idCedula" Type="TblDoctor" IsForeignKey="true" />
+      <Association Name="TblHora_TblCita" Member="TblHora" ThisKey="idHora" OtherKey="idHora" Type="TblHora" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblHora" Member="TblHora">
+    <Type Name="TblHora">
+      <Column Name="idHora" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="hora" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="estHora" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Association Name="TblHora_TblDoctorHora" Member="TblDoctorHora" ThisKey="idHora" OtherKey="idHora" Type="TblDoctorHora" />
+      <Association Name="TblHora_TblCita" Member="TblCita" ThisKey="idHora" OtherKey="idHora" Type="TblCita" />
+    </Type>
+  </Table>
+</Database>

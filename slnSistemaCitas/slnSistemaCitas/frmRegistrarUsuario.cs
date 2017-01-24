@@ -89,9 +89,9 @@ namespace slnSistemaCitas
 
         private void cargarGenero()
         {
-            cmbGenero.Items.Add("FEMENINO");
-            cmbGenero.Items.Add("MASCULINO");
-            cmbGenero.SelectedIndex = 0;
+            cmbGenero.Items.Insert(0,"FEMENINO");
+            cmbGenero.Items.Insert(1, "MASCULINO");
+            cmbGenero.SelectedIndex= 0;
         }
 
         private void cargarCiudad()
@@ -119,7 +119,7 @@ namespace slnSistemaCitas
                 ds = N_Seguro.consultaSeguro();
                 cmbSeguro.DataSource = ds.Tables["TblSeguro"];
                 cmbSeguro.ValueMember = "idSeguro";
-                cmbSeguro.DisplayMember = "nombSeguro";
+                cmbSeguro.DisplayMember = "nomSeguro";
             }
             catch (Exception ex)
             {
@@ -327,7 +327,7 @@ namespace slnSistemaCitas
             string nom2 = txtNom2.Text;
             string ape1 = txtApe1.Text;
             string ape2 = txtApe2.Text;
-            int genero = int.Parse(cmbGenero.SelectedValue.ToString());
+            int genero = int.Parse(cmbGenero.SelectedIndex.ToString());
             DateTime fechaN = dtpFechaN.Value.Date;
             string correo = txtCorreo.Text;
             string cel = txtCel.Text;

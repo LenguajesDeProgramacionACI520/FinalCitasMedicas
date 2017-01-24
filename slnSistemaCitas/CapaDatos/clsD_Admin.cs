@@ -68,6 +68,7 @@ namespace CapaDatos
 
         public bool agregarAdmin(string ci, string nombre, string apellido, string genero, string direccion)
         {
+            string ac = "AC";
             try
             {
                 clsConexion.abrirConexion();
@@ -79,7 +80,7 @@ namespace CapaDatos
                 command.Parameters.Add("@ape", SqlDbType.VarChar, 20, "apeAdmin").Value = apellido;
                 command.Parameters.Add("@gen", SqlDbType.Char, 1, "genAdmin").Value = genero;
                 command.Parameters.Add("@dir", SqlDbType.VarChar, 100, "dirAdmin").Value = direccion;
-                command.Parameters.Add("@est", SqlDbType.Char, 2, "estAdmin").Value = "AC";
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estAdmin").Value = ac;
 
                 command.ExecuteNonQuery();
                 return true;
@@ -118,12 +119,13 @@ namespace CapaDatos
 
         public bool desactivarAdmin(string ci)
         {
+            string dc = "DC";
             try
             {
                 clsConexion.abrirConexion();
                 string sql = "update TblAdmin set estAdmin=@est where idCedula = " + ci;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
-                command.Parameters.Add("@est", SqlDbType.Char, 2, "estAdmin").Value = "DC";
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estAdmin").Value = dc;
                 command.ExecuteNonQuery();
                 return true;
             }
@@ -139,12 +141,13 @@ namespace CapaDatos
         }
         public bool activarAdmin(string ci)
         {
+            string ac = "AC";
             try
             {
                 clsConexion.abrirConexion();
                 string sql = "update TblAdmin set estAdmin=@est where idCedula = " + ci;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
-                command.Parameters.Add("@est", SqlDbType.Char, 2, "estAdmin").Value = "AC";
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estAdmin").Value = ac;
                 command.ExecuteNonQuery();
                 return true;
             }

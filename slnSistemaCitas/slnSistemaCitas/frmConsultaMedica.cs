@@ -22,10 +22,17 @@ namespace slnSistemaCitas
         DataSet ds = new DataSet();
         public string idUser { get; set; }
         public int idCita { get; set; }
+        public int bandera { get; set; }
+        public int banderaH { get; set; }
+        
         public frmConsultaMedia(string idUsuario)
         {
             InitializeComponent();
-            cargar();
+            if (bandera == 0)
+            {
+                cargar();
+            }
+            bandera = 1;
             idUser = idUsuario;
         }        
 
@@ -34,12 +41,12 @@ namespace slnSistemaCitas
             lstEspecialidad.Enabled = true;
             cmbCiudad.Enabled = false;
             lstHospital.Enabled = false;
-            mtcFecha.Enabled = false;
+            dtpFechaCita.Enabled = false;
             cmbHora.Enabled = false;
-            lstDoctor.Enabled = false;
+            dgvDoctor.Enabled = false;
             btnIngresar.Enabled = false;
-            mtcFecha.MinDate = DateTime.Today;
-            mtcFecha.MaxDate = DateTime.Today.AddMonths(3);
+            dtpFechaCita.MinDate = DateTime.Today;
+            dtpFechaCita.MaxDate = DateTime.Today.AddMonths(3);
             cargarEspecialidad();
 
         }
@@ -49,9 +56,10 @@ namespace slnSistemaCitas
             try
             {
                 ds = objN_Especialidad.consultaEspecialidad();
-                lstEspecialidad.DataSource = ds.Tables["TblConsultaMedica"];
+                lstEspecialidad.DataSource = ds.Tables["TblEspecialidad"];
                 lstEspecialidad.ValueMember = "idEspecialidad";
                 lstEspecialidad.DisplayMember = "nomEspecialidad";
+                cargarCiudad();
             }
             catch(Exception ex)
             {
@@ -78,17 +86,16 @@ namespace slnSistemaCitas
             }
         }
 
-        public void cargarHospital()
+        public void cargarHospital(int ciudad)
         {
             try
             {
-                ds = objN_Hospital.consultaHosCiuEsp(int.Parse(lstEspecialidad.SelectedValue.ToString()),
-                    int.Parse(cmbCiudad.SelectedValue.ToString()));
+                ds = objN_Hospital.consultaHospitalesCiudad(ciudad);
                 if (ds == null)
-                    lstEspecialidad.Items.Add("No Disponible");
+                    lstEspecialidad.Items.Insert(0,"No Disponible");
                 else
                 {
-                    lstHospital.DataSource = ds;
+                    lstHospital.DataSource = ds.Tables["tblHospital"];
                     lstHospital.ValueMember = "idHospital";
                     lstHospital.DisplayMember = "nomHospital";
                 }
@@ -103,20 +110,24 @@ namespace slnSistemaCitas
 
         public void cargarHora()
         {
-            try
+            if (banderaH == 0)
             {
-                ds = objN_Hora.consultaHoraAc();
-                cmbHora.DataSource = ds.Tables["TblHora"];
-                cmbHora.ValueMember = "idHora";
-                cmbHora.DisplayMember = "hora";
-                habilitarHoras();
+                try
+                {
+                    ds = objN_Hora.consultaHoraAc();
+                    cmbHora.DataSource = ds.Tables["TblHora"];
+                    cmbHora.ValueMember = "idHora";
+                    cmbHora.DisplayMember = "hora";
+                    habilitarHoras();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Problemas al cargar Horario" +
+                        "\n" + ex.Message, "Er058",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Problemas al cargar Horario" +
-                    "\n" + ex.Message, "Er058",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            banderaH = 1;
         }
 
         public void habilitarHoras()
@@ -226,17 +237,10 @@ namespace slnSistemaCitas
             {
                 int esp = int.Parse(lstEspecialidad.SelectedValue.ToString());
                 int hosp = int.Parse(lstHospital.SelectedValue.ToString());
-                DateTime fecha = mtcFecha.SelectionStart.Date;
-                int hora = int.Parse(cmbCiudad.SelectedValue.ToString());
-                ds = objN_Doctor.consultaDocHora(esp,hosp,fecha,hora);
-                if (ds == null)
-                    lstDoctor.Items.Add("No Disponible");
-                else
-                {
-                    lstDoctor.DataSource = ds;
-                    lstDoctor.ValueMember = "idCedula";
-                    lstDoctor.DisplayMember = "nomDoctor";
-                }
+                DateTime fecha = dtpFechaCita.Value.Date;
+                int hora = int.Parse(cmbHora.SelectedValue.ToString());
+                var doctores = objN_Doctor.consultaDocHora(esp,hosp,fecha,hora);
+                dgvDoctor.DataSource = doctores;
             }catch (Exception ex)
             {
                 MessageBox.Show("Problemas al cargar los Doctores" +
@@ -250,9 +254,9 @@ namespace slnSistemaCitas
         {
             cmbCiudad.Enabled = true;
             lstHospital.Enabled = false;
-            mtcFecha.Enabled = false;
+            dtpFechaCita.Enabled = false;
             cmbHora.Enabled = false;
-            lstDoctor.Enabled = false;
+            dgvDoctor.Enabled = false;
             btnIngresar.Enabled = false;
 
         }
@@ -260,30 +264,30 @@ namespace slnSistemaCitas
         public void ciudad()
         {
             lstHospital.Enabled = true;
-            mtcFecha.Enabled = false;
+            dtpFechaCita.Enabled = false;
             cmbHora.Enabled = false;
-            lstDoctor.Enabled = false;
+            dgvDoctor.Enabled = false;
             btnIngresar.Enabled = false;
         }
 
         public void hospital()
         {
-            mtcFecha.Enabled = true;
+            dtpFechaCita.Enabled = true;
             cmbHora.Enabled = false;
-            lstDoctor.Enabled = false;
+            dgvDoctor.Enabled = false;
             btnIngresar.Enabled = false;
         }
 
         public void fecha()
         {
             cmbHora.Enabled = true;
-            lstDoctor.Enabled = false;
+            dgvDoctor.Enabled = false;
             btnIngresar.Enabled = false;
         }
 
         public void doctor()
         {
-            lstDoctor.Enabled = true;
+            dgvDoctor.Enabled = true;
             btnIngresar.Enabled = false;
         }
 
@@ -300,8 +304,12 @@ namespace slnSistemaCitas
 
         private void cmbCiudad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cargarHospital();
-            ciudad();
+            if (bandera != 0)
+            {
+                int idCiudad = int.Parse(cmbCiudad.SelectedValue.ToString());
+                cargarHospital(idCiudad);
+                ciudad();
+            }
         }
 
         private void lstHospital_SelectedIndexChanged(object sender, EventArgs e)
@@ -310,29 +318,28 @@ namespace slnSistemaCitas
         }
 
         private void mtcFecha_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            cargarHora();
-            fecha();            
+        {           
         }
         private void cmbHora_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cargarDoctor();
-            doctor();
+            if (banderaH != 0)
+            {
+                cargarDoctor();
+                doctor();
+            }
         }
 
-        private void lstDoctor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ingresar();
-        }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            DateTime fechaCita = mtcFecha.SelectionStart.Date;
+            DateTime fechaCita = dtpFechaCita.Value.Date;
             int idHora = int.Parse(cmbHora.SelectedValue.ToString());
-            string idDoctor = lstDoctor.SelectedValue.ToString();
+            string idDoctor = (string)dgvDoctor.CurrentRow.Cells["Cedula"].Value;
             int idEspecialidad = int.Parse(lstEspecialidad.SelectedValue.ToString());
             int idCiudad = int.Parse(cmbCiudad.SelectedValue.ToString());
             int idHospital = int.Parse(lstHospital.SelectedValue.ToString());
+            Console.WriteLine("Esp:" + idEspecialidad+ " Hos" + idHospital + " Fecha" + fechaCita + " Hora: " + idHora + " Doctor:"+idDoctor
+                +" Usuario:" +idUser);
             try
             {
                 obteneridCita();       
@@ -370,6 +377,17 @@ namespace slnSistemaCitas
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void dtpFechaCita_ValueChanged(object sender, EventArgs e)
+        {
+            cargarHora();
+            fecha();
+        }
+
+        private void dgvDoctor_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ingresar();
         }
     }
 }

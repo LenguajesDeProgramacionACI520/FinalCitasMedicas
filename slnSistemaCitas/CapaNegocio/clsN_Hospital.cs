@@ -63,6 +63,12 @@ namespace CapaNegocio
             idH = idHos;
             return (D_Hospitales.consultaHospital(idH));
         }
+
+        public DataSet consultaHospitalesCiudad(int idCiudad)
+        {
+            ciudadH = idCiudad;
+            return (D_Hospitales.consultaHospitalCiudad(ciudadH));
+        }
     }
 
 }

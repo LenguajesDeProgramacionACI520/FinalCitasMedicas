@@ -32,7 +32,8 @@ namespace slnSistemaCitas
             txtId.Enabled = false;
             txtNombre.MaxLength = 20;
             txtNombre.CharacterCasing = CharacterCasing.Upper;
-            txtDescripcion.MaxLength = 500;
+            txtDescripcion.MaxLength = 100;
+            txtDescripcion.CharacterCasing = CharacterCasing.Upper;
         }
 
         public void cargarPromocion()

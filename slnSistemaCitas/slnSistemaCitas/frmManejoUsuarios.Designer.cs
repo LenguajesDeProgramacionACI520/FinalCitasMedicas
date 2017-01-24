@@ -586,6 +586,7 @@
             this.Controls.Add(this.txtApe1);
             this.Controls.Add(this.txtNom2);
             this.Controls.Add(this.txtNom1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmManejoUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

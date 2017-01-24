@@ -60,7 +60,6 @@ namespace slnSistemaCitas
             txtNombre.Clear();
             mskDescuento.Clear();
             formatoParaAgregar();
-            mskCosto.Clear();
             cargarDgv();
         }
 
@@ -108,7 +107,7 @@ namespace slnSistemaCitas
 
         private bool comprobar()
         {
-            if (txtNombre.Text != "")
+            if (txtNombre.Text != "" || mskDescuento.Text != "")
                 if (int.Parse(mskDescuento.Text) <= 100)
                     return true;
                 else
@@ -132,10 +131,9 @@ namespace slnSistemaCitas
             {
                 string nombre = txtNombre.Text;
                 decimal descuento = decimal.Parse(mskDescuento.Text);
-                decimal costo = decimal.Parse(mskDescuento.Text);
                 try
                 {
-                    if (N_Seguro.agregarSeguro(nombre, descuento,costo))
+                    if (N_Seguro.agregarSeguro(nombre, descuento))
                     {
                         MessageBox.Show("Se ha ingresado correctamente el seguro: " + txtNombre.Text + ""
                                      , "Nuevo Seguro", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -158,33 +156,41 @@ namespace slnSistemaCitas
             if (comprobar())
             {
                 int id = int.Parse(txtId.Text);
-                string nombre = txtNombre.Text;
-                decimal descuento = decimal.Parse(mskDescuento.Text);
-                decimal costo = decimal.Parse(mskDescuento.Text);
-                try
+                int idS = int.Parse(dgvSeguro.Rows[0].Cells[0].Value.ToString());
+                if (id != idS)
                 {
-                    if (N_Seguro.modificarSeguro(id, nombre, descuento,costo))
+                    string nombre = txtNombre.Text;
+                    decimal descuento = decimal.Parse(mskDescuento.Text);
+                    try
                     {
-                        MessageBox.Show("Se ha modificado correctamente el seguro: " + txtNombre.Text + ""
-                                     , "Seguro Modificada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (N_Seguro.modificarSeguro(id, nombre, descuento))
+                        {
+                            MessageBox.Show("Se ha modificado correctamente el seguro: " + txtNombre.Text + ""
+                                         , "Seguro Modificada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            limpiar();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al modificar el seguro seleccionado\n" + ex.Message, "Er040",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                         limpiar();
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al modificar el seguro seleccionado\n" + ex.Message, "Er040",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    limpiar();
-
-                }
-
+            }
+            else
+            {
+                MessageBox.Show("Este seguro no se puede modificar", "Er074",
+                          MessageBoxButtons.OK, MessageBoxIcon.Error);
+                limpiar();
             }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             int id = int.Parse(txtId.Text);
-            if (id != 1)
+            int idS = int.Parse(dgvSeguro.Rows[0].Cells[0].Value.ToString());
+            if (id != idS)
             {
                 try
                 {
@@ -226,18 +232,17 @@ namespace slnSistemaCitas
         private void cargarDatos()
         {
             int id = int.Parse(dgvSeguro.CurrentRow.Cells["idSeguro"].Value.ToString());
-            if (id != 1)
+            int idS = int.Parse(dgvSeguro.Rows[0].Cells[0].Value.ToString());
+            if (id != idS)
             {
                 txtId.Text = id.ToString();
                 txtNombre.Text = (string)dgvSeguro.CurrentRow.Cells["nomSeguro"].Value;
-                decimal descuento = (decimal)dgvSeguro.CurrentRow.Cells["porcenSeguro"].Value;
-                decimal costo = (decimal)dgvSeguro.CurrentRow.Cells["valorSeguro"].Value;
-                mskCosto.Text = costo.ToString();
+                int descuento = (int)dgvSeguro.CurrentRow.Cells["porcenSeguro"].Value;
                 mskDescuento.Text = descuento.ToString();
             }
             else
             {
-                MessageBox.Show("Este seguro no se puede borrar", "Er042",
+                MessageBox.Show("Este seguro no puede ser alterado", "Er042",
                           MessageBoxButtons.OK, MessageBoxIcon.Error);
                 limpiar();
             }

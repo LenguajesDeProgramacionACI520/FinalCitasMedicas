@@ -36,10 +36,11 @@ namespace slnSistemaCitas
             bandera = 1;
             cargarGenero();
             cargarDgv();
+            cargarEstado();
             formatoParaAgregar();
             txtNombre.MaxLength = 20;
             txtApellido.MaxLength = 20;
-            txtCelular.MaxLength = 9;
+            txtCelular.MaxLength = 10;
             txtNombre.CharacterCasing = CharacterCasing.Upper;
             txtApellido.CharacterCasing = CharacterCasing.Upper;
             dgvDoctores.ReadOnly = true;
@@ -86,8 +87,9 @@ namespace slnSistemaCitas
 
         private void cargarGenero()
         {
-            cmbGenero.Items.Add("FEMENINO");
-            cmbGenero.Items.Add("MASCULINO");
+            cmbGenero.Items.Insert(0, "FEMENINO");
+            cmbGenero.Items.Insert(1, "MASCULINO");
+            cmbGenero.SelectedIndex = 0;
         }
 
         private void cargarEspecialidad()
@@ -118,8 +120,7 @@ namespace slnSistemaCitas
             btnEliminar.ForeColor = Color.Silver;
             btnModificar.Enabled = false;
             btnModificar.ForeColor = Color.Silver;
-            btnAC.Enabled = false;
-            btnAC.ForeColor = Color.Silver;
+            cmbEstado.Enabled = false;
         }
 
         private void formatoModificarEliminar()
@@ -131,15 +132,14 @@ namespace slnSistemaCitas
             btnEliminar.ForeColor = Color.ForestGreen;
             btnModificar.Enabled = true;
             btnModificar.ForeColor = Color.ForestGreen;
-            btnAC.Enabled = true;
-            btnAC.ForeColor = Color.ForestGreen;
+            cmbEstado.Enabled = true;
         }
 
         private bool comprobar()
         {
             if (mskCedula.Text.Length == 10)
                 if(txtNombre.Text != "" && txtApellido.Text!= "")
-                    if (txtCelular.Text.Length == 9)
+                    if (txtCelular.Text.Length == 10)
                     {
                         return true;
                     }
@@ -165,6 +165,14 @@ namespace slnSistemaCitas
                 return false;
 
             }
+        }
+
+        private void cargarEstado()
+        {
+            cmbEstado.Items.Insert(0,"ACTIVADO");
+            cmbEstado.Items.Insert(1,"DESCATIVADO");
+            cmbEstado.Enabled = false;
+            cmbEstado.SelectedIndex = 0;
         }
 
         private void limpiar()
@@ -241,7 +249,7 @@ namespace slnSistemaCitas
                 string cedula = mskCedula.Text;
                 string nombre = txtNombre.Text;
                 string apellido = txtApellido.Text;
-                int genero = int.Parse(cmbGenero.SelectedValue.ToString());
+                int genero = int.Parse(cmbGenero.SelectedIndex.ToString());
                 DateTime fechaN = dtpfechaNa.Value.Date;
                 string cel = txtCelular.Text;
                 int idHospital = int.Parse(cmbHospital.SelectedValue.ToString());
@@ -256,8 +264,7 @@ namespace slnSistemaCitas
                         limpiar();
                         cargarDgv();
                         formatoParaAgregar();
-                        cargarEspecialidad();
-                        cargarGenero();
+                        cargarEspecialidad();;
                         cargarHospital();
                     }
                 }
@@ -271,18 +278,27 @@ namespace slnSistemaCitas
 
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void btnModificar_Click(object sender, EventArgs e) 
         {
             if (comprobar())
             {
                 string cedula = mskCedula.Text;
                 string nombre = txtNombre.Text;
                 string apellido = txtApellido.Text;
-                int genero = int.Parse(cmbGenero.SelectedValue.ToString());
+                int genero = int.Parse(cmbGenero.SelectedIndex.ToString());
                 DateTime fechaN = dtpfechaNa.Value.Date;
                 string cel = txtCelular.Text;
                 int idHospital = int.Parse(cmbHospital.SelectedValue.ToString());
                 int idEspecialidad = int.Parse(cmbEspecialidad.SelectedValue.ToString());
+                int estado = int.Parse(cmbEstado.SelectedIndex.ToString());
+                if (estado == 0)
+                {
+                    activarDoctor();
+                }
+                if( estado == 1)
+                {
+                    desactivarDoctor();
+                }
 
                 try
                 {
@@ -294,7 +310,6 @@ namespace slnSistemaCitas
                         cargarDgv();
                         formatoParaAgregar();
                         cargarEspecialidad();
-                        cargarGenero();
                         cargarHospital();
                     }
                 }
@@ -328,7 +343,6 @@ namespace slnSistemaCitas
                     cargarDgv();
                     formatoParaAgregar();
                     cargarEspecialidad();
-                    cargarGenero();
                     cargarHospital();
                 }
 
@@ -353,84 +367,60 @@ namespace slnSistemaCitas
 
         private void cargarDatos()
         {
-            mskCedula.Text= (string)dgvDoctores.CurrentRow.Cells["idDoctor"].Value;
+            mskCedula.Text= (string)dgvDoctores.CurrentRow.Cells["idCedula"].Value;
             txtNombre.Text= (string)dgvDoctores.CurrentRow.Cells["nomDoctor"].Value;
-            txtApellido.Text= (string)dgvDoctores.CurrentRow.Cells["apeoDoctor"].Value;
+            txtApellido.Text= (string)dgvDoctores.CurrentRow.Cells["apeDoctor"].Value;
             DateTime fecha = (DateTime) dgvDoctores.CurrentRow.Cells["fechaN_Doctor"].Value;
             dtpfechaNa.Value = fecha.Date;
-            string genero = (string)dgvDoctores.CurrentRow.Cells["genDoc"].Value;
+            string genero = (string)dgvDoctores.CurrentRow.Cells["genDoctor"].Value;
             if (genero == "F")
                 cmbGenero.SelectedIndex = 0;
             if (genero == "M")
                 cmbGenero.SelectedIndex = 1;
-            txtCelular.Text= (string)dgvDoctores.CurrentRow.Cells["celDoc"].Value;
+            txtCelular.Text= (string)dgvDoctores.CurrentRow.Cells["celDoctor"].Value;
             int idHospital = (int)dgvDoctores.CurrentRow.Cells["idHospital"].Value;
             int idEspecialidad = (int)dgvDoctores.CurrentRow.Cells["idEspecialidad"].Value;
-            string ac = (string)dgvDoctores.CurrentRow.Cells["estAdmin"].Value;
+            string ac = (string)dgvDoctores.CurrentRow.Cells["estDoctor"].Value;
             if (ac == "AC")
-               btnAC.Text = "Descativar Administrador";
+                cmbEstado.SelectedIndex = 0;
             if (ac == "DC")
-                btnAC.Text = "Activar Administrador";
+                cmbEstado.SelectedIndex = 1;
             cmbHospital.SelectedValue = idHospital;
             cmbEspecialidad.SelectedValue = idEspecialidad;
         }
 
-        private void btnAC_Click(object sender, EventArgs e)
+        private void desactivarDoctor()
         {
-            if (btnAC.Text.Equals("Descativar Administrador"))
+            try
             {
-                try
-                {
-                    if (N_Doctores.desactivarDoctor(mskCedula.Text))
-                        MessageBox.Show("Se ha descativado de manera correcta el Doctor:" + mskCedula.Text + ""
-                              , "Doctor Descativado", MessageBoxButtons.OK, MessageBoxIcon.Information);                  
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Problemas al desactivar el Doctor" +
-                        "\n" + ex.Message, "Er052",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    limpiar();
-                    cargarDgv();
-                    formatoParaAgregar();
-                    cargarEspecialidad();
-                    cargarGenero();
-                    cargarHospital();
-
-                }
+                if (N_Doctores.desactivarDoctor(mskCedula.Text))
+                    MessageBox.Show("Se ha descativado de manera correcta el Doctor:" + mskCedula.Text + ""
+                          , "Doctor Descativado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
-            if (btnAC.Text.Equals("Activar Administrador"))
+            catch (Exception ex)
             {
-                try
-                {
-                    if (N_Admin.activarAdmin(mskCedula.Text))
-                        MessageBox.Show("Se ha activado de manera correcta el Doctor" + mskCedula.Text + ""
-                              , "Doctor Activado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Problemas al activar el Doctor" +
-                        "\n" + ex.Message, "Er053",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
+                MessageBox.Show("Problemas al desactivar el Doctor" +
+                    "\n" + ex.Message, "Er052",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-                    limpiar();
-                    cargarDgv();
-                    formatoParaAgregar();
-                    cargarEspecialidad();
-                    cargarGenero();
-                    cargarHospital();
-                }
-
+        }
+       
+        private void activarDoctor()
+        {
+            try
+            {
+                if (N_Doctores.activarDoctor(mskCedula.Text))
+                    MessageBox.Show("Se ha activado de manera correcta el Doctor" + mskCedula.Text + ""
+                          , "Doctor Activado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problemas al activar el Doctor" +
+                    "\n" + ex.Message, "Er053",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }    
 }

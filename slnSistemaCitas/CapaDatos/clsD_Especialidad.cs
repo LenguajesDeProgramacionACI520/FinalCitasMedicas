@@ -93,7 +93,7 @@ namespace CapaDatos
             {
                 clsConexion.abrirConexion();
                 string sql = "update TblEspecialidad set nomEspecialidad= " +
-                    " @nombre, descEpecialidad=@desc, costoEspecialidad=@costo, idPromocion=@idProm" +
+                    " @nombre, descEpecialidad=@desc, costoEspecialidad=@costo, idPromocion=@idProm " +
                     "WHERE idEspecialidad =" + id;
 
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);

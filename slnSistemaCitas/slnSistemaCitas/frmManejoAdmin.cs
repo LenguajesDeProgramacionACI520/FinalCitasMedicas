@@ -78,8 +78,8 @@ namespace slnSistemaCitas
 
         private void cargarGenero()
         {
-            cmbGenero.Items.Add("FEMENINO");
-            cmbGenero.Items.Add("MASCULINO");
+            cmbGenero.Items.Insert(0, "FEMENINO");
+            cmbGenero.SelectedIndex = 0;
         }
 
         private void restringirCampos()
@@ -91,6 +91,7 @@ namespace slnSistemaCitas
             txtNombre.CharacterCasing = CharacterCasing.Upper;
             txtApellido.CharacterCasing = CharacterCasing.Upper;
             txtDireccion.MaxLength = 100;
+            txtDireccion.CharacterCasing = CharacterCasing.Upper;
         }
 
         private void cargarDgv()
@@ -202,7 +203,7 @@ namespace slnSistemaCitas
                 try
                 {
                     if (N_Admin.modificarAdmin(ci, txtNombre.Text, txtApellido.Text,
-                        int.Parse(cmbGenero.SelectedValue.ToString()), txtDireccion.Text))
+                        int.Parse(cmbGenero.SelectedIndex.ToString()), txtDireccion.Text))
                         MessageBox.Show("Se ha modificado de manera correcta el administrador" +
                           "", "Modificación Exitosa",
                           MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -305,7 +306,7 @@ namespace slnSistemaCitas
             {
                 if(txtCi.Text.Length == 10)
                 {
-                    if (N_Admin.agregraAdmin(txtCi.Text, txtNombre.Text, txtApellido.Text, int.Parse(cmbGenero.SelectedValue.ToString()),txtDireccion.Text))
+                    if (N_Admin.agregraAdmin(txtCi.Text, txtNombre.Text, txtApellido.Text, int.Parse(cmbGenero.SelectedIndex.ToString()),txtDireccion.Text))
                         if (N_Login.agregarPersona(txtCi.Text, txtPass.Text, 1))
                         {
                             MessageBox.Show("Se ha ingresado de manera correcta el administrador:" + txtCi.Text + ""

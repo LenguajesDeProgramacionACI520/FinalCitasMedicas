@@ -84,9 +84,6 @@ namespace slnSistemaCitas
 
         private void manejoDeDoctoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmManejoDoctores doctores = new frmManejoDoctores();
-            doctores.MdiParent = this;
-            doctores.Show();
         }
 
         private void manjeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -118,7 +115,22 @@ namespace slnSistemaCitas
         {
             frmConsultaMedia citaMedica = new frmConsultaMedia(ci);
             citaMedica.MdiParent = this;
-            MdiParent.Show();
+            citaMedica.Show();
+        }
+
+        private void vincularHorarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDoctorHorario docHorario = new frmDoctorHorario();
+            docHorario.MdiParent = this;
+            docHorario.Show();
+        }
+
+        private void agregarDoctorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManejoDoctores doctores = new frmManejoDoctores();
+            doctores.MdiParent = this;
+            doctores.Show();
+
         }
     }
 }

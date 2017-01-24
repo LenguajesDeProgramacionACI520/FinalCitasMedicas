@@ -13,7 +13,6 @@ namespace CapaNegocio
         public int idSeguro { get; set; }
         public string nombreSeguro { get; set; }
         public decimal descuentoSeguro { get; set; }
-        public decimal valorSeguro { get; set; }
         clsD_Seguro D_seguro = new clsD_Seguro();
 
         public DataSet consultaSeguro()
@@ -26,21 +25,19 @@ namespace CapaNegocio
             return (D_seguro.obtenerId());
         }
 
-        public bool agregarSeguro( string nombre, decimal descuento,decimal valor)
+        public bool agregarSeguro( string nombre, decimal descuento)
         {
             nombreSeguro = nombre;
             descuentoSeguro = descuento;
-            valorSeguro = valor;
-            return (D_seguro.agregarSeguro(nombreSeguro, descuentoSeguro, valor));
+            return (D_seguro.agregarSeguro(nombreSeguro, descuentoSeguro));
         }
 
-        public bool modificarSeguro(int id, string nombre, decimal descuento, decimal valor)
+        public bool modificarSeguro(int id, string nombre, decimal descuento)
         {
             idSeguro = id;
             nombreSeguro = nombre;
             descuentoSeguro = descuento;
-            valorSeguro = valor;
-            return (D_seguro.modificarSeguro(idSeguro, nombreSeguro, descuentoSeguro, valor));
+            return (D_seguro.modificarSeguro(idSeguro, nombreSeguro, descuentoSeguro));
         }
 
         public bool eliminarSeguro(int id)

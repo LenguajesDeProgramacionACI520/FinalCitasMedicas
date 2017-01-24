@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MER_CitasMedicas">
+  <DataContextMoniker Name="/MER_CitasMedicasDataContext" />
+  <nestedChildShapes>
+    <classShape Id="09f66886-6168-43b7-a1ed-e0e38441361b" absoluteBounds="0.625, 0.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/MER_CitasMedicasDataContext/TblDoctor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f49f8a6e-aecc-41c0-b27d-e5ce3be4730c" absoluteBounds="0.64000000000000012, 0.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="26bf81af-4841-4e29-a38e-fc555c227299" absoluteBounds="3.625, 0.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/MER_CitasMedicasDataContext/TblDoctorHora" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5dc26d3a-afd9-43b9-a263-88994105b205" absoluteBounds="3.6399999999999997, 1.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.625 : 1.31814697265625); (3.625 : 1.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MER_CitasMedicasDataContext/TblDoctor/TblDoctor_TblDoctorHora" />
+      <nodes>
+        <classShapeMoniker Id="09f66886-6168-43b7-a1ed-e0e38441361b" />
+        <classShapeMoniker Id="26bf81af-4841-4e29-a38e-fc555c227299" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="e3d9c3ec-1cae-4fa6-92ef-1ebb98288dcb" absoluteBounds="6.25, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/MER_CitasMedicasDataContext/TblCita" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1ec0aa1c-89b0-48a0-b96a-4cf4119f2ab2" absoluteBounds="6.265, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.625 : 2.26849609375); (4.54166666666667 : 2.26849609375 : JumpStart); (4.70833333333333 : 2.26849609375 : JumpEnd); (6.25 : 2.26849609375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MER_CitasMedicasDataContext/TblDoctor/TblDoctor_TblCita" />
+      <nodes>
+        <classShapeMoniker Id="09f66886-6168-43b7-a1ed-e0e38441361b" />
+        <classShapeMoniker Id="e3d9c3ec-1cae-4fa6-92ef-1ebb98288dcb" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="a03ad4ce-b8e0-4126-a4e9-ebccd7ff53d5" absoluteBounds="3.625, 3.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/MER_CitasMedicasDataContext/TblHora" />
+      <nestedChildShapes>
+        <elementListCompartment Id="89d18e70-7dc9-44f7-a440-2b83788e534c" absoluteBounds="3.6399999999999997, 3.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.625 : 3.5); (4.625 : 2.0112939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MER_CitasMedicasDataContext/TblHora/TblHora_TblDoctorHora" />
+      <nodes>
+        <classShapeMoniker Id="a03ad4ce-b8e0-4126-a4e9-ebccd7ff53d5" />
+        <classShapeMoniker Id="26bf81af-4841-4e29-a38e-fc555c227299" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.625 : 4.19314697265625); (7.25 : 4.19314697265625); (7.25 : 2.4631982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MER_CitasMedicasDataContext/TblHora/TblHora_TblCita" />
+      <nodes>
+        <classShapeMoniker Id="a03ad4ce-b8e0-4126-a4e9-ebccd7ff53d5" />
+        <classShapeMoniker Id="e3d9c3ec-1cae-4fa6-92ef-1ebb98288dcb" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

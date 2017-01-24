@@ -34,14 +34,15 @@
             this.lstEspecialidad = new System.Windows.Forms.ListBox();
             this.lstHospital = new System.Windows.Forms.ListBox();
             this.lblFeha = new System.Windows.Forms.Label();
-            this.mtcFecha = new System.Windows.Forms.MonthCalendar();
             this.cmbCiudad = new System.Windows.Forms.ComboBox();
             this.cmbHora = new System.Windows.Forms.ComboBox();
             this.lblHora = new System.Windows.Forms.Label();
             this.lblDoctor = new System.Windows.Forms.Label();
-            this.lstDoctor = new System.Windows.Forms.ListBox();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.btnIngresar = new System.Windows.Forms.Button();
+            this.dtpFechaCita = new System.Windows.Forms.DateTimePicker();
+            this.dgvDoctor = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDoctor)).BeginInit();
             this.SuspendLayout();
             // 
             // lblEspecialidad
@@ -115,16 +116,6 @@
             this.lblFeha.TabIndex = 7;
             this.lblFeha.Text = "Fecha";
             // 
-            // mtcFecha
-            // 
-            this.mtcFecha.BackColor = System.Drawing.Color.White;
-            this.mtcFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.mtcFecha.Location = new System.Drawing.Point(370, 512);
-            this.mtcFecha.MaxSelectionCount = 1;
-            this.mtcFecha.Name = "mtcFecha";
-            this.mtcFecha.TabIndex = 8;
-            this.mtcFecha.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.mtcFecha_DateSelected);
-            // 
             // cmbCiudad
             // 
             this.cmbCiudad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -171,18 +162,6 @@
             this.lblDoctor.TabIndex = 11;
             this.lblDoctor.Text = "Doctor";
             // 
-            // lstDoctor
-            // 
-            this.lstDoctor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.lstDoctor.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lstDoctor.FormattingEnabled = true;
-            this.lstDoctor.ItemHeight = 22;
-            this.lstDoctor.Location = new System.Drawing.Point(730, 231);
-            this.lstDoctor.Name = "lstDoctor";
-            this.lstDoctor.Size = new System.Drawing.Size(290, 488);
-            this.lstDoctor.TabIndex = 12;
-            this.lstDoctor.SelectedIndexChanged += new System.EventHandler(this.lstDoctor_SelectedIndexChanged);
-            // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
@@ -207,19 +186,40 @@
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
+            // dtpFechaCita
+            // 
+            this.dtpFechaCita.Location = new System.Drawing.Point(370, 516);
+            this.dtpFechaCita.Name = "dtpFechaCita";
+            this.dtpFechaCita.Size = new System.Drawing.Size(290, 22);
+            this.dtpFechaCita.TabIndex = 15;
+            this.dtpFechaCita.ValueChanged += new System.EventHandler(this.dtpFechaCita_ValueChanged);
+            // 
+            // dgvDoctor
+            // 
+            this.dgvDoctor.AllowUserToAddRows = false;
+            this.dgvDoctor.AllowUserToDeleteRows = false;
+            this.dgvDoctor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDoctor.Location = new System.Drawing.Point(730, 231);
+            this.dgvDoctor.Name = "dgvDoctor";
+            this.dgvDoctor.ReadOnly = true;
+            this.dgvDoctor.RowTemplate.Height = 24;
+            this.dgvDoctor.Size = new System.Drawing.Size(290, 488);
+            this.dgvDoctor.TabIndex = 16;
+            this.dgvDoctor.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDoctor_CellClick);
+            // 
             // frmConsultaMedia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::slnSistemaCitas.Properties.Resources.fondo2;
             this.ClientSize = new System.Drawing.Size(1045, 794);
+            this.Controls.Add(this.dgvDoctor);
+            this.Controls.Add(this.dtpFechaCita);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.lblTitulo);
-            this.Controls.Add(this.lstDoctor);
             this.Controls.Add(this.lblDoctor);
             this.Controls.Add(this.lblHora);
             this.Controls.Add(this.cmbHora);
-            this.Controls.Add(this.mtcFecha);
             this.Controls.Add(this.lblFeha);
             this.Controls.Add(this.lstHospital);
             this.Controls.Add(this.lstEspecialidad);
@@ -227,10 +227,13 @@
             this.Controls.Add(this.lblCiudad);
             this.Controls.Add(this.cmbCiudad);
             this.Controls.Add(this.lblEspecialidad);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmConsultaMedia";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Solicitar Cita";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDoctor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,13 +246,13 @@
         private System.Windows.Forms.ListBox lstEspecialidad;
         private System.Windows.Forms.ListBox lstHospital;
         private System.Windows.Forms.Label lblFeha;
-        private System.Windows.Forms.MonthCalendar mtcFecha;
         private System.Windows.Forms.ComboBox cmbCiudad;
         private System.Windows.Forms.ComboBox cmbHora;
         private System.Windows.Forms.Label lblHora;
         private System.Windows.Forms.Label lblDoctor;
-        private System.Windows.Forms.ListBox lstDoctor;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button btnIngresar;
+        private System.Windows.Forms.DateTimePicker dtpFechaCita;
+        private System.Windows.Forms.DataGridView dgvDoctor;
     }
 }

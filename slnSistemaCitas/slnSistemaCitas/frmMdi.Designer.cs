@@ -39,9 +39,11 @@
             this.promocionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manejoDeAdministradoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.solicitarCitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.solicitarCitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarDoctorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vincularHorarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mestInicio.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,6 +99,9 @@
             // 
             // manejoDeDoctoresToolStripMenuItem
             // 
+            this.manejoDeDoctoresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.agregarDoctorToolStripMenuItem,
+            this.vincularHorarioToolStripMenuItem});
             this.manejoDeDoctoresToolStripMenuItem.Name = "manejoDeDoctoresToolStripMenuItem";
             this.manejoDeDoctoresToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
             this.manejoDeDoctoresToolStripMenuItem.Text = "Doctores";
@@ -137,6 +142,13 @@
             this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.usuarioToolStripMenuItem.Text = "Usuario";
             // 
+            // solicitarCitToolStripMenuItem
+            // 
+            this.solicitarCitToolStripMenuItem.Name = "solicitarCitToolStripMenuItem";
+            this.solicitarCitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.solicitarCitToolStripMenuItem.Text = "Nueva Cita";
+            this.solicitarCitToolStripMenuItem.Click += new System.EventHandler(this.solicitarCitToolStripMenuItem_Click);
+            // 
             // adminUsuarioToolStripMenuItem
             // 
             this.adminUsuarioToolStripMenuItem.Name = "adminUsuarioToolStripMenuItem";
@@ -150,12 +162,19 @@
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
-            // solicitarCitToolStripMenuItem
+            // agregarDoctorToolStripMenuItem
             // 
-            this.solicitarCitToolStripMenuItem.Name = "solicitarCitToolStripMenuItem";
-            this.solicitarCitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.solicitarCitToolStripMenuItem.Text = "Nueva Cita";
-            this.solicitarCitToolStripMenuItem.Click += new System.EventHandler(this.solicitarCitToolStripMenuItem_Click);
+            this.agregarDoctorToolStripMenuItem.Name = "agregarDoctorToolStripMenuItem";
+            this.agregarDoctorToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
+            this.agregarDoctorToolStripMenuItem.Text = "Agregar Doctor";
+            this.agregarDoctorToolStripMenuItem.Click += new System.EventHandler(this.agregarDoctorToolStripMenuItem_Click);
+            // 
+            // vincularHorarioToolStripMenuItem
+            // 
+            this.vincularHorarioToolStripMenuItem.Name = "vincularHorarioToolStripMenuItem";
+            this.vincularHorarioToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
+            this.vincularHorarioToolStripMenuItem.Text = "Vincular Horario";
+            this.vincularHorarioToolStripMenuItem.Click += new System.EventHandler(this.vincularHorarioToolStripMenuItem_Click);
             // 
             // frmMdi
             // 
@@ -195,6 +214,8 @@
         private System.Windows.Forms.ToolStripMenuItem manejoDeAdministradoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem promocionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem solicitarCitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agregarDoctorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vincularHorarioToolStripMenuItem;
     }
 }
 

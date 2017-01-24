@@ -201,7 +201,7 @@ namespace slnSistemaCitas
             try
             {
                 ds = objN_Hora.consultaHora(idHora);
-                lblCiudad.Text = ds.Tables["TblHora"].Rows[0]["hora"].ToString();
+                lblHora.Text = ds.Tables["TblHora"].Rows[0]["hora"].ToString();
             }
             catch (Exception ex)
             {
@@ -228,6 +228,7 @@ namespace slnSistemaCitas
 
         public void calculos()
         {
+            lblCostoCita.Text = valorCita.ToString();
             decimal descuentoseguro = valorCita * (porcenSeguro / 100);
             if (porcenSeguro != 100)
             {
@@ -315,8 +316,7 @@ namespace slnSistemaCitas
         {
             try
             {
-                ds = objN_ConsultaMedica.consultaId();
-                int idCita = int.Parse(ds.Tables["TblCita"].Rows[0]["idCita"].ToString());
+                int idCita = int.Parse(lblN_Cita.Text);
                 objN_ConsultaMedica.eliminarCita(idCita);
             }
             catch (Exception ex)

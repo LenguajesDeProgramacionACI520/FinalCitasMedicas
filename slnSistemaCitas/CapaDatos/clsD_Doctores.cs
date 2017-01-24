@@ -10,6 +10,7 @@ namespace CapaDatos
 {
     public class clsD_Doctores
     {
+        MER_CitasMedicasDataContext db = new MER_CitasMedicasDataContext();
         public DataSet consultaDoctores()
         {
             DataSet ds = new DataSet();
@@ -35,11 +36,12 @@ namespace CapaDatos
 
         public bool agregarDoctor(string cedulaDoc1, string nombreDoc, string apellidoDoc, string generoDoc, DateTime fechaN_Doc, string celDoc, int idHospital, int idEspecialidad)
         {
+            string ac = "AC";
             try
             {
                 clsConexion.abrirConexion();
                 string sql = "INSERT INTO TblDoctor values(@ci,@nom,@ape,@genero,@fechaN," +
-                    "@cel,@idH,@idE,@est)";
+                    "@cel,@est,@idH,@idE)";
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
 
                 command.Parameters.Add("@ci", SqlDbType.Char, 10, "idCedula").Value = cedulaDoc1;
@@ -48,9 +50,9 @@ namespace CapaDatos
                 command.Parameters.Add("@genero", SqlDbType.Char, 1, "genDoctor").Value = generoDoc;
                 command.Parameters.Add("@fechaN", SqlDbType.DateTime, 5, "fechaN_Doctor").Value = fechaN_Doc;
                 command.Parameters.Add("@cel", SqlDbType.Char, 10, "celDoctor").Value = celDoc;
-                command.Parameters.Add("@est", SqlDbType.Char, 2, "estDoctor").Value = "AC";
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estDoctor").Value = ac;
                 command.Parameters.Add("@idH", SqlDbType.Int, 4, "idHospital").Value = idHospital;
-                command.Parameters.Add("@idE", SqlDbType.Int, 4, "idEspecialidad").Value = idEspecialidad;
+                command.Parameters.Add("@idE", SqlDbType.Int, 4, "idEspecialidadd").Value = idEspecialidad;
 
                 command.ExecuteNonQuery();
                 return true;
@@ -108,29 +110,28 @@ namespace CapaDatos
             }
         }
 
-        public DataSet consultaDocHora(int idEspecialidad, int idHospital, DateTime fechaC, int idHora)
+        public object consultaDocHora(int idEspecialidad, int idHospital, DateTime fechaC, int idHora)
         {
-            DataSet ds = new DataSet();
-            SqlDataAdapter adaptador;
             try
             {
-                clsConexion.abrirConexion();
-                string sql = "SELECT idCedula, nomDoctor, apeDoctor FROM TblDoctor d, TblDoctorHora dh, TblHora h" +
-                    "WHERE dh.idDoctor = d.idCedula AND h.idHora =" + idHora + "AND h.estHora= 'AC'" +
-                    "EXCEPT SELECT idCedula, nomDoctor, apeDoctor FROM"+
-                    "TblDoctor doc, TblCita c WHERE doc.idCedula = c.idDoctor AND c.fechaCita= "+fechaC +
-                    "c.horaCita= "+idHora;
-                adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
-                adaptador.Fill(ds, "TblDoctor");
-                return ds;
+                var doc = from d in db.TblDoctor
+                          from h in db.TblHora
+                          from dh in db.TblDoctorHora
+                          where dh.idDoctor == d.idCedula && d.idCedula ==dh.idDoctor && dh.idHora == idHora 
+                            && h.estHora == "AC" && d.estDoctor == "AC" && d.idEspecialidad == idEspecialidad
+                            && d.idHospital == idHospital 
+                          select new { Cedula = d.idCedula, nombre = d.nomDoctor, apellido = d.apeDoctor };
+                var docO = from d in db.TblDoctor
+                            from c in db.TblCita
+                            where d.idCedula == c.idDoctor && c.fechaCita == fechaC 
+                             && c.idHora == idHora
+                            select new { Cedula = d.idCedula, nombre = d.nomDoctor, apellido = d.apeDoctor };
+                var resultado = doc.Except(docO);
+                return resultado.ToList();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 return null;
-            }
-            finally
-            {
-                clsConexion.cerrarConexion();
             }
         }
 
@@ -141,7 +142,7 @@ namespace CapaDatos
             {
                 clsConexion.abrirConexion();
                 string sql = "update TblDoctor set nomDoctor= " +
-                    " @nom, apeDcotor =@ape, genDoctor=@genero, fechaN_Doctor=@fechaN, celDoctor=@cel,"+
+                    " @nom, apeDoctor=@ape, genDoctor=@genero, fechaN_Doctor=@fechaN, celDoctor=@cel,"+
                     "idHospital=@idH, idEspecialidad=@idE where idCedula=" + cedulaDoc;
 
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
@@ -170,12 +171,13 @@ namespace CapaDatos
 
         public bool desactivarDoctor(string ci)
         {
+            string dc = "DC";
             try
             {
                 clsConexion.abrirConexion();
                 string sql = "update TblDoctor set estDoctor=@est where idCedula = " + ci;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
-                command.Parameters.Add("@est", SqlDbType.Char, 2, "estDoctor").Value = "DC";
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estDoctor").Value = dc;
                 command.ExecuteNonQuery();
                 return true;
             }
@@ -191,12 +193,13 @@ namespace CapaDatos
         }
         public bool activarDoctor(string ci)
         {
+            string ac = "AC";
             try
             {
                 clsConexion.abrirConexion();
                 string sql = "update TblDoctor set estDoctor=@est where idCedula = " + ci;
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
-                command.Parameters.Add("@est", SqlDbType.Char, 2, "estDoctor").Value = "AC";
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estDoctor").Value = ac;
                 command.ExecuteNonQuery();
                 return true;
             }

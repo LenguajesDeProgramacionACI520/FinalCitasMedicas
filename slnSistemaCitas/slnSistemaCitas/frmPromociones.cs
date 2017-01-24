@@ -62,7 +62,7 @@ namespace slnSistemaCitas
             try
             {
                 ds = N_Promociones.obtenerId();
-                int id = (int)ds.Tables[0].Rows[0][0];
+                int id = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
                 id = id + 1;
                 txtId.Text = id.ToString();
             }
@@ -70,7 +70,6 @@ namespace slnSistemaCitas
             {
                 MessageBox.Show("Eror al obtener un nuevo id\n" + ex.Message, "Er014",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
             }
         }
 
@@ -102,7 +101,7 @@ namespace slnSistemaCitas
         private bool comprobar()
         {
             if (txtNombre.Text != "")
-                if (int.Parse(mskDescuento.Text) <= 100)
+                if (decimal.Parse(mskDescuento.Text) <= 100)
                     return true;
                 else
                 {
@@ -124,7 +123,7 @@ namespace slnSistemaCitas
             if (comprobar())
             {
                 string nombre = txtNombre.Text;
-                decimal descuento = decimal.Parse(mskDescuento.Text);
+                int descuento = int.Parse(mskDescuento.Text);
                 try
                 {
                     if (N_Promociones.agregarPromocion(nombre, descuento))
@@ -146,27 +145,37 @@ namespace slnSistemaCitas
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
-        {
+        {           
             if (comprobar())
             {
                 int id = int.Parse(txtId.Text);
-                string nombre = txtNombre.Text;
-                decimal descuento = decimal.Parse(mskDescuento.Text);
-                try
+                int idSinP = (int)dgvPro.Rows[0].Cells[0].Value;
+                if (id != idSinP)
                 {
-                    if (N_Promociones.modificarPromocion(id, nombre, descuento))
+                    string nombre = txtNombre.Text;
+                    int descuento = int.Parse(mskDescuento.Text);
+                    try
                     {
-                        MessageBox.Show("Se ha modificado correctamente la prmoción: " + txtNombre.Text + ""
-                                     , "Promoción Modificada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (N_Promociones.modificarPromocion(id, nombre, descuento))
+                        {
+                            MessageBox.Show("Se ha modificado correctamente la prmoción: " + txtNombre.Text + ""
+                                         , "Promoción Modificada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            limpiar();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Errr al modificar la promoción seleccionada" + ex.Message, "Er034",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                         limpiar();
+
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Errr al modificar la promoción seleccionada" + ex.Message, "Er034",
+                    MessageBox.Show("No se puede modificar la promoción seleccionada", "Er076",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     limpiar();
-
                 }
 
             }
@@ -175,21 +184,31 @@ namespace slnSistemaCitas
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             int id = int.Parse(txtId.Text);
-            try
+            int idSinP = (int)dgvPro.Rows[0].Cells[0].Value;
+            if (id != idSinP)
             {
-                if (N_Promociones.eliminarPromocion(id))
+                try
                 {
-                    MessageBox.Show("Se ha eliminado correctamente la prmoción: " + txtNombre.Text + ""
-                                 , "Promoción Eliminada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (N_Promociones.eliminarPromocion(id))
+                    {
+                        MessageBox.Show("Se ha eliminado correctamente la prmoción: " + txtNombre.Text + ""
+                                     , "Promoción Eliminada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        limpiar();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Errr al eliminar la promoción seleccionada" + ex.Message, "Er035",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     limpiar();
+
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Errr al eliminar la promoción seleccionada" + ex.Message, "Er035",
+                MessageBox.Show("No se puede eliminar la promoción seleccionada","Er075",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 limpiar();
-
             }
 
 
@@ -210,7 +229,8 @@ namespace slnSistemaCitas
         {
             txtId.Text = dgvPro.CurrentRow.Cells["idPromocion"].Value.ToString();
             txtNombre.Text = (string)dgvPro.CurrentRow.Cells["nomPromocion"].Value;
-            mskDescuento.Text = dgvPro.CurrentRow.Cells["descuPromocion"].Value.ToString();
+            int prom = (int)dgvPro.CurrentRow.Cells["descuPromocion"].Value;
+            mskDescuento.Text = prom.ToString();
         }
     }
 }

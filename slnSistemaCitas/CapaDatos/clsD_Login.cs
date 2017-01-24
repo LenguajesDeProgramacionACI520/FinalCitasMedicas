@@ -91,7 +91,7 @@ namespace CapaDatos
             try
             {
                 clsConexion.abrirConexion();
-                string sql = " INSERT INTO TblLogin values(@usuario, @password, @rol)";
+                string sql = " INSERT INTO TblLogin values(@usuario, @pass, @rol)";
                 SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
 
 

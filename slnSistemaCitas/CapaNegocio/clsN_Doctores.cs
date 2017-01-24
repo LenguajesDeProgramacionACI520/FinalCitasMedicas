@@ -83,8 +83,8 @@ namespace CapaNegocio
             cedulaDoc = ci;
             return (D_Doctores.desactivarDoctor(cedulaDoc));
         }
-
-        public DataSet consultaDocHora(int esp, int hosp, DateTime fecha, int hora)
+        
+        public object consultaDocHora(int esp, int hosp, DateTime fecha, int hora)
         {
             this.idEspecialidad = esp;
             this.idHora = hora;
@@ -92,7 +92,6 @@ namespace CapaNegocio
             this.fechaC = fecha;
             return (D_Doctores.consultaDocHora(idEspecialidad, idHospital, fechaC, idHora));
         }
-
         public DataSet consultaDoctores(int idDoctor)
         {
             throw new NotImplementedException();

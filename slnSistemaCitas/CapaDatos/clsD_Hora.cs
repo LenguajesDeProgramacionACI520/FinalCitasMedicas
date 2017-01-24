@@ -12,12 +12,13 @@ namespace CapaDatos
     {
         public DataSet consultaHoraAc()
         {
+            string ac = "AC";
             try
             {
                 DataSet ds = new DataSet();
                 SqlDataAdapter adaptador;
                 clsConexion.abrirConexion();
-                string sql = "SELECT * FROM TblHora where estHora = AC" ;
+                string sql = "SELECT * FROM TblHora where estHora='AC' ";
                 adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
                 adaptador.Fill(ds, "TblHora");
                 clsConexion.cerrarConexion();

@@ -121,8 +121,8 @@ namespace slnSistemaCitas
 
         private void cargarGenero()
         {
-            cmbGenero.Items.Add("FEMENINO");
-            cmbGenero.Items.Add("MASCULINO");
+            cmbGenero.Items.Insert(0, "FEMENINO");
+            cmbGenero.Items.Insert(1, "MASCULINO");
             cmbGenero.SelectedIndex = 0;
         }
 
@@ -341,7 +341,7 @@ namespace slnSistemaCitas
             string nom2 = txtNom2.Text;
             string ape1 = txtApe1.Text;
             string ape2 = txtApe2.Text;
-            int genero = int.Parse(cmbGenero.SelectedValue.ToString());
+            int genero = int.Parse(cmbGenero.SelectedIndex.ToString());
             DateTime fechaN = dtpFechaN.Value.Date;
             string correo = txtCorreo.Text;
             string cel = txtCel.Text;
@@ -428,11 +428,11 @@ namespace slnSistemaCitas
             string nom2 = txtNom2.Text;
             string ape1 = txtApe1.Text;
             string ape2 = txtApe2.Text;
-            int genero = int.Parse(cmbGenero.SelectedValue.ToString());
+            int genero = int.Parse(cmbGenero.SelectedIndex.ToString());
             DateTime fechaN = dtpFechaN.Value.Date;
             string correo = txtCorreo.Text;
             string cel = txtCel.Text;
-            int seguro = int.Parse(cmbSeguro.SelectedValue.ToString());
+            int seguro = int.Parse(cmbSeguro.SelectedIndex.ToString());
             int ciudad = int.Parse(cmbCiudad.SelectedValue.ToString());
             string pass = txtPass1.Text;
             if (N_Usuario.modificarUsuario(idCedula, nom1, nom2, ape1, ape2, genero, fechaN,

@@ -34,7 +34,7 @@ namespace CapaDatos
 
         }
 
-        public bool agregarPromocion( string nombreP, decimal descuentoP)
+        public bool agregarPromocion( string nombreP, int descuentoP)
         {
             try
             {
@@ -42,12 +42,7 @@ namespace CapaDatos
                 string sql = "insert into TblPromocion values (@nombre,@descuento)";
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nomPromocion").Value = nombreP;
-
-                SqlParameter param = new SqlParameter("@descuento", SqlDbType.Decimal);
-                param.SourceColumn = "descuPromocion";
-                param.Precision = 5;
-                param.Scale = 2;
-                comando.Parameters.Add(param).Value = descuentoP;
+                comando.Parameters.Add("@descuento", SqlDbType.Int, 4 , "descuPromocion").Value = descuentoP;
                 comando.ExecuteNonQuery();
                 return true;
             }
@@ -105,7 +100,7 @@ namespace CapaDatos
             }
         }
 
-        public bool modificarPromocion(int idP, string nombreP, decimal descuentoP)
+        public bool modificarPromocion(int idP, string nombreP, int descuentoP)
         {
             try
             {
@@ -115,11 +110,7 @@ namespace CapaDatos
 
                 SqlCommand comando = new SqlCommand(sql, clsConexion.conexion);
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar, 20, "nomPromocion").Value = nombreP;
-                SqlParameter param = new SqlParameter("@descuento", SqlDbType.Decimal);
-                param.SourceColumn = "descuPromocion";
-                param.Precision = 5;
-                param.Scale = 2;
-                comando.Parameters.Add(param).Value = descuentoP;
+                comando.Parameters.Add("@descuento", SqlDbType.Int, 4, "descuPromocion").Value = descuentoP;
                 comando.ExecuteNonQuery();
                 return true;
             }
