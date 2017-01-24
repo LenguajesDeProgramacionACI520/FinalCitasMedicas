@@ -30,13 +30,11 @@ namespace slnSistemaCitas
             {
                 adminToolStripMenuItem.Visible = true;
                 usuarioToolStripMenuItem.Visible = false;
-                adminUsuarioToolStripMenuItem.Visible = true;
             }
             else
             {
                 adminToolStripMenuItem.Visible = false;
                 usuarioToolStripMenuItem.Visible = true;
-                adminUsuarioToolStripMenuItem.Visible = false;
             }
             
         }
@@ -113,9 +111,6 @@ namespace slnSistemaCitas
 
         private void solicitarCitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmConsultaMedia citaMedica = new frmConsultaMedia(ci);
-            citaMedica.MdiParent = this;
-            citaMedica.Show();
         }
 
         private void vincularHorarioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -131,6 +126,20 @@ namespace slnSistemaCitas
             doctores.MdiParent = this;
             doctores.Show();
 
+        }
+
+        private void manejoDeHorariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmActivarHora hora = new frmActivarHora();
+            hora.MdiParent = this;
+            hora.Show();
+        }
+
+        private void nuevaCitaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConsultaMedia citaMedica = new frmConsultaMedia(ci);
+            citaMedica.MdiParent = this;
+            citaMedica.Show();
         }
     }
 }

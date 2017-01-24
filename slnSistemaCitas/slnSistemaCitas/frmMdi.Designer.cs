@@ -34,16 +34,19 @@
             this.manejoDeEspecialidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manejoDeDoctoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarDoctorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vincularHorarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manejoDeHorariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.segurosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.promocionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manejoDeAdministradoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.solicitarCitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.adminUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.agregarDoctorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vincularHorarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevaCitaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proximasCitasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.últimasCitasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.facturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mestInicio.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +56,6 @@
             this.mestInicio.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.adminToolStripMenuItem,
             this.usuarioToolStripMenuItem,
-            this.adminUsuarioToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.mestInicio.Location = new System.Drawing.Point(0, 0);
             this.mestInicio.Name = "mestInicio";
@@ -107,11 +109,26 @@
             this.manejoDeDoctoresToolStripMenuItem.Text = "Doctores";
             this.manejoDeDoctoresToolStripMenuItem.Click += new System.EventHandler(this.manejoDeDoctoresToolStripMenuItem_Click);
             // 
+            // agregarDoctorToolStripMenuItem
+            // 
+            this.agregarDoctorToolStripMenuItem.Name = "agregarDoctorToolStripMenuItem";
+            this.agregarDoctorToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
+            this.agregarDoctorToolStripMenuItem.Text = "Manejo Doctores";
+            this.agregarDoctorToolStripMenuItem.Click += new System.EventHandler(this.agregarDoctorToolStripMenuItem_Click);
+            // 
+            // vincularHorarioToolStripMenuItem
+            // 
+            this.vincularHorarioToolStripMenuItem.Name = "vincularHorarioToolStripMenuItem";
+            this.vincularHorarioToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
+            this.vincularHorarioToolStripMenuItem.Text = "Vincular Horario";
+            this.vincularHorarioToolStripMenuItem.Click += new System.EventHandler(this.vincularHorarioToolStripMenuItem_Click);
+            // 
             // manejoDeHorariosToolStripMenuItem
             // 
             this.manejoDeHorariosToolStripMenuItem.Name = "manejoDeHorariosToolStripMenuItem";
             this.manejoDeHorariosToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
             this.manejoDeHorariosToolStripMenuItem.Text = "Horarios";
+            this.manejoDeHorariosToolStripMenuItem.Click += new System.EventHandler(this.manejoDeHorariosToolStripMenuItem_Click);
             // 
             // segurosToolStripMenuItem
             // 
@@ -137,23 +154,22 @@
             // usuarioToolStripMenuItem
             // 
             this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.solicitarCitToolStripMenuItem});
+            this.solicitarCitToolStripMenuItem,
+            this.facturasToolStripMenuItem});
             this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
             this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.usuarioToolStripMenuItem.Text = "Usuario";
             // 
             // solicitarCitToolStripMenuItem
             // 
+            this.solicitarCitToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevaCitaToolStripMenuItem,
+            this.proximasCitasToolStripMenuItem,
+            this.últimasCitasToolStripMenuItem});
             this.solicitarCitToolStripMenuItem.Name = "solicitarCitToolStripMenuItem";
             this.solicitarCitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.solicitarCitToolStripMenuItem.Text = "Nueva Cita";
+            this.solicitarCitToolStripMenuItem.Text = "Citas";
             this.solicitarCitToolStripMenuItem.Click += new System.EventHandler(this.solicitarCitToolStripMenuItem_Click);
-            // 
-            // adminUsuarioToolStripMenuItem
-            // 
-            this.adminUsuarioToolStripMenuItem.Name = "adminUsuarioToolStripMenuItem";
-            this.adminUsuarioToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
-            this.adminUsuarioToolStripMenuItem.Text = "Admin_Usuario";
             // 
             // salirToolStripMenuItem
             // 
@@ -162,19 +178,30 @@
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
-            // agregarDoctorToolStripMenuItem
+            // nuevaCitaToolStripMenuItem
             // 
-            this.agregarDoctorToolStripMenuItem.Name = "agregarDoctorToolStripMenuItem";
-            this.agregarDoctorToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
-            this.agregarDoctorToolStripMenuItem.Text = "Agregar Doctor";
-            this.agregarDoctorToolStripMenuItem.Click += new System.EventHandler(this.agregarDoctorToolStripMenuItem_Click);
+            this.nuevaCitaToolStripMenuItem.Name = "nuevaCitaToolStripMenuItem";
+            this.nuevaCitaToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.nuevaCitaToolStripMenuItem.Text = "Nueva Cita";
+            this.nuevaCitaToolStripMenuItem.Click += new System.EventHandler(this.nuevaCitaToolStripMenuItem_Click);
             // 
-            // vincularHorarioToolStripMenuItem
+            // proximasCitasToolStripMenuItem
             // 
-            this.vincularHorarioToolStripMenuItem.Name = "vincularHorarioToolStripMenuItem";
-            this.vincularHorarioToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
-            this.vincularHorarioToolStripMenuItem.Text = "Vincular Horario";
-            this.vincularHorarioToolStripMenuItem.Click += new System.EventHandler(this.vincularHorarioToolStripMenuItem_Click);
+            this.proximasCitasToolStripMenuItem.Name = "proximasCitasToolStripMenuItem";
+            this.proximasCitasToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.proximasCitasToolStripMenuItem.Text = "Próximas Citas";
+            // 
+            // últimasCitasToolStripMenuItem
+            // 
+            this.últimasCitasToolStripMenuItem.Name = "últimasCitasToolStripMenuItem";
+            this.últimasCitasToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.últimasCitasToolStripMenuItem.Text = "Últimas Citas";
+            // 
+            // facturasToolStripMenuItem
+            // 
+            this.facturasToolStripMenuItem.Name = "facturasToolStripMenuItem";
+            this.facturasToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.facturasToolStripMenuItem.Text = "Facturas";
             // 
             // frmMdi
             // 
@@ -208,7 +235,6 @@
         private System.Windows.Forms.ToolStripMenuItem manejoDeDoctoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manejoDeHorariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem adminUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem segurosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manejoDeAdministradoresToolStripMenuItem;
@@ -216,6 +242,10 @@
         private System.Windows.Forms.ToolStripMenuItem solicitarCitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarDoctorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vincularHorarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevaCitaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem proximasCitasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem últimasCitasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem facturasToolStripMenuItem;
     }
 }
 

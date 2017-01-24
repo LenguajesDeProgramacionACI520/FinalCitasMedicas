@@ -317,9 +317,6 @@ namespace slnSistemaCitas
             hospital();
         }
 
-        private void mtcFecha_DateSelected(object sender, DateRangeEventArgs e)
-        {           
-        }
         private void cmbHora_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (banderaH != 0)

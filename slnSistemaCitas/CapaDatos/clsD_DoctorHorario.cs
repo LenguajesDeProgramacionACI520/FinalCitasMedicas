@@ -30,6 +30,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return false;
+                throw ex;
 
             }
             finally
@@ -51,6 +52,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return false;
+                throw ex;
             }
             finally
             {

@@ -85,7 +85,7 @@ namespace slnSistemaCitas
                 ds = objN_Doctor.consultaDoctores();
                 cmbDoctor.DataSource = ds.Tables["TblDoctor"];
                 cmbDoctor.ValueMember = "idCedula";
-                cmbDoctor.DisplayMember = "nomDoctor" + " "+ "apeDoctor " ;
+                cmbDoctor.DisplayMember = "nomDoctor";
             }
             catch (Exception ex)
             {

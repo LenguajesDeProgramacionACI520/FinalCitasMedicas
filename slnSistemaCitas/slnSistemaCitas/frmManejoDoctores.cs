@@ -351,7 +351,7 @@ namespace slnSistemaCitas
             catch (Exception ex)
             {
                 MessageBox.Show("Problemas al eliminar el doctor" +
-                    "\nConsulta al administrador", "Er026",
+                    "\nConsulta al administrador\n" + ex.Message, "Er026",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 limpiar();
 

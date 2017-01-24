@@ -26,6 +26,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return null;
+                throw ex;
             }
             finally
             {
@@ -58,6 +59,29 @@ namespace CapaDatos
             }
         }
 
+        public DataSet consultaPromociones(int idP)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                DataSet ds = new DataSet();
+                SqlDataAdapter adapter;
+                string sql = "SELECT * FROM TblPromocion WHERE idPromocion = " + idP;
+                adapter = new SqlDataAdapter(sql, clsConexion.conexion);
+                adapter.Fill(ds, "TblPromocion");
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+                throw ex;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
         public DataSet consultaPromociones()
         {
             try
@@ -73,6 +97,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return null;
+                throw ex;
             }
             finally
             {
@@ -93,6 +118,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return false;
+                throw ex;
             }
             finally
             {

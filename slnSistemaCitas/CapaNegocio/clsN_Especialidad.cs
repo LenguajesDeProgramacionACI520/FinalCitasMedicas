@@ -36,6 +36,11 @@ namespace CapaNegocio
         {
             return (D_Especialidad.consultarEspecialidad());
         }
+        public DataSet consultaEspecia(int idEsp)
+        {
+            id = idEsp;
+            return (D_Especialidad.consultarEspecialidad(id));
+        }
 
         public bool modificarEspecialidad(int id, string nombre, string desc, decimal costo, int prom)
         {

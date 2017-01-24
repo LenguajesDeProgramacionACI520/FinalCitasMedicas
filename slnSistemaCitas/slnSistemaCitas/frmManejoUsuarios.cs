@@ -478,7 +478,7 @@ namespace slnSistemaCitas
             catch (Exception ex)
             {
                 MessageBox.Show("Problemas al eliminar el usuario" +
-                    "\nConsulta al administrador", "Er013",
+                    "\nConsulta al administrador\n" + ex.Message, "Er013",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 limpiar();
                 inicio();

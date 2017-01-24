@@ -26,6 +26,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return null;
+                throw ex;
             }
             finally
             {
@@ -61,6 +62,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return false;
+                throw ex;
             }
             finally
             {
@@ -83,6 +85,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return null;
+                throw ex;
             }
             finally
             {
@@ -103,6 +106,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return false;
+                throw ex;
             }
             finally
             {
@@ -132,6 +136,7 @@ namespace CapaDatos
             catch(Exception ex)
             {
                 return null;
+                throw ex;
             }
         }
 
@@ -184,6 +189,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return false;
+                throw ex;
             }
             finally
             {
@@ -206,6 +212,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return false;
+                throw ex;
             }
             finally
             {

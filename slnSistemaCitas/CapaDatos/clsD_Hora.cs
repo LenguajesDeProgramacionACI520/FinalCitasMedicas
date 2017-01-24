@@ -12,7 +12,6 @@ namespace CapaDatos
     {
         public DataSet consultaHoraAc()
         {
-            string ac = "AC";
             try
             {
                 DataSet ds = new DataSet();
@@ -27,6 +26,75 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return null;
+                throw ex;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
+        public bool descativarHora(int idHora, string estHora)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "update TblHora set estHora=@est where idHora = " + idHora;
+                SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estHora").Value = estHora;
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
+        public DataSet consultaHora()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                SqlDataAdapter adaptador;
+                clsConexion.abrirConexion();
+                string sql = "SELECT * FROM TblHora";
+                adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
+                adaptador.Fill(ds, "TblHora");
+                clsConexion.cerrarConexion();
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+                throw ex;
+            }
+            finally
+            {
+                clsConexion.cerrarConexion();
+            }
+        }
+
+        public bool activarHora(int idHora, string estHora)
+        {
+            try
+            {
+                clsConexion.abrirConexion();
+                string sql = "update TblHora set estHora=@est where idHora = " + idHora;
+                SqlCommand command = new SqlCommand(sql, clsConexion.conexion);
+                command.Parameters.Add("@est", SqlDbType.Char, 2, "estHora").Value = estHora;
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
             }
             finally
             {
@@ -50,6 +118,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return null;
+                throw ex;
             }
             finally
             {

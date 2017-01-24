@@ -24,5 +24,25 @@ namespace CapaNegocio
             this.idHora = idHora;
             return (objD_Hora.consultaHora(this.idHora));
         }
+
+        public DataSet consultaHora()
+        {
+
+            return (objD_Hora.consultaHora());
+        }
+
+        public bool desactivarHora(int v)
+        {
+            idHora = v;
+            estHora = "DC";
+            return (objD_Hora.descativarHora(idHora, estHora));
+        }
+
+        public bool activarHora(int v)
+        {
+            idHora = v;
+            estHora = "AC";
+            return (objD_Hora.activarHora(idHora, estHora));
+        }
     }
 }

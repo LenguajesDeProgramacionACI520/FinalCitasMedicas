@@ -79,6 +79,7 @@ namespace slnSistemaCitas
         private void cargarGenero()
         {
             cmbGenero.Items.Insert(0, "FEMENINO");
+            cmbGenero.Items.Insert(0, "MASCULINO");
             cmbGenero.SelectedIndex = 0;
         }
 
@@ -104,7 +105,7 @@ namespace slnSistemaCitas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro al recuperar la informacion ADMIN", "Er008",
+                MessageBox.Show("Erro al recuperar la informacion ADMIN\n"+ex.Message, "Er008",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -118,7 +119,7 @@ namespace slnSistemaCitas
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Problemas al Cargar infomración Para Editar"+
+                MessageBox.Show("Problemas al Cargar infomración Para Editar\n"+ex.Message+
                     "\nCierre y vuelva intentarlo", "Er009",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -138,7 +139,7 @@ namespace slnSistemaCitas
                 catch (Exception ex)
                 {
                     MessageBox.Show("Problemas al Cargar infomración del Login" +
-                        "\nCierre y vuelva intentarlo", "Er010",
+                        "\nCierre y vuelva intentarlo\n"+ex.Message, "Er010",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -211,7 +212,7 @@ namespace slnSistemaCitas
                 catch (Exception ex)
                 {
                     MessageBox.Show("Problemas al modificar el Administrador" +
-                        "\nCierre y vuelva intentarlo", "Er011",
+                        "\nCierre y vuelva intentarlo\n" + ex.Message, "Er011",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     limpiar();
 
@@ -225,7 +226,7 @@ namespace slnSistemaCitas
                 catch (Exception ex)
                 {
                     MessageBox.Show("Problemas al modificar el login" +
-                        "\nConsulta al administrador", "Er012",
+                        "\nConsulta al administrador\n" + ex.Message, "Er012",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
@@ -259,7 +260,7 @@ namespace slnSistemaCitas
             catch(Exception ex)
             {
                 MessageBox.Show("Problemas al eliminar el usuario" +
-                    "\nConsulta al administrador", "Er013",
+                    "\nConsulta al administrador\n" + ex.Message, "Er013",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 limpiar();
 

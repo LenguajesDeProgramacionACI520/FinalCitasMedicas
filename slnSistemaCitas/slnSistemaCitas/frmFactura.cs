@@ -19,6 +19,7 @@ namespace slnSistemaCitas
         clsN_Doctores objN_Doctor = new clsN_Doctores();
         clsN_Hospital objN_Hospital = new clsN_Hospital();
         clsN_Especialidad objN_Especialidad = new clsN_Especialidad();
+        clsN_Promociones objN_Promociones = new clsN_Promociones();
         clsN_Ciudad objN_Ciudad = new clsN_Ciudad();
         clsN_Seguro objN_Seguro = new clsN_Seguro();
         clsN_Hora objN_Hora = new clsN_Hora();
@@ -31,8 +32,8 @@ namespace slnSistemaCitas
         public int idHora { get; set; }
         public string idDoctor { get; set; }
         public int idPromo { get; set; }
-        public decimal porcenSeguro { get; set; }
-        public decimal porcenEspecialidad { get; set; }
+        public int porcenSeguro { get; set; }
+        public int porcenEspecialidad { get; set; }
         public decimal valorCita { get; set; }
         public DateTime fechaCita { get; set; }
         public decimal totalProm { get; set; }
@@ -82,6 +83,7 @@ namespace slnSistemaCitas
                 ds = objN_ConsultaMedica.consultaCita(idCita);
                 idUsuario = ds.Tables["TblCita"].Rows[0]["idUsuario"].ToString();
                 idDoctor = ds.Tables["TblCita"].Rows[0]["idDoctor"].ToString();
+                Console.WriteLine("Doctor: " + idDoctor);
                 fechaCita = DateTime.Parse(ds.Tables["TblCita"].Rows[0]["fechaCita"].ToString());
                 lblFecha.Text = fechaCita.ToShortDateString();
                 idHora = int.Parse(ds.Tables["TblCita"].Rows[0]["idHora"].ToString());
@@ -118,7 +120,8 @@ namespace slnSistemaCitas
             {
                 ds = objN_Seguro.consultaSeguro(idSeguro);
                 lblP_Seguro.Text = ds.Tables["TblSeguro"].Rows[0]["nomSeguro"].ToString();
-                porcenSeguro = decimal.Parse(ds.Tables["TblSeguro"].Rows[0]["porcenSeguro"].ToString());
+                porcenSeguro = int.Parse(ds.Tables["TblSeguro"].Rows[0]["porcenSeguro"].ToString());
+                Console.WriteLine("Descuento Seguro: " + porcenSeguro);
             }
             catch(Exception ex)
             {
@@ -150,11 +153,12 @@ namespace slnSistemaCitas
         {
             try
             {
-                ds = objN_Especialidad.consultaEspecialidad(idEsp);
+                ds = objN_Especialidad.consultaEspecia(idEsp);
                 lblD_especialidad.Text = ds.Tables["TblEspecialidad"].Rows[0]["nomEspecialidad"].ToString();
                 valorCita = decimal.Parse(ds.Tables["TblEspecialidad"].Rows[0]["costoEspecialidad"].ToString());
                 txtValorCita.Text = valorCita.ToString();
                 idPromo = int.Parse(ds.Tables["TblEspecialidad"].Rows[0]["idPromocion"].ToString());
+
             }
             catch (Exception ex)
             {
@@ -214,9 +218,9 @@ namespace slnSistemaCitas
         {
             try
             {
-                ds = objN_Especialidad.consultaEspecialidad(idEsp);
-                lblD_especialidad.Text = ds.Tables["TblPromocion"].Rows[0]["nomPromocion"].ToString();
-                porcenEspecialidad = decimal.Parse(ds.Tables["TblPromocion"].Rows[0]["descuPromocion"].ToString());
+                ds = objN_Promociones.consultaPromoc(idPromo);
+                porcenEspecialidad = (int)ds.Tables["TblPromocion"].Rows[0]["descuPromocion"];
+                Console.WriteLine("Descuento Esp: " + porcenEspecialidad);
             }
             catch (Exception ex)
             {
@@ -229,7 +233,8 @@ namespace slnSistemaCitas
         public void calculos()
         {
             lblCostoCita.Text = valorCita.ToString();
-            decimal descuentoseguro = valorCita * (porcenSeguro / 100);
+            decimal descuentoseguro = valorCita * porcenSeguro;
+            descuentoseguro = descuentoseguro / 100;
             if (porcenSeguro != 100)
             {
                 lblDescuentoSeguro.Text = descuentoseguro.ToString();
@@ -244,7 +249,9 @@ namespace slnSistemaCitas
                     }
                     else
                     {
-                        descuentoespe = valorCita * (porcenEspecialidad / 100);
+                        descuentoespe = valorCita * porcenEspecialidad;
+                        descuentoespe = descuentoespe / 100;
+                        Console.WriteLine("DescuentoEspe: " + descuentoespe);
                         lblDescuentoPromocion.Text = descuentoespe.ToString();
                         totalProm = descuentoespe + descuentoseguro;
                     }
@@ -259,22 +266,14 @@ namespace slnSistemaCitas
                 lblDescuentoSeguro.Text = descuentoseguro.ToString();
                 totalProm = valorCita;
             }
-
+            lblTotalDescuento.Text = totalProm.ToString();
             subTotal = valorCita - totalProm;
             lblSubTotal.Text = subTotal.ToString();
-            if(subTotal==0)
-            {
-                lbl_iva.Text = "00.00";
-                total = subTotal;
-                lblTotal.Text = total.ToString();
-            }
-            else
-            {
-                decimal iva = subTotal * (14/100);
-                lbl_iva.Text = iva.ToString();
-                total = subTotal + iva;
-                lblTotal.Text = total.ToString();
-            }
+            decimal iva = subTotal * 14;
+            iva = iva / 100;
+            lbl_iva.Text = iva.ToString();
+            total = subTotal + iva;
+            lblTotal.Text = total.ToString();
         }
 
         private void frmFactura_Load(object sender, EventArgs e)
@@ -284,6 +283,7 @@ namespace slnSistemaCitas
             cargarPaciente();
             cargarDoctor();
             cargarPromEspecialidad();
+            calculos();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -292,7 +292,7 @@ namespace slnSistemaCitas
             {
 
                 if (objN_Factura.agregarFactura(fechaCita, valorCita,totalProm,subTotal,total,idUsuario,idCita))
-                    MessageBox.Show("Se ha ingresado la Cita Médica" + lblN_Cita + ""
+                    MessageBox.Show("Se ha ingresado la Cita Médica" + lblN_Cita.Text + ""
                              , "Cita Registrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
                 citaMedica.Close();

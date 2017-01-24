@@ -34,7 +34,9 @@ namespace CapaNegocio
 
         public void eliminarCita(int idCita)
         {
-            throw new NotImplementedException();
+            this.idCita = idCita;
+            objD_ConsultaMedica.eliminarCita(this.idCita);
+
         }
 
         public DataSet consultaCita(int idCita)

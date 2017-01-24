@@ -25,6 +25,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return null;
+                throw ex;
             }
             finally
             {
@@ -53,6 +54,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return false;
+                throw ex;
             }
             finally
             {
@@ -73,6 +75,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return false;
+                throw ex;
             }
             finally
             {
@@ -124,6 +127,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return false;
+                throw ex;
             }
             finally
             {
@@ -146,6 +150,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return false;
+                throw ex;
             }
             finally
             {
@@ -162,7 +167,7 @@ namespace CapaDatos
                 SqlDataAdapter adaptador;
 
                 clsConexion.abrirConexion();
-                string sql = "SELECT * FROM TblCita";
+                string sql = "SELECT * FROM TblCita where idCita = "+idCita;
                 adaptador = new SqlDataAdapter(sql, clsConexion.conexion);
                 adaptador.Fill(ds, "TblCita");
                 clsConexion.cerrarConexion();
@@ -171,6 +176,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return null;
+                throw ex;
             }
             finally
             {

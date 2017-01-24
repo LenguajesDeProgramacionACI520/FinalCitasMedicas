@@ -47,5 +47,11 @@ namespace CapaNegocio
             idP = id;
             return (D_Promociones.eliminarPromocion(idP));
         }
+
+        public DataSet consultaPromoc(int idPromo)
+        {
+            idP = idPromo;
+            return (D_Promociones.consultaPromociones(idP));
+        }
     }
 }
